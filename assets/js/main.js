@@ -30,6 +30,11 @@
       if (val !== null) el.textContent = val;
     });
 
+    document.querySelectorAll("[data-en-hint]").forEach(function (el) {
+      var val = el.getAttribute("data-" + lang + "-hint");
+      if (val !== null) el.setAttribute("placeholder", val);
+    });
+
     document.querySelectorAll(".lang-toggle button").forEach(function (btn) {
       btn.classList.toggle("active", btn.getAttribute("data-set-lang") === lang);
     });
@@ -348,6 +353,218 @@
   }
 
   /* ---------------------------------------------------------------------
+     8. PROJECTS PAGE — filter pills + search + GSAP reveal
+     --------------------------------------------------------------------- */
+
+  function initProjectFilters() {
+    var pills = document.querySelectorAll(".filter-pill");
+    if (!pills.length) return;
+
+    var cards = document.querySelectorAll(".project-card");
+    var searchInput = document.querySelector(".project-search input");
+
+    function applyFilters() {
+      var activePill = document.querySelector(".filter-pill.active");
+      var cat = activePill ? activePill.dataset.filter : "all";
+      var query = searchInput ? searchInput.value.trim().toLowerCase() : "";
+
+      cards.forEach(function (card) {
+        var matchesCat = cat === "all" || card.dataset.category === cat;
+        var matchesSearch = !query || card.textContent.toLowerCase().indexOf(query) !== -1;
+        card.style.display = matchesCat && matchesSearch ? "" : "none";
+      });
+    }
+
+    pills.forEach(function (pill) {
+      pill.addEventListener("click", function () {
+        pills.forEach(function (p) { p.classList.remove("active"); });
+        pill.classList.add("active");
+        applyFilters();
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener("input", applyFilters);
+    }
+  }
+
+  function initProjectScrollReveal() {
+    if (typeof gsap === "undefined" || !document.querySelector(".project-card")) return;
+    if (typeof ScrollTrigger !== "undefined") gsap.registerPlugin(ScrollTrigger);
+
+    gsap.utils.toArray(".project-card").forEach(function (card, i) {
+      gsap.from(card, {
+        scrollTrigger: { trigger: card, start: "top 85%" },
+        opacity: 0,
+        y: 40,
+        duration: 0.6,
+        delay: (i % 3) * 0.1,
+        ease: "power2.out"
+      });
+    });
+  }
+
+  /* ---------------------------------------------------------------------
+     9. CERTIFICATIONS PAGE — scattered-to-grid + physics pills
+     --------------------------------------------------------------------- */
+
+  function initCertScatter() {
+    var container = document.querySelector(".cert-scatter-container");
+    if (!container || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    var cards = Array.prototype.slice.call(container.querySelectorAll(".cert-scatter-card"));
+    if (!cards.length) return;
+
+    var isMobile = window.innerWidth < 640;
+    var isTablet = window.innerWidth >= 640 && window.innerWidth < 900;
+    var cols = isMobile ? 1 : isTablet ? 2 : 3;
+    var cardWidth = isMobile ? 160 : 220;
+    var gap = 24;
+    var rowHeight = isMobile ? 300 : 270;
+    var containerWidth = container.clientWidth || cardWidth * cols + gap * (cols - 1);
+    var totalGridWidth = cols * cardWidth + (cols - 1) * gap;
+    var startX = Math.max(0, (containerWidth - totalGridWidth) / 2);
+    var rows = Math.ceil(cards.length / cols);
+
+    container.style.minHeight = (rows * rowHeight + 40) + "px";
+
+    cards.forEach(function (card, i) {
+      var col = i % cols;
+      var row = Math.floor(i / cols);
+      var targetLeft = startX + col * (cardWidth + gap);
+      var targetTop = row * rowHeight + 20;
+
+      gsap.to(card, {
+        scrollTrigger: {
+          trigger: container,
+          start: "top 60%",
+          end: "bottom 20%",
+          scrub: true
+        },
+        top: targetTop,
+        left: targetLeft,
+        rotation: 0,
+        scale: 1,
+        opacity: 1,
+        ease: "power2.inOut"
+      });
+    });
+
+    var filterSidebar = document.querySelector(".cert-scatter-filters");
+    if (filterSidebar) {
+      ScrollTrigger.create({
+        trigger: container,
+        start: "bottom 65%",
+        onEnter: function () { filterSidebar.classList.add("visible"); },
+        onLeaveBack: function () { filterSidebar.classList.remove("visible"); }
+      });
+    }
+
+    var filterPills = document.querySelectorAll(".cert-scatter-filter-pill");
+    filterPills.forEach(function (pill) {
+      pill.addEventListener("click", function () {
+        filterPills.forEach(function (p) { p.classList.remove("active"); });
+        pill.classList.add("active");
+        var platform = pill.dataset.platform;
+        cards.forEach(function (card) {
+          var show = platform === "all" || card.dataset.platform === platform;
+          card.style.display = show ? "" : "none";
+        });
+      });
+    });
+  }
+
+  function initPhysicsPills() {
+    var canvas = document.getElementById("physics-canvas");
+    if (!canvas || typeof Matter === "undefined") return;
+
+    var pillLabels = [
+      "Python", "SQL", "R", "TypeScript", "PyTorch", "Scikit-learn", "LightGBM", "XGBoost",
+      "FastAPI", "Streamlit", "Docker", "PostgreSQL", "GCP", "Prefect", "MLflow", "Qdrant",
+      "Groq", "Llama 3", "RAG", "Vercel", "Railway", "Git", "Plotly", "Pandas", "NumPy",
+      "ROS2", "Whisper", "RASA", "dbt", "Redis"
+    ];
+
+    var Engine = Matter.Engine, Render = Matter.Render, World = Matter.World,
+      Bodies = Matter.Bodies, Body = Matter.Body, Mouse = Matter.Mouse,
+      MouseConstraint = Matter.MouseConstraint, Events = Matter.Events, Runner = Matter.Runner;
+
+    var width = canvas.parentElement.clientWidth || 1000;
+    var height = 400;
+    canvas.width = width;
+    canvas.height = height;
+
+    var rootStyles = getComputedStyle(document.documentElement);
+    var accentColor = rootStyles.getPropertyValue("--accent").trim() || "#38bdf8";
+    var surfaceColor = rootStyles.getPropertyValue("--surface").trim() || "#1e293b";
+
+    var engine = Engine.create();
+    engine.gravity.y = 0.05;
+
+    var render = Render.create({
+      canvas: canvas,
+      engine: engine,
+      options: { width: width, height: height, wireframes: false, background: "transparent" }
+    });
+
+    var wallOpts = { isStatic: true, render: { visible: false } };
+    var walls = [
+      Bodies.rectangle(width / 2, -10, width, 20, wallOpts),
+      Bodies.rectangle(width / 2, height + 10, width, 20, wallOpts),
+      Bodies.rectangle(-10, height / 2, 20, height, wallOpts),
+      Bodies.rectangle(width + 10, height / 2, 20, height, wallOpts)
+    ];
+
+    var bodies = pillLabels.map(function (label) {
+      var w = 20 + label.length * 8;
+      var h = 36;
+      var x = Math.random() * (width - w) + w / 2;
+      var y = Math.random() * (height - h) + h / 2;
+      var body = Bodies.rectangle(x, y, w, h, {
+        chamfer: { radius: 18 },
+        restitution: 0.6,
+        friction: 0.1,
+        frictionAir: 0.02,
+        render: { fillStyle: surfaceColor, strokeStyle: accentColor, lineWidth: 1 }
+      });
+      body.pillLabel = label;
+      Body.setVelocity(body, { x: (Math.random() - 0.5) * 2, y: (Math.random() - 0.5) * 2 });
+      Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.05);
+      return body;
+    });
+
+    World.add(engine.world, walls.concat(bodies));
+
+    var mouse = Mouse.create(render.canvas);
+    var mouseConstraint = MouseConstraint.create(engine, {
+      mouse: mouse,
+      constraint: { stiffness: 0.05, render: { visible: false } }
+    });
+    World.add(engine.world, mouseConstraint);
+    render.mouse = mouse;
+
+    Events.on(render, "afterRender", function () {
+      var ctx = render.context;
+      ctx.font = "600 13px 'JetBrains Mono', monospace";
+      ctx.fillStyle = accentColor;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      bodies.forEach(function (body) {
+        ctx.save();
+        ctx.translate(body.position.x, body.position.y);
+        ctx.rotate(body.angle);
+        ctx.fillText(body.pillLabel, 0, 0);
+        ctx.restore();
+      });
+    });
+
+    var runner = Runner.create();
+    Runner.run(runner, engine);
+    Render.run(render);
+  }
+
+  /* ---------------------------------------------------------------------
      INIT
      --------------------------------------------------------------------- */
 
@@ -356,6 +573,10 @@
     initLangToggle();
     initTypewriter();
     initCountUp();
+    initProjectFilters();
+    initProjectScrollReveal();
+    initCertScatter();
+    initPhysicsPills();
 
     var needsManifest =
       document.querySelector(".datacamp-tracks") ||

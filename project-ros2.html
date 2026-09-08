@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice-Enabled Human-Robot Interaction System — Case Study — Zoeb Ali Khan</title>
+  <meta name="description" content="Case study: real-time voice interaction pipeline for human-robot communication built on ROS2 with Whisper ASR, RASA, and TTS.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="brand">Zoeb<span>.</span>AliKhan</a>
+    <div class="navbar-right">
+      <button class="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html" data-en="Home" data-de="Startseite">Home</a></li>
+        <li><a href="about.html" data-en="About" data-de="Über mich">About</a></li>
+        <li><a href="education.html" data-en="Education" data-de="Ausbildung">Education</a></li>
+        <li><a href="experience.html" data-en="Experience" data-de="Erfahrung">Experience</a></li>
+        <li><a href="projects.html" data-en="Projects" data-de="Projekte">Projects</a></li>
+        <li><a href="certifications.html" data-en="Certifications" data-de="Zertifikate">Certifications</a></li>
+        <li><a href="contact.html" data-en="Contact" data-de="Kontakt">Contact</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button data-set-lang="en">EN</button>
+        <button data-set-lang="de">DE</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="case-main">
+    <div class="case-header">
+      <span class="case-category" data-en="Robotics" data-de="Robotik">Robotics</span>
+      <h1 class="case-title">Voice-Enabled Human-Robot Interaction System</h1>
+      <p class="case-summary" data-en="A real-time voice interaction pipeline for human-robot communication, integrating Whisper ASR, RASA, and TTS in a modular ROS2 architecture." data-de="Eine Echtzeit-Sprachinteraktionspipeline für die Mensch-Roboter-Kommunikation, mit Whisper ASR, RASA und TTS in einer modularen ROS2-Architektur.">A real-time voice interaction pipeline for human-robot communication, integrating Whisper ASR, RASA, and TTS in a modular ROS2 architecture.</p>
+      <div class="case-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">ROS2</span>
+            <span class="tech-tag">Whisper ASR</span>
+            <span class="tech-tag">RASA</span>
+            <span class="tech-tag">TTS</span>
+            <span class="tech-tag">Ubuntu</span>
+            <span class="tech-tag">Speech Processing</span>
+      </div>
+      <div class="case-buttons">
+            <a href="https://github.com/zoeb7184" target="_blank" rel="noopener" class="btn btn-secondary btn-pill" data-en="GitHub →" data-de="GitHub →">GitHub →</a>
+            <a href="projects.html" class="case-back-link" data-en="← Back to Projects" data-de="← Zurück zu Projekten">← Back to Projects</a>
+      </div>
+    </div>
+
+    <section class="case-section">
+      <h2 data-en="Overview" data-de="Überblick">Overview</h2>
+      <p>This project builds a real-time voice interaction system that lets a person talk to a robot naturally — speak, get understood, and get a spoken response — running entirely on a modular ROS2 architecture on Ubuntu Linux.</p>
+    </section>
+
+    <section class="case-section">
+      <h2 data-en="Problem" data-de="Problem">Problem</h2>
+      <p>Real-time speech pipelines on ROS2 are notoriously prone to race conditions and blocking calls: a slow ASR callback can freeze the executor, or two nodes reading/writing shared state simultaneously can produce inconsistent behavior — both of which break the responsiveness a natural voice interface depends on.</p>
+    </section>
+
+    <section class="case-section">
+      <h2 data-en="Approach" data-de="Ansatz">Approach</h2>
+      <p>Whisper handles automatic speech recognition, RASA manages dialogue understanding and response selection, and a TTS engine speaks the response back — each running as a separate ROS2 node in a modular architecture. To eliminate race conditions, callbacks were organized under a timer-driven MutuallyExclusiveCallbackGroup, serializing access to shared resources instead of letting nodes race each other. Voice activity detection (VAD) was calibrated to reliably detect when the user starts and stops speaking, so the pipeline knows exactly when to start listening and when to hand off to RASA.</p>
+    </section>
+
+    <section class="case-section">
+      <h2 data-en="Results" data-de="Ergebnisse">Results</h2>
+      <p>The callback architecture achieved zero race conditions in practice, and the full pipeline — from spoken input through ASR, dialogue management, and TTS output — runs as a reliable real-time interaction loop.</p>
+    </section>
+
+    <section class="case-section">
+      <h2 data-en="Challenges" data-de="Herausforderungen">Challenges</h2>
+      <p>VAD thresholds that worked well in one room/microphone setup would misfire in another, so calibration had to be tuned rather than hardcoded. The bigger structural challenge was coordinating ASR, dialogue, and TTS nodes without any of them blocking the shared ROS2 executor — solved by the timer-driven MutuallyExclusiveCallbackGroup design rather than ad-hoc locking.</p>
+    </section>
+
+    <section class="case-section">
+      <h2 data-en="Tech Stack" data-de="Tech-Stack">Tech Stack</h2>
+          <div class="stack-group">
+            <h3 class="stack-group-label">Robotics</h3>
+            <div class="chip-list"><span class="chip">Python</span><span class="chip">ROS2</span><span class="chip">Ubuntu</span></div>
+          </div>
+          <div class="stack-group">
+            <h3 class="stack-group-label">Speech Pipeline</h3>
+            <div class="chip-list"><span class="chip">Whisper ASR</span><span class="chip">RASA</span><span class="chip">TTS</span><span class="chip">Speech Processing</span></div>
+          </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p data-en="© 2026 Zoeb Ali Khan" data-de="© 2026 Zoeb Ali Khan">© 2026 Zoeb Ali Khan</p>
+      <div class="footer-social">
+        <a href="https://github.com/zoeb7184" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.79 0c2.2-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14 0 1.54-.01 2.79-.01 3.17 0 .31.2.68.8.56C20.71 21.38 24 17.07 24 12 24 5.73 18.27.5 12 .5z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/zoeb-ali-khan" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+        </a>
+        <a href="mailto:zoebalikhan00@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13zm2.2.5 7.8 6.1 7.8-6.1H4.2zM20 7.4l-7.4 5.8a1 1 0 0 1-1.2 0L4 7.4V18.5c0 .28.22.5.5.5h15a.5.5 0 0 0 .5-.5V7.4z"/></svg>
+        </a>
+      </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

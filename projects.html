@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
@@ -50,98 +52,194 @@
   </header>
 
   <main class="main-content">
+
+      <div class="project-filter-bar">
+        <button class="filter-pill active" data-filter="all" data-en="All" data-de="Alle">All</button>
+        <button class="filter-pill" data-filter="ML/AI" data-en="ML/AI" data-de="ML/AI">ML/AI</button>
+        <button class="filter-pill" data-filter="Data Engineering" data-en="Data Engineering" data-de="Data Engineering">Data Engineering</button>
+        <button class="filter-pill" data-filter="Full Stack" data-en="Full Stack" data-de="Full Stack">Full Stack</button>
+        <button class="filter-pill" data-filter="Data Analytics" data-en="Data Analytics" data-de="Datenanalyse">Data Analytics</button>
+        <button class="filter-pill" data-filter="Robotics" data-en="Robotics" data-de="Robotik">Robotics</button>
+        <div class="project-search">
+          <input type="text" placeholder="Search projects…" data-en-hint="Search projects…" data-de-hint="Projekte durchsuchen…" aria-label="Search projects">
+        </div>
+      </div>
+
       <div class="project-grid">
 
-        <div class="card project-card">
+        <div class="card project-card" data-category="Full Stack">
+          <span class="project-card-category">Full Stack</span>
           <h3>FootballIQ</h3>
-          <p data-en="AI-powered football analytics platform. Next.js 16 frontend, FIFA 2026 data (48 teams, 1,248 players), 154 tests, 92% coverage. Deployed on Neon/Render/Vercel." data-de="KI-gestützte Football-Analytics-Plattform. Next.js-16-Frontend, FIFA-2026-Daten (48 Teams, 1.248 Spieler), 154 Tests, 92 % Testabdeckung. Bereitgestellt auf Neon/Render/Vercel.">AI-powered football analytics platform. Next.js 16 frontend, FIFA 2026 data (48 teams, 1,248 players), 154 tests, 92% coverage. Deployed on Neon/Render/Vercel.</p>
+          <p data-en="AI-powered football analytics platform built on Clean/Hexagonal Architecture. 11-module system with medallion data warehouse, XGBoost player valuation (FIFA 2026 data: 48 teams, 1,248 players), and RAG-powered analyst grounded in SQL. 154 tests, 92% coverage." data-de="KI-gestützte Football-Analytics-Plattform auf Clean/Hexagonal-Architektur. 11-Modul-System mit Medallion-Data-Warehouse, XGBoost-Spielerbewertung (FIFA-2026-Daten: 48 Teams, 1.248 Spieler) und RAG-gestütztem Analysten mit SQL-Grounding. 154 Tests, 92 % Testabdeckung.">AI-powered football analytics platform built on Clean/Hexagonal Architecture. 11-module system with medallion data warehouse, XGBoost player valuation (FIFA 2026 data: 48 teams, 1,248 players), and RAG-powered analyst grounded in SQL. 154 tests, 92% coverage.</p>
           <div class="tech-tags">
-            <span class="tech-tag">Next.js</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">FastAPI</span>
             <span class="tech-tag">PostgreSQL</span>
-            <span class="tech-tag">Neon</span>
-            <span class="tech-tag">Vercel</span>
+            <span class="tech-tag">pgvector</span>
+            <span class="tech-tag">XGBoost</span>
+            <span class="tech-tag">SHAP</span>
+            <span class="tech-tag">Next.js</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">dbt</span>
+            <span class="tech-tag">GitHub Actions</span>
+          </div>
+          <div class="project-card-buttons">
+            <a href="project-footballiq.html" class="project-btn primary" data-en="Case Study →" data-de="Fallstudie →">Case Study →</a>
+            <a href="https://footballiq-zoeb.vercel.app" target="_blank" rel="noopener" class="project-btn" data-en="Live Demo →" data-de="Live-Demo →">Live Demo →</a>
+            <a href="https://github.com/zoeb7184/footballiq" target="_blank" rel="noopener" class="project-btn" data-en="GitHub →" data-de="GitHub →">GitHub →</a>
           </div>
         </div>
 
-        <div class="card project-card">
+        <div class="card project-card" data-category="Data Engineering">
+          <span class="project-card-category">Data Engineering</span>
           <h3>Career OS</h3>
-          <p data-en="Production-grade MLOps and RAG portfolio system. ETL with Prefect, ATS analyser with MLflow, RAG with Qdrant/Groq/Llama 3, ML column detector, deployed on Railway." data-de="Produktionsreifes MLOps- und RAG-Portfoliosystem. ETL mit Prefect, ATS-Analyzer mit MLflow, RAG mit Qdrant/Groq/Llama 3, ML-Spaltenerkennung, bereitgestellt auf Railway.">Production-grade MLOps and RAG portfolio system. ETL with Prefect, ATS analyser with MLflow, RAG with Qdrant/Groq/Llama 3, ML column detector, deployed on Railway.</p>
+          <p data-en="Production MLOps system with 13 autonomous nodes. Ingests 656+ real job listings daily via Prefect ETL, ATS resume analyser with MLflow, RAG career advisor powered by Qdrant + Groq Llama 3, and 30/60/90-day skill demand forecasting." data-de="Produktives MLOps-System mit 13 autonomen Knoten. Erfasst täglich 656+ echte Stellenanzeigen über Prefect-ETL, ATS-Lebenslaufanalyse mit MLflow, RAG-Karriereberater mit Qdrant + Groq Llama 3, sowie 30/60/90-Tage-Prognosen zur Skill-Nachfrage.">Production MLOps system with 13 autonomous nodes. Ingests 656+ real job listings daily via Prefect ETL, ATS resume analyser with MLflow, RAG career advisor powered by Qdrant + Groq Llama 3, and 30/60/90-day skill demand forecasting.</p>
           <div class="tech-tags">
             <span class="tech-tag">Python</span>
+            <span class="tech-tag">FastAPI</span>
             <span class="tech-tag">Prefect</span>
             <span class="tech-tag">MLflow</span>
             <span class="tech-tag">Qdrant</span>
             <span class="tech-tag">Groq</span>
+            <span class="tech-tag">Llama 3</span>
+            <span class="tech-tag">Redis</span>
+            <span class="tech-tag">Railway</span>
+            <span class="tech-tag">Next.js</span>
+          </div>
+          <div class="project-card-buttons">
+            <a href="project-career-os.html" class="project-btn primary" data-en="Case Study →" data-de="Fallstudie →">Case Study →</a>
+            <a href="https://frontend-production-98e0.up.railway.app" target="_blank" rel="noopener" class="project-btn" data-en="Live Demo →" data-de="Live-Demo →">Live Demo →</a>
+            <a href="https://github.com/zoeb7184" target="_blank" rel="noopener" class="project-btn" data-en="GitHub →" data-de="GitHub →">GitHub →</a>
           </div>
         </div>
 
-        <div class="card project-card">
+        <div class="card project-card" data-category="Data Analytics">
+          <span class="project-card-category">Data Analytics</span>
           <h3>German Tech Salary Explorer</h3>
-          <p data-en="Interactive Plotly/Streamlit dashboard on 1,400 salary records." data-de="Interaktives Plotly/Streamlit-Dashboard mit 1.400 Gehaltsdatensätzen.">Interactive Plotly/Streamlit dashboard on 1,400 salary records.</p>
+          <p data-en="Interactive Plotly/Streamlit dashboard exploring 1,400 German tech salary records. Filters by role, city, experience level, and company size with real-time chart updates." data-de="Interaktives Plotly/Streamlit-Dashboard zur Analyse von 1.400 deutschen Tech-Gehaltsdatensätzen. Filterung nach Rolle, Stadt, Erfahrungsstufe und Unternehmensgröße mit Echtzeit-Diagrammaktualisierung.">Interactive Plotly/Streamlit dashboard exploring 1,400 German tech salary records. Filters by role, city, experience level, and company size with real-time chart updates.</p>
           <div class="tech-tags">
             <span class="tech-tag">Python</span>
             <span class="tech-tag">Plotly</span>
             <span class="tech-tag">Streamlit</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">Data Visualization</span>
+          </div>
+          <div class="project-card-buttons">
+            <a href="project-salary-explorer.html" class="project-btn primary" data-en="Case Study →" data-de="Fallstudie →">Case Study →</a>
+            <a href="https://german-tech-salary-explorer.streamlit.app/" target="_blank" rel="noopener" class="project-btn" data-en="Live Demo →" data-de="Live-Demo →">Live Demo →</a>
+            <a href="https://github.com/zoeb7184" target="_blank" rel="noopener" class="project-btn" data-en="GitHub →" data-de="GitHub →">GitHub →</a>
           </div>
         </div>
 
-        <div class="card project-card">
+        <div class="card project-card" data-category="ML/AI">
+          <span class="project-card-category">ML/AI</span>
           <h3>German Day-Ahead Electricity Price Forecaster</h3>
-          <p data-en="LightGBM model on SMARD API data, 62% MAE reduction. FastAPI + Streamlit deployed." data-de="LightGBM-Modell auf SMARD-API-Daten, 62 % geringerer MAE. Bereitgestellt mit FastAPI + Streamlit.">LightGBM model on SMARD API data, 62% MAE reduction. FastAPI + Streamlit deployed.</p>
+          <p data-en="End-to-end ML forecasting pipeline for German electricity prices using SMARD market data (8,664 rows). LightGBM reduced forecast MAE by 62% over baseline (€34.00 → €13.01/MWh). Served via FastAPI REST endpoint with Docker containerization." data-de="End-to-End-ML-Prognosepipeline für deutsche Strompreise mit SMARD-Marktdaten (8.664 Zeilen). LightGBM reduzierte den Prognose-MAE gegenüber der Baseline um 62 % (34,00 € → 13,01 €/MWh). Bereitgestellt über einen FastAPI-REST-Endpunkt mit Docker-Containerisierung.">End-to-end ML forecasting pipeline for German electricity prices using SMARD market data (8,664 rows). LightGBM reduced forecast MAE by 62% over baseline (€34.00 → €13.01/MWh). Served via FastAPI REST endpoint with Docker containerization.</p>
           <div class="tech-tags">
+            <span class="tech-tag">Python</span>
             <span class="tech-tag">LightGBM</span>
             <span class="tech-tag">FastAPI</span>
             <span class="tech-tag">Streamlit</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">SMARD API</span>
+            <span class="tech-tag">REST API</span>
+          </div>
+          <div class="project-card-buttons">
+            <a href="project-electricity-forecaster.html" class="project-btn primary" data-en="Case Study →" data-de="Fallstudie →">Case Study →</a>
+            <a href="https://de-electricity-forecaster.streamlit.app" target="_blank" rel="noopener" class="project-btn" data-en="Live Demo →" data-de="Live-Demo →">Live Demo →</a>
+            <a href="https://github.com/zoeb7184" target="_blank" rel="noopener" class="project-btn" data-en="GitHub →" data-de="GitHub →">GitHub →</a>
           </div>
         </div>
 
-        <div class="card project-card">
+        <div class="card project-card" data-category="ML/AI">
+          <span class="project-card-category">ML/AI</span>
           <h3>White Stork Migration Analysis</h3>
-          <p data-en="HMM behavioral state classification on 54,613 GPS locations from 42 storks. Universität Bielefeld × Max Planck Institute of Animal Behavior." data-de="HMM-basierte Verhaltenszustandsklassifikation anhand von 54.613 GPS-Standorten von 42 Störchen. Universität Bielefeld × Max-Planck-Institut für Verhaltensbiologie.">HMM behavioral state classification on 54,613 GPS locations from 42 storks. Universität Bielefeld × Max Planck Institute of Animal Behavior.</p>
+          <p data-en="Behavioral state classification on 54,613 GPS locations from 42 white storks using Hidden Markov Models. Joint project with Universität Bielefeld × Max Planck Institute of Animal Behavior. Also applied conditional logit models for habitat selection." data-de="Verhaltenszustandsklassifikation anhand von 54.613 GPS-Standorten von 42 Weißstörchen mittels Hidden-Markov-Modellen. Gemeinschaftsprojekt der Universität Bielefeld × Max-Planck-Institut für Verhaltensbiologie. Zusätzlich wurden bedingte Logit-Modelle zur Habitatwahl angewendet.">Behavioral state classification on 54,613 GPS locations from 42 white storks using Hidden Markov Models. Joint project with Universität Bielefeld × Max Planck Institute of Animal Behavior. Also applied conditional logit models for habitat selection.</p>
           <div class="tech-tags">
             <span class="tech-tag">Python</span>
-            <span class="tech-tag">HMM</span>
             <span class="tech-tag">R</span>
+            <span class="tech-tag">HMM</span>
+            <span class="tech-tag">Conditional Logit</span>
+            <span class="tech-tag">GPS Data</span>
+            <span class="tech-tag">Statistical Modeling</span>
+          </div>
+          <div class="project-card-buttons">
+            <a href="project-white-stork.html" class="project-btn primary" data-en="Case Study →" data-de="Fallstudie →">Case Study →</a>
+            <a href="https://github.com/zoeb7184" target="_blank" rel="noopener" class="project-btn" data-en="GitHub →" data-de="GitHub →">GitHub →</a>
           </div>
         </div>
 
-        <div class="card project-card">
+        <div class="card project-card" data-category="ML/AI">
+          <span class="project-card-category">ML/AI</span>
           <h3>CNNs vs. Transformers Sentiment Analysis</h3>
-          <p data-en="BERT fine-tuning, 90.14% accuracy on SST-2." data-de="BERT-Fine-Tuning, 90,14 % Genauigkeit auf SST-2.">BERT fine-tuning, 90.14% accuracy on SST-2.</p>
+          <p data-en="Comparative study fine-tuning BERT-base (Hugging Face, PyTorch) against CNN architectures on SST-2 dataset (67,349 labelled sentences). Achieved 90.14% accuracy with BERT. Used progressive layer freezing, regularization, and systematic hyperparameter search." data-de="Vergleichsstudie zum Fine-Tuning von BERT-base (Hugging Face, PyTorch) gegenüber CNN-Architekturen auf dem SST-2-Datensatz (67.349 gelabelte Sätze). BERT erreichte 90,14 % Genauigkeit. Einsatz von progressivem Layer-Freezing, Regularisierung und systematischer Hyperparametersuche.">Comparative study fine-tuning BERT-base (Hugging Face, PyTorch) against CNN architectures on SST-2 dataset (67,349 labelled sentences). Achieved 90.14% accuracy with BERT. Used progressive layer freezing, regularization, and systematic hyperparameter search.</p>
           <div class="tech-tags">
+            <span class="tech-tag">Python</span>
             <span class="tech-tag">PyTorch</span>
             <span class="tech-tag">BERT</span>
             <span class="tech-tag">HuggingFace</span>
+            <span class="tech-tag">TensorFlow</span>
+            <span class="tech-tag">NLP</span>
+            <span class="tech-tag">SST-2</span>
+          </div>
+          <div class="project-card-buttons">
+            <a href="project-bert-cnn.html" class="project-btn primary" data-en="Case Study →" data-de="Fallstudie →">Case Study →</a>
+            <a href="https://github.com/zoeb7184" target="_blank" rel="noopener" class="project-btn" data-en="GitHub →" data-de="GitHub →">GitHub →</a>
           </div>
         </div>
 
-        <div class="card project-card">
+        <div class="card project-card" data-category="ML/AI">
+          <span class="project-card-category">ML/AI</span>
           <h3>Cardiovascular Disease Risk Prediction</h3>
-          <p data-en="308,854 CDC BRFSS records, AUC-ROC 0.836." data-de="308.854 CDC-BRFSS-Datensätze, AUC-ROC 0,836.">308,854 CDC BRFSS records, AUC-ROC 0.836.</p>
+          <p data-en="Binary classification on 308,854 CDC BRFSS health records. Achieved AUC-ROC 0.836 using XGBoost with class-imbalance handling, feature selection, and model interpretability analysis." data-de="Binäre Klassifikation anhand von 308.854 CDC-BRFSS-Gesundheitsdatensätzen. Erreichte einen AUC-ROC von 0,836 mit XGBoost, inklusive Behandlung von Klassenungleichgewicht, Feature-Selektion und Interpretierbarkeitsanalyse.">Binary classification on 308,854 CDC BRFSS health records. Achieved AUC-ROC 0.836 using XGBoost with class-imbalance handling, feature selection, and model interpretability analysis.</p>
           <div class="tech-tags">
             <span class="tech-tag">Python</span>
             <span class="tech-tag">XGBoost</span>
             <span class="tech-tag">Scikit-learn</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">CDC BRFSS</span>
+            <span class="tech-tag">Classification</span>
+          </div>
+          <div class="project-card-buttons">
+            <a href="project-cvd-risk.html" class="project-btn primary" data-en="Case Study →" data-de="Fallstudie →">Case Study →</a>
+            <a href="https://github.com/zoeb7184" target="_blank" rel="noopener" class="project-btn" data-en="GitHub →" data-de="GitHub →">GitHub →</a>
           </div>
         </div>
 
-        <div class="card project-card">
+        <div class="card project-card" data-category="ML/AI">
+          <span class="project-card-category">ML/AI</span>
           <h3>Quora Duplicate Question Detection</h3>
-          <p data-en="404,290 pairs, 76.33% accuracy." data-de="404.290 Fragepaare, 76,33 % Genauigkeit.">404,290 pairs, 76.33% accuracy.</p>
+          <p data-en="Progressive feature engineering pipeline on 404,290 Quora question pairs. Improved accuracy by 6.1% (72.0% → 76.3%) and F1-score by 29% (0.519 → 0.671) over BOW baseline using 15+ token-level and fuzzy string features. Benchmarked LR, RF, and XGBoost." data-de="Progressive Feature-Engineering-Pipeline auf 404.290 Quora-Fragepaaren. Verbesserung der Genauigkeit um 6,1 % (72,0 % → 76,3 %) und des F1-Scores um 29 % (0,519 → 0,671) gegenüber der BOW-Baseline durch 15+ Token- und Fuzzy-String-Features. Benchmarking von LR, RF und XGBoost.">Progressive feature engineering pipeline on 404,290 Quora question pairs. Improved accuracy by 6.1% (72.0% → 76.3%) and F1-score by 29% (0.519 → 0.671) over BOW baseline using 15+ token-level and fuzzy string features. Benchmarked LR, RF, and XGBoost.</p>
           <div class="tech-tags">
             <span class="tech-tag">Python</span>
-            <span class="tech-tag">NLP</span>
             <span class="tech-tag">Scikit-learn</span>
+            <span class="tech-tag">XGBoost</span>
+            <span class="tech-tag">NLP</span>
+            <span class="tech-tag">fuzzywuzzy</span>
+            <span class="tech-tag">Feature Engineering</span>
+          </div>
+          <div class="project-card-buttons">
+            <a href="project-quora.html" class="project-btn primary" data-en="Case Study →" data-de="Fallstudie →">Case Study →</a>
+            <a href="https://github.com/zoeb7184" target="_blank" rel="noopener" class="project-btn" data-en="GitHub →" data-de="GitHub →">GitHub →</a>
           </div>
         </div>
 
-        <div class="card project-card">
-          <h3>ROS2 Speech Recognition</h3>
-          <p data-en="Multi-node ROS2 ASR system for a robotics project." data-de="Mehrknoten-ROS2-Spracherkennungssystem (ASR) für ein Robotikprojekt.">Multi-node ROS2 ASR system for a robotics project.</p>
+        <div class="card project-card" data-category="Robotics">
+          <span class="project-card-category">Robotics</span>
+          <h3>Voice-Enabled Human-Robot Interaction System</h3>
+          <p data-en="Real-time voice interaction pipeline for human-robot communication. Integrated Whisper ASR, RASA dialogue management, and TTS within a modular ROS2 architecture on Ubuntu Linux. Timer-driven MutuallyExclusiveCallbackGroup for zero race conditions." data-de="Echtzeit-Sprachinteraktionspipeline für die Mensch-Roboter-Kommunikation. Integration von Whisper ASR, RASA-Dialogmanagement und TTS in eine modulare ROS2-Architektur unter Ubuntu Linux. Timer-gesteuerte MutuallyExclusiveCallbackGroup für null Race Conditions.">Real-time voice interaction pipeline for human-robot communication. Integrated Whisper ASR, RASA dialogue management, and TTS within a modular ROS2 architecture on Ubuntu Linux. Timer-driven MutuallyExclusiveCallbackGroup for zero race conditions.</p>
           <div class="tech-tags">
             <span class="tech-tag">Python</span>
             <span class="tech-tag">ROS2</span>
-            <span class="tech-tag">ASR</span>
+            <span class="tech-tag">Whisper ASR</span>
+            <span class="tech-tag">RASA</span>
+            <span class="tech-tag">TTS</span>
+            <span class="tech-tag">Ubuntu</span>
+            <span class="tech-tag">Speech Processing</span>
+          </div>
+          <div class="project-card-buttons">
+            <a href="project-ros2.html" class="project-btn primary" data-en="Case Study →" data-de="Fallstudie →">Case Study →</a>
+            <a href="https://github.com/zoeb7184" target="_blank" rel="noopener" class="project-btn" data-en="GitHub →" data-de="GitHub →">GitHub →</a>
           </div>
         </div>
 

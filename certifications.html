@@ -9,6 +9,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
 </head>
 <body>
 
@@ -48,6 +51,132 @@
       </div>
     </div>
   </header>
+
+  <section class="cert-scatter-section">
+    <h2 class="cert-scatter-title" data-en="Certificates &amp; Awards" data-de="Zertifikate &amp; Auszeichnungen">Certificates &amp; Awards</h2>
+    <div class="cert-scatter-layout">
+      <div class="cert-scatter-filters">
+        <button class="cert-scatter-filter-pill active" data-platform="all" data-en="All Entries" data-de="Alle Einträge">All Entries</button>
+        <button class="cert-scatter-filter-pill" data-platform="datacamp" data-en="DataCamp" data-de="DataCamp">DataCamp</button>
+        <button class="cert-scatter-filter-pill" data-platform="google" data-en="Google" data-de="Google">Google</button>
+        <button class="cert-scatter-filter-pill" data-platform="ibm" data-en="IBM" data-de="IBM">IBM</button>
+        <button class="cert-scatter-filter-pill" data-platform="neo4j" data-en="Neo4j" data-de="Neo4j">Neo4j</button>
+        <button class="cert-scatter-filter-pill" data-platform="udemy" data-en="Udemy" data-de="Udemy">Udemy</button>
+      </div>
+      <div class="cert-scatter-container">
+          <div class="cert-preview-card cert-scatter-card" data-platform="datacamp" style="top:12%; left:8%; transform: rotate(-14deg) scale(0.85);">
+            <div class="cert-thumb"><object type="application/pdf" data="assets/images/certs/datacamp/ai-fundamentals/final/Final (AI Fundamentals).pdf" width="100%" height="120px"><div class="cert-thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div></object></div>
+            <div class="cert-info">
+              <span class="cert-platform-badge">DataCamp</span>
+              <p class="cert-name">AI Fundamentals</p>
+              <p class="cert-issuer">DataCamp · 10hr</p>
+            </div>
+          </div>
+          <div class="cert-preview-card cert-scatter-card" data-platform="datacamp" style="top:45%; left:62%; transform: rotate(18deg) scale(1.05);">
+            <div class="cert-thumb"><object type="application/pdf" data="assets/images/certs/datacamp/data-scientist-pro/final/Final Data Scientist Professional with Python.pdf" width="100%" height="120px"><div class="cert-thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div></object></div>
+            <div class="cert-info">
+              <span class="cert-platform-badge">DataCamp</span>
+              <p class="cert-name">Data Scientist Professional with Python</p>
+              <p class="cert-issuer">DataCamp · 166hr</p>
+            </div>
+          </div>
+          <div class="cert-preview-card cert-scatter-card" data-platform="datacamp" style="top:70%; left:22%; transform: rotate(-8deg) scale(0.95);">
+            <div class="cert-thumb"><object type="application/pdf" data="assets/images/certs/datacamp/associate-data-scientist-r/final/Final Certificate Associate Data Scientist in R.pdf" width="100%" height="120px"><div class="cert-thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div></object></div>
+            <div class="cert-info">
+              <span class="cert-platform-badge">DataCamp</span>
+              <p class="cert-name">Associate Data Scientist in R</p>
+              <p class="cert-issuer">DataCamp · 88hr</p>
+            </div>
+          </div>
+          <div class="cert-preview-card cert-scatter-card" data-platform="datacamp" style="top:25%; left:75%; transform: rotate(12deg) scale(0.9);">
+            <div class="cert-thumb"><object type="application/pdf" data="assets/images/certs/datacamp/python-developer/final/Python Developer(Final).pdf" width="100%" height="120px"><div class="cert-thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div></object></div>
+            <div class="cert-info">
+              <span class="cert-platform-badge">DataCamp</span>
+              <p class="cert-name">Python Developer</p>
+              <p class="cert-issuer">DataCamp · 71hr</p>
+            </div>
+          </div>
+          <div class="cert-preview-card cert-scatter-card" data-platform="datacamp" style="top:58%; left:5%; transform: rotate(-20deg) scale(1.1);">
+            <div class="cert-thumb"><object type="application/pdf" data="assets/images/certs/datacamp/sql-fundamentals/final/Final (Database Design).pdf" width="100%" height="120px"><div class="cert-thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div></object></div>
+            <div class="cert-info">
+              <span class="cert-platform-badge">DataCamp</span>
+              <p class="cert-name">SQL Fundamentals</p>
+              <p class="cert-issuer">DataCamp · 26hr</p>
+            </div>
+          </div>
+          <div class="cert-preview-card cert-scatter-card" data-platform="google" style="top:15%; left:40%; transform: rotate(7deg) scale(0.88);">
+            <div class="cert-thumb"><img src="assets/images/certs/google/google-ai-essentials-v1.png" alt="Google AI Essentials Specialization"></div>
+            <div class="cert-info">
+              <span class="cert-platform-badge">Google</span>
+              <p class="cert-name">Google AI Essentials Specialization</p>
+              <p class="cert-issuer">Google / Coursera</p>
+            </div>
+          </div>
+          <div class="cert-preview-card cert-scatter-card" data-platform="google" style="top:80%; left:55%; transform: rotate(-15deg) scale(1.0);">
+            <div class="cert-thumb"><img src="assets/images/certs/google/google-prompting-essentials.1.png" alt="Google Prompting Essentials"></div>
+            <div class="cert-info">
+              <span class="cert-platform-badge">Google</span>
+              <p class="cert-name">Google Prompting Essentials</p>
+              <p class="cert-issuer">Google / Coursera</p>
+            </div>
+          </div>
+          <div class="cert-preview-card cert-scatter-card" data-platform="neo4j" style="top:35%; left:18%; transform: rotate(20deg) scale(0.92);">
+            <div class="cert-thumb"><object type="application/pdf" data="assets/images/certs/neo4j/Neo4j & GenerativeAI Fundamentals Certificate _ GraphAcademy.pdf" width="100%" height="120px"><div class="cert-thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div></object></div>
+            <div class="cert-info">
+              <span class="cert-platform-badge">Neo4j</span>
+              <p class="cert-name">Neo4j &amp; GenerativeAI Fundamentals Certificate</p>
+              <p class="cert-issuer">GraphAcademy</p>
+            </div>
+          </div>
+          <div class="cert-preview-card cert-scatter-card" data-platform="ibm" style="top:65%; left:80%; transform: rotate(-5deg) scale(1.08);">
+            <div class="cert-thumb"><object type="application/pdf" data="assets/images/certs/ibm/Data Manipulation and Preparation - SkillsBuild.pdf" width="100%" height="120px"><div class="cert-thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div></object></div>
+            <div class="cert-info">
+              <span class="cert-platform-badge">IBM</span>
+              <p class="cert-name">Data Manipulation and Preparation</p>
+              <p class="cert-issuer">IBM SkillsBuild · Aug 2026</p>
+            </div>
+          </div>
+          <div class="cert-preview-card cert-scatter-card" data-platform="ibm" style="top:20%; left:60%; transform: rotate(-18deg) scale(0.86);">
+            <div class="cert-thumb"><object type="application/pdf" data="assets/images/certs/ibm/Proov - AI-Assisted Code Modernization with IBM.pdf" width="100%" height="120px"><div class="cert-thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div></object></div>
+            <div class="cert-info">
+              <span class="cert-platform-badge">IBM</span>
+              <p class="cert-name">AI-Assisted Code Modernization with IBM</p>
+              <p class="cert-issuer">IBM</p>
+            </div>
+          </div>
+          <div class="cert-preview-card cert-scatter-card" data-platform="ibm" style="top:50%; left:35%; transform: rotate(10deg) scale(1.02);">
+            <div class="cert-thumb"><object type="application/pdf" data="assets/images/certs/ibm/IBM Bobathon- The Legacy Fix - Modernize a Real Car-Company Service.pdf" width="100%" height="120px"><div class="cert-thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div></object></div>
+            <div class="cert-info">
+              <span class="cert-platform-badge">IBM</span>
+              <p class="cert-name">IBM Bobathon: The Legacy Fix</p>
+              <p class="cert-issuer">IBM</p>
+            </div>
+          </div>
+          <div class="cert-preview-card cert-scatter-card" data-platform="udemy" style="top:75%; left:10%; transform: rotate(-10deg) scale(0.94);">
+            <div class="cert-thumb"><object type="application/pdf" data="assets/images/certs/udemy/Data analyst skillpath udemy.pdf" width="100%" height="120px"><div class="cert-thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div></object></div>
+            <div class="cert-info">
+              <span class="cert-platform-badge">Udemy</span>
+              <p class="cert-name">Data Analyst Skillpath</p>
+              <p class="cert-issuer">Udemy</p>
+            </div>
+          </div>
+          <div class="cert-preview-card cert-scatter-card" data-platform="datacamp" style="top:10%; left:85%; transform: rotate(15deg) scale(0.98);">
+            <div class="cert-thumb"><object type="application/pdf" data="assets/images/certs/other/Associate Data Engineer - DataCamp.pdf" width="100%" height="120px"><div class="cert-thumb-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div></object></div>
+            <div class="cert-info">
+              <span class="cert-platform-badge">DataCamp</span>
+              <p class="cert-name">Associate Data Engineer</p>
+              <p class="cert-issuer">DataCamp</p>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="physics-section">
+    <h2 data-en="Technical Universe" data-de="Technisches Universum">Technical Universe</h2>
+    <p class="subtitle" data-en="The tools and technologies I work with" data-de="Die Tools und Technologien mit denen ich arbeite">The tools and technologies I work with</p>
+    <canvas id="physics-canvas"></canvas>
+  </section>
 
   <main class="main-content">
       <section class="certs-section">
