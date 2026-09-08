@@ -1327,7 +1327,8 @@ body > footer.site-footer {
 
 .split-hero {
   display: flex;
-  min-height: 100vh;
+  min-height: 85vh;
+  max-height: 90vh;
 }
 
 .split-hero-image {
@@ -1339,7 +1340,7 @@ body > footer.site-footer {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: top center;
   display: block;
 }
 
@@ -1862,6 +1863,25 @@ body > footer.site-footer {
   will-change: transform, opacity, top, left;
 }
 
+/* Grid end-state: Flip.getState() captures the scattered layout above,
+   then this class is applied (an instant, invisible DOM change) and
+   Flip.from() animates the delta between the two states. */
+.cert-scatter-container.is-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  min-height: 0;
+}
+
+.cert-scatter-container.is-grid .cert-scatter-card {
+  position: static;
+  top: auto;
+  left: auto;
+  width: auto;
+  opacity: 1;
+  transform: none;
+}
+
 .physics-section {
   background: var(--surface2);
   padding: 5rem 2rem;
@@ -2017,6 +2037,7 @@ body > footer.site-footer {
   .split-hero {
     flex-direction: column;
     min-height: auto;
+    max-height: none;
   }
 
   .split-hero-image {
@@ -2105,11 +2126,19 @@ body > footer.site-footer {
   .cert-scatter-card {
     width: 160px;
   }
+
+  .cert-scatter-container.is-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 1080px) and (min-width: 861px) {
   .project-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cert-scatter-container.is-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

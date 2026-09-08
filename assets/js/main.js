@@ -416,50 +416,51 @@
     var cards = Array.prototype.slice.call(container.querySelectorAll(".cert-scatter-card"));
     if (!cards.length) return;
 
-    var isMobile = window.innerWidth < 640;
-    var isTablet = window.innerWidth >= 640 && window.innerWidth < 900;
-    var cols = isMobile ? 1 : isTablet ? 2 : 3;
-    var cardWidth = isMobile ? 160 : 220;
-    var gap = 24;
-    var rowHeight = isMobile ? 300 : 270;
-    var containerWidth = container.clientWidth || cardWidth * cols + gap * (cols - 1);
-    var totalGridWidth = cols * cardWidth + (cols - 1) * gap;
-    var startX = Math.max(0, (containerWidth - totalGridWidth) / 2);
-    var rows = Math.ceil(cards.length / cols);
-
-    container.style.minHeight = (rows * rowHeight + 40) + "px";
-
-    cards.forEach(function (card, i) {
-      var col = i % cols;
-      var row = Math.floor(i / cols);
-      var targetLeft = startX + col * (cardWidth + gap);
-      var targetTop = row * rowHeight + 20;
-
-      gsap.to(card, {
-        scrollTrigger: {
-          trigger: container,
-          start: "top 60%",
-          end: "bottom 20%",
-          scrub: true
-        },
-        top: targetTop,
-        left: targetLeft,
-        rotation: 0,
-        scale: 1,
-        opacity: 1,
-        ease: "power2.inOut"
-      });
-    });
-
     var filterSidebar = document.querySelector(".cert-scatter-filters");
-    if (filterSidebar) {
-      ScrollTrigger.create({
-        trigger: container,
-        start: "bottom 65%",
-        onEnter: function () { filterSidebar.classList.add("visible"); },
-        onLeaveBack: function () { filterSidebar.classList.remove("visible"); }
+    var hasFlip = typeof Flip !== "undefined";
+    if (hasFlip) gsap.registerPlugin(Flip);
+
+    function snapToGrid() {
+      if (container.classList.contains("is-grid")) return;
+
+      if (!hasFlip) {
+        // Flip failed to load (e.g. CDN blocked) — still land the cards in
+        // a usable grid, just without the animated transition.
+        container.classList.add("is-grid");
+        if (filterSidebar) filterSidebar.classList.add("visible");
+        return;
+      }
+
+      // 1. Capture the current (scattered, absolutely-positioned) state of
+      //    every card, including rotation/scale/opacity.
+      var state = Flip.getState(cards, { props: "rotation,scale,opacity" });
+
+      // 2. Flip the container into its grid layout. This is a plain,
+      //    instant DOM/CSS change — no visible jump yet because Flip
+      //    hasn't animated anything until step 3.
+      container.classList.add("is-grid");
+
+      // 3. Animate every card from its captured (scattered) state to its
+      //    new (grid) position/rotation/scale — Flip computes the delta
+      //    per card automatically, so nothing can collapse onto a single
+      //    point the way manual top/left math could.
+      Flip.from(state, {
+        duration: 1,
+        ease: "power2.inOut",
+        stagger: 0.04,
+        absolute: true,
+        onComplete: function () {
+          if (filterSidebar) filterSidebar.classList.add("visible");
+        }
       });
     }
+
+    ScrollTrigger.create({
+      trigger: container,
+      start: "top 65%",
+      once: true,
+      onEnter: snapToGrid
+    });
 
     var filterPills = document.querySelectorAll(".cert-scatter-filter-pill");
     filterPills.forEach(function (pill) {
@@ -500,7 +501,11 @@
     var surfaceColor = rootStyles.getPropertyValue("--surface").trim() || "#1e293b";
 
     var engine = Engine.create();
-    engine.gravity.y = 0.05;
+    // Zero gravity — pills stay afloat instead of dropping and settling at
+    // the bottom of the canvas. Motion comes entirely from the continuous
+    // random forces applied below.
+    engine.world.gravity.x = 0;
+    engine.world.gravity.y = 0;
 
     var render = Render.create({
       canvas: canvas,
@@ -523,7 +528,7 @@
       var y = Math.random() * (height - h) + h / 2;
       var body = Bodies.rectangle(x, y, w, h, {
         chamfer: { radius: 18 },
-        restitution: 0.6,
+        restitution: 0.85,
         friction: 0.1,
         frictionAir: 0.02,
         render: { fillStyle: surfaceColor, strokeStyle: accentColor, lineWidth: 1 }
@@ -535,6 +540,21 @@
     });
 
     World.add(engine.world, walls.concat(bodies));
+
+    // Continuous random drift — without gravity pulling them down, this is
+    // the only thing keeping the pills moving, so each body gets a small
+    // random nudge on most ticks instead of ever coming to rest.
+    Events.on(engine, "beforeUpdate", function () {
+      bodies.forEach(function (body) {
+        if (Math.random() < 0.06) {
+          var kick = 0.0008 * body.mass;
+          Body.applyForce(body, body.position, {
+            x: (Math.random() - 0.5) * kick,
+            y: (Math.random() - 0.5) * kick
+          });
+        }
+      });
+    });
 
     var mouse = Mouse.create(render.canvas);
     var mouseConstraint = MouseConstraint.create(engine, {
