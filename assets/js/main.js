@@ -143,67 +143,7 @@
   }
 
   /* ---------------------------------------------------------------------
-     5. HOMEPAGE CERTIFICATIONS CAROUSEL
-     --------------------------------------------------------------------- */
-
-  function buildCarousel(manifest) {
-    var track = document.querySelector(".cert-carousel-track");
-    if (!track) return;
-
-    var items = [];
-
-    manifest.datacamp_tracks.forEach(function (t) {
-      items.push({
-        name: t.track_name,
-        issuer: "DataCamp",
-        cert: t.featured_cert
-      });
-    });
-
-    manifest.standalone_certs.forEach(function (s) {
-      items.push({ name: s.name, issuer: s.issuer, cert: s.cert });
-    });
-
-    function renderSet() {
-      var frag = document.createDocumentFragment();
-      items.forEach(function (item) {
-        var a = document.createElement("a");
-        a.className = "cert-mini-card";
-        a.href = "certifications.html";
-
-        var img = document.createElement("img");
-        img.className = "cert-thumb";
-        img.src = item.cert;
-        img.alt = item.name;
-        attachImgFallback(img);
-
-        var info = document.createElement("div");
-        info.className = "cert-mini-info";
-
-        var name = document.createElement("div");
-        name.className = "cert-name";
-        name.textContent = item.name;
-
-        var issuer = document.createElement("div");
-        issuer.className = "cert-issuer";
-        issuer.textContent = item.issuer;
-
-        info.appendChild(name);
-        info.appendChild(issuer);
-        a.appendChild(img);
-        a.appendChild(info);
-        frag.appendChild(a);
-      });
-      return frag;
-    }
-
-    // Duplicate the set so the CSS translateY(-50%) loop is seamless.
-    track.appendChild(renderSet());
-    track.appendChild(renderSet());
-  }
-
-  /* ---------------------------------------------------------------------
-     6. CERTIFICATIONS.HTML — full dynamic build
+     5. CERTIFICATIONS.HTML — full dynamic build
      --------------------------------------------------------------------- */
 
   function buildCertificationsPage(manifest) {
@@ -332,22 +272,61 @@
   }
 
   /* ---------------------------------------------------------------------
+     6. HOMEPAGE CTA TYPEWRITER
+     --------------------------------------------------------------------- */
+
+  function initTypewriter() {
+    var typewriterEl = document.getElementById("typewriter");
+    if (!typewriterEl) return;
+
+    var words = ["Intelligent", "Scalable", "Impactful", "Production-Ready"];
+    var deWords = ["Intelligent", "Skalierbar", "Wirkungsvoll", "Produktionsreif"];
+    var wordIndex = 0;
+    var charIndex = 0;
+    var isDeleting = false;
+
+    function type() {
+      var lang = localStorage.getItem("lang") || "en";
+      var currentWords = lang === "de" ? deWords : words;
+      var currentWord = currentWords[wordIndex % currentWords.length];
+
+      if (isDeleting) {
+        typewriterEl.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typewriterEl.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      if (!isDeleting && charIndex === currentWord.length) {
+        setTimeout(function () { isDeleting = true; }, 1800);
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex++;
+      }
+
+      setTimeout(type, isDeleting ? 60 : 100);
+    }
+
+    type();
+  }
+
+  /* ---------------------------------------------------------------------
      INIT
      --------------------------------------------------------------------- */
 
   document.addEventListener("DOMContentLoaded", function () {
     initHamburger();
     initLangToggle();
+    initTypewriter();
 
     var needsManifest =
-      document.querySelector(".cert-carousel-track") ||
       document.querySelector(".datacamp-tracks") ||
       document.querySelector(".standalone-grid");
 
     if (needsManifest) {
       fetchManifest()
         .then(function (manifest) {
-          buildCarousel(manifest);
           buildCertificationsPage(manifest);
           // Re-apply language now that dynamic buttons exist.
           applyLanguage(currentLang);
