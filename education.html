@@ -14,28 +14,34 @@
 
   <nav class="navbar">
     <a href="index.html" class="brand">Zoeb<span>.</span>AliKhan</a>
-    <button class="hamburger" aria-label="Toggle navigation">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="education.html" class="active">Education</a></li>
-      <li><a href="experience.html">Experience</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="skills.html">Skills</a></li>
-      <li><a href="certifications.html">Certifications</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
+    <div class="navbar-right">
+      <button class="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html" data-en="Home" data-de="Startseite">Home</a></li>
+        <li><a href="about.html" data-en="About" data-de="Über mich">About</a></li>
+        <li><a href="education.html" class="active" data-en="Education" data-de="Ausbildung">Education</a></li>
+        <li><a href="experience.html" data-en="Experience" data-de="Erfahrung">Experience</a></li>
+        <li><a href="projects.html" data-en="Projects" data-de="Projekte">Projects</a></li>
+        <li><a href="skills.html" data-en="Skills" data-de="Fähigkeiten">Skills</a></li>
+        <li><a href="certifications.html" data-en="Certifications" data-de="Zertifikate">Certifications</a></li>
+        <li><a href="contact.html" data-en="Contact" data-de="Kontakt">Contact</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button data-set-lang="en">EN</button>
+        <button data-set-lang="de">DE</button>
+      </div>
+    </div>
   </nav>
 
   <div class="page-wrapper">
     <aside class="sidebar">
       <div class="avatar-ring">ZK</div>
       <h2>Zoeb Ali Khan</h2>
-      <p class="title">Data Science &amp; AI/ML Engineer</p>
-      <p class="location">📍 Bielefeld, Germany</p>
-      <span class="availability-badge">Available Sep 2026</span>
+      <p class="title" data-en="Data Science &amp; AI/ML Engineer" data-de="Data Science &amp; KI/ML-Ingenieur">Data Science &amp; AI/ML Engineer</p>
+      <p class="location">📍 <span data-en="Bielefeld, Germany" data-de="Bielefeld, Deutschland">Bielefeld, Germany</span></p>
+      <span class="availability-badge" data-en="Available Sep 2026" data-de="Verfügbar ab Sep. 2026">Available Sep 2026</span>
       <div class="social-links">
         <a href="https://github.com/zoeb7184" target="_blank" rel="noopener" aria-label="GitHub">
           <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.79 0c2.2-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14 0 1.54-.01 2.79-.01 3.17 0 .31.2.68.8.56C20.71 21.38 24 17.07 24 12 24 5.73 18.27.5 12 .5z"/></svg>
@@ -51,9 +57,8 @@
 
     <main class="main-content">
       <div class="page-header">
-        <span class="section-label">Education</span>
-        <h1>Academic Background</h1>
-        <p>Formal education in computer science and data science.</p>
+        <span class="section-label" data-en="Education" data-de="Ausbildung">Education</span>
+        <h1 data-en="Education" data-de="Ausbildung">Education</h1>
       </div>
 
       <div class="timeline">
@@ -61,32 +66,25 @@
           <div class="card timeline-card">
             <div class="meta-row">
               <h3>M.Sc. Data Science</h3>
-              <span class="period">Ongoing</span>
+              <span class="period" data-en="Ongoing" data-de="Laufend">Ongoing</span>
             </div>
-            <p class="org">Universität Bielefeld, Germany</p>
-            <ul>
-              <li>Currently in the 4th semester, graduating March 2027</li>
-              <li>Focus on machine learning, statistical modeling, and data engineering</li>
-            </ul>
+            <p class="org" data-en="Universität Bielefeld, Germany" data-de="Universität Bielefeld, Deutschland">Universität Bielefeld, Germany</p>
           </div>
         </div>
 
         <div class="timeline-item">
           <div class="card timeline-card">
             <div class="meta-row">
-              <h3>B.Sc. Computer Science</h3>
-              <span class="period">Completed</span>
+              <h3 data-en="B.Sc. Computer Science" data-de="B.Sc. Informatik">B.Sc. Computer Science</h3>
+              <span class="period" data-en="Completed" data-de="Abgeschlossen">Completed</span>
             </div>
             <p class="org">Mumbai, India</p>
-            <ul>
-              <li>Foundational coursework in programming, algorithms, and databases</li>
-            </ul>
           </div>
         </div>
       </div>
 
       <footer class="site-footer">
-        <p>© 2026 Zoeb Ali Khan</p>
+        <p data-en="© 2026 Zoeb Ali Khan" data-de="© 2026 Zoeb Ali Khan">© 2026 Zoeb Ali Khan</p>
         <div class="footer-social">
           <a href="https://github.com/zoeb7184" target="_blank" rel="noopener" aria-label="GitHub">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.79 0c2.2-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14 0 1.54-.01 2.79-.01 3.17 0 .31.2.68.8.56C20.71 21.38 24 17.07 24 12 24 5.73 18.27.5 12 .5z"/></svg>

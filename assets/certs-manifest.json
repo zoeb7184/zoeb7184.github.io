@@ -1,0 +1,173 @@
+{
+  "datacamp_tracks": [
+    {
+      "track_name": "AI Fundamentals",
+      "hours": "10hr",
+      "featured_cert": "assets/images/certs/datacamp/ai-fundamentals/final/Final (AI Fundamentals).pdf",
+      "chapter_certs": [
+        "assets/images/certs/datacamp/ai-fundamentals/chapters/1. Understanding Artificial Intelligence.pdf",
+        "assets/images/certs/datacamp/ai-fundamentals/chapters/2. Introduction to ChatGPT.pdf",
+        "assets/images/certs/datacamp/ai-fundamentals/chapters/3. Understanding Machine Learning.pdf",
+        "assets/images/certs/datacamp/ai-fundamentals/chapters/4. Large Language Models (LLMs) Concepts.pdf",
+        "assets/images/certs/datacamp/ai-fundamentals/chapters/5. Generative AI Concepts.pdf",
+        "assets/images/certs/datacamp/ai-fundamentals/chapters/6. AI Ethics.pdf"
+      ]
+    },
+    {
+      "track_name": "Data Scientist Professional with Python",
+      "hours": "166hr",
+      "featured_cert": "assets/images/certs/datacamp/data-scientist-pro/final/Final Data Scientist Professional with Python.pdf",
+      "chapter_certs": [
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/1. intro to python certificate.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/2. intermediate python certificate.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/3. Data Manipulation with pandas certificate.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/4. Introduction to Statistics in Python.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/5. Joining Data with panda certificate.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/6. Introduction to Data Visualization with Matplotlib.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/7. Introduction to Data Visualization with Seaborn.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/8. Python Data Science Toolbox (Part 1).pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/9. Python Data Science Toolbox (Part 2).pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/10. Intermediate Data Visualization with Seaborn .pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/11. Exploratory Data Analysis in Python.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/12. Working with Categorical Data in Python.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/13. Working with Categorical Data in Python.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/14. Introduction to Importing Data in Python.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/15. Cleaning Data in Python.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/16. Working with Dates and Times in Python.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/17. Writing Functions in Python.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/18. Introduction to Regression with statsmodels in Python.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/19. Sampling in Python.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/20. Hypothesis Testing in Python.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/21. Supervised Learning with scikit-learn.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/22. Unsupervised Learning in Python.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/23. Machine Learning with Tree-Based Models in Python.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/24. Intermediate Importing Data in Python.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/25. Preprocessing for Machine Learning in Python.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/26. Developing Python Packages.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/27. Machine Learning for Business.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/28. Introduction to SQL.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/29. Intermediate SQL.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/30. Joining Data in SQL.pdf",
+        "assets/images/certs/datacamp/data-scientist-pro/chapters/31. Introduction to Git.pdf"
+      ]
+    },
+    {
+      "track_name": "Associate Data Scientist in R",
+      "hours": "88hr",
+      "featured_cert": "assets/images/certs/datacamp/associate-data-scientist-r/final/Final Certificate Associate Data Scientist in R.pdf",
+      "chapter_certs": [
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/1. Introduction to R.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/2. Intermediate R.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/3. Introduction to the Tidyverse.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/4. Data Manipulation with dplyr.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/5. Joining Data with dplyr.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/6. Introduction to Statistics in R.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/7. Introduction to Data Visualization with ggplot2.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/8. Intermediate Data Visualization with ggplot2.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/9. Data Communication Concepts.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/10. Introduction to Importing Data in R.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/11. Cleaning Data in R.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/12. Working with Dates and Times in R.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/13. Introduction to Writing Functions in R.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/14. Exploratory Data Analysis in R.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/15. Introduction to Regression in R.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/16. Intermediate Regression in R.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/17. Sampling in R.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/18. Hypothesis Testing in R.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/19. Experimental Design in R.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/20. Supervised Learning in R- Classification.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/21. Supervised Learning in R- Regression.pdf",
+        "assets/images/certs/datacamp/associate-data-scientist-r/chapters/22. Unsupervised Learning in R.pdf"
+      ]
+    },
+    {
+      "track_name": "Python Developer",
+      "hours": "71hr",
+      "featured_cert": "assets/images/certs/datacamp/python-developer/final/Python Developer(Final).pdf",
+      "chapter_certs": [
+        "assets/images/certs/datacamp/python-developer/chapters/1. Introduction to Python.pdf",
+        "assets/images/certs/datacamp/python-developer/chapters/2. Intermediate Python.pdf",
+        "assets/images/certs/datacamp/python-developer/chapters/3. Data Manipulation with pandas.pdf",
+        "assets/images/certs/datacamp/python-developer/chapters/4. Python Data Science Toolbox (Part 1).pdf",
+        "assets/images/certs/datacamp/python-developer/chapters/5. Python Data Science Toolbox (Part 2).pdf",
+        "assets/images/certs/datacamp/python-developer/chapters/6. Data Types for Data Science in Python.pdf",
+        "assets/images/certs/datacamp/python-developer/chapters/7. Writing Efficient Python Code.pdf",
+        "assets/images/certs/datacamp/python-developer/chapters/8. Working with Dates and Times in Python.pdf",
+        "assets/images/certs/datacamp/python-developer/chapters/9. Regular Expressions in Python.pdf",
+        "assets/images/certs/datacamp/python-developer/chapters/10. Web Scraping in Python.pdf",
+        "assets/images/certs/datacamp/python-developer/chapters/11. Writing Functions in Python.pdf",
+        "assets/images/certs/datacamp/python-developer/chapters/12. Data Structures and Algorithms in Python.pdf",
+        "assets/images/certs/datacamp/python-developer/chapters/13. Introduction to Shell.pdf",
+        "assets/images/certs/datacamp/python-developer/chapters/14. Introduction to Git.pdf",
+        "assets/images/certs/datacamp/python-developer/chapters/15. Software Engineering Principles in Python.pdf",
+        "assets/images/certs/datacamp/python-developer/chapters/16. Developing Python Packages.pdf",
+        "assets/images/certs/datacamp/python-developer/chapters/17. Introduction to Testing in Python.pdf",
+        "assets/images/certs/datacamp/python-developer/chapters/18. Object-Oriented Programming in Python.pdf"
+      ]
+    },
+    {
+      "track_name": "SQL Fundamentals",
+      "hours": "26hr",
+      "featured_cert": "assets/images/certs/datacamp/sql-fundamentals/final/Final (Database Design).pdf",
+      "chapter_certs": [
+        "assets/images/certs/datacamp/sql-fundamentals/chapters/1. Introduction to SQL.pdf",
+        "assets/images/certs/datacamp/sql-fundamentals/chapters/2. Intermediate SQL.pdf",
+        "assets/images/certs/datacamp/sql-fundamentals/chapters/3. Joining Data in SQL.pdf",
+        "assets/images/certs/datacamp/sql-fundamentals/chapters/4. Data Manipulation in SQL.pdf",
+        "assets/images/certs/datacamp/sql-fundamentals/chapters/5. PostgreSQL Summary Stats and Window Functions.pdf",
+        "assets/images/certs/datacamp/sql-fundamentals/chapters/6. Functions for Manipulating Data in PostgreSQL.pdf",
+        "assets/images/certs/datacamp/sql-fundamentals/chapters/7. Database Design.pdf"
+      ]
+    }
+  ],
+  "standalone_certs": [
+    {
+      "name": "Google AI Essentials Specialization",
+      "issuer": "Google / Coursera",
+      "date": "Jul 2026",
+      "cert": "assets/images/certs/google/Google AI Essentials - Zoeb Ali Khan.pdf"
+    },
+    {
+      "name": "Google Prompting Essentials",
+      "issuer": "Google / Coursera",
+      "date": "Jul 2026",
+      "cert": "assets/images/certs/google/google-prompting-essentials.1.png"
+    },
+    {
+      "name": "Neo4j & GenerativeAI Fundamentals Certificate",
+      "issuer": "GraphAcademy",
+      "date": "",
+      "cert": "assets/images/certs/neo4j/Neo4j & GenerativeAI Fundamentals Certificate _ GraphAcademy.pdf"
+    },
+    {
+      "name": "Data Manipulation and Preparation",
+      "issuer": "IBM SkillsBuild",
+      "date": "Aug 2026",
+      "cert": "assets/images/certs/ibm/Data Manipulation and Preparation - SkillsBuild.pdf"
+    },
+    {
+      "name": "AI-Assisted Code Modernization with IBM",
+      "issuer": "IBM",
+      "date": "",
+      "cert": "assets/images/certs/ibm/Proov - AI-Assisted Code Modernization with IBM.pdf"
+    },
+    {
+      "name": "IBM Bobathon: The Legacy Fix",
+      "issuer": "IBM",
+      "date": "",
+      "cert": "assets/images/certs/ibm/IBM Bobathon- The Legacy Fix - Modernize a Real Car-Company Service.pdf"
+    },
+    {
+      "name": "Data Analyst Skillpath",
+      "issuer": "Udemy",
+      "date": "",
+      "cert": "assets/images/certs/udemy/Data analyst skillpath udemy.pdf"
+    },
+    {
+      "name": "Associate Data Engineer",
+      "issuer": "DataCamp",
+      "date": "",
+      "cert": "assets/images/certs/other/Associate Data Engineer - DataCamp.pdf"
+    }
+  ]
+}

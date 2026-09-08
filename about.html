@@ -14,28 +14,34 @@
 
   <nav class="navbar">
     <a href="index.html" class="brand">Zoeb<span>.</span>AliKhan</a>
-    <button class="hamburger" aria-label="Toggle navigation">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html" class="active">About</a></li>
-      <li><a href="education.html">Education</a></li>
-      <li><a href="experience.html">Experience</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="skills.html">Skills</a></li>
-      <li><a href="certifications.html">Certifications</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
+    <div class="navbar-right">
+      <button class="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html" data-en="Home" data-de="Startseite">Home</a></li>
+        <li><a href="about.html" class="active" data-en="About" data-de="Über mich">About</a></li>
+        <li><a href="education.html" data-en="Education" data-de="Ausbildung">Education</a></li>
+        <li><a href="experience.html" data-en="Experience" data-de="Erfahrung">Experience</a></li>
+        <li><a href="projects.html" data-en="Projects" data-de="Projekte">Projects</a></li>
+        <li><a href="skills.html" data-en="Skills" data-de="Fähigkeiten">Skills</a></li>
+        <li><a href="certifications.html" data-en="Certifications" data-de="Zertifikate">Certifications</a></li>
+        <li><a href="contact.html" data-en="Contact" data-de="Kontakt">Contact</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button data-set-lang="en">EN</button>
+        <button data-set-lang="de">DE</button>
+      </div>
+    </div>
   </nav>
 
   <div class="page-wrapper">
     <aside class="sidebar">
       <div class="avatar-ring">ZK</div>
       <h2>Zoeb Ali Khan</h2>
-      <p class="title">Data Science &amp; AI/ML Engineer</p>
-      <p class="location">📍 Bielefeld, Germany</p>
-      <span class="availability-badge">Available Sep 2026</span>
+      <p class="title" data-en="Data Science &amp; AI/ML Engineer" data-de="Data Science &amp; KI/ML-Ingenieur">Data Science &amp; AI/ML Engineer</p>
+      <p class="location">📍 <span data-en="Bielefeld, Germany" data-de="Bielefeld, Deutschland">Bielefeld, Germany</span></p>
+      <span class="availability-badge" data-en="Available Sep 2026" data-de="Verfügbar ab Sep. 2026">Available Sep 2026</span>
       <div class="social-links">
         <a href="https://github.com/zoeb7184" target="_blank" rel="noopener" aria-label="GitHub">
           <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.79 0c2.2-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14 0 1.54-.01 2.79-.01 3.17 0 .31.2.68.8.56C20.71 21.38 24 17.07 24 12 24 5.73 18.27.5 12 .5z"/></svg>
@@ -51,42 +57,31 @@
 
     <main class="main-content">
       <div class="page-header">
-        <span class="section-label">About</span>
-        <h1>About Me</h1>
-        <p>A closer look at my background, focus areas, and what I'm looking for next.</p>
+        <span class="section-label" data-en="About" data-de="Über mich">About</span>
+        <h1 data-en="About Me" data-de="Über mich">About Me</h1>
       </div>
 
       <div class="card bio-card">
-        <p>
-          M.Sc. Data Science student at Universität Bielefeld (4th semester, graduating March 2027).
-          Previously completed an AI/ML internship at YBI Foundation (Mumbai) building GCP BigQuery
-          ETL pipelines, SQL automation, and dashboards. Passionate about the full data stack — from
-          raw ingestion to deployed ML models. Open to Werkstudent and internship roles in Data Science,
-          ML Engineering, and Data Engineering across Germany.
-        </p>
+        <p data-en="I'm a 4th semester M.Sc. Data Science student at Universität Bielefeld, Germany (graduating March 2027). Yes, Bielefeld does exist..!! — and it's been a great city to grow as a data scientist. Before moving to Germany, I completed an AI/ML internship at YBI Foundation in Mumbai, where I built GCP BigQuery ETL pipelines, automated SQL workflows, and delivered dashboards to business stakeholders. I'm passionate about the full data stack — from raw ingestion pipelines to production-deployed ML models — and I'm actively seeking Werkstudent (20h/week) and internship roles in Data Science, ML Engineering, and Data Engineering across Germany." data-de="Ich bin Masterstudent im 4. Semester im Fach Data Science an der Universität Bielefeld, Deutschland (Abschluss im März 2027). Ja, Bielefeld existiert wirklich..!! — und es war eine großartige Stadt, um mich als Data Scientist weiterzuentwickeln. Bevor ich nach Deutschland kam, habe ich ein KI/ML-Praktikum bei der YBI Foundation in Mumbai absolviert, wo ich GCP-BigQuery-ETL-Pipelines aufgebaut, SQL-Workflows automatisiert und Dashboards für Business-Stakeholder erstellt habe. Mich begeistert der gesamte Datenstack — von Rohdaten-Pipelines bis zu produktiv eingesetzten ML-Modellen — und ich suche aktiv nach Werkstudenten- (20 Std./Woche) und Praktikumsstellen in den Bereichen Data Science, ML Engineering und Data Engineering in ganz Deutschland.">I'm a 4th semester M.Sc. Data Science student at Universität Bielefeld, Germany (graduating March 2027). Yes, Bielefeld does exist..!! — and it's been a great city to grow as a data scientist. Before moving to Germany, I completed an AI/ML internship at YBI Foundation in Mumbai, where I built GCP BigQuery ETL pipelines, automated SQL workflows, and delivered dashboards to business stakeholders. I'm passionate about the full data stack — from raw ingestion pipelines to production-deployed ML models — and I'm actively seeking Werkstudent (20h/week) and internship roles in Data Science, ML Engineering, and Data Engineering across Germany.</p>
       </div>
 
       <div class="highlight-grid">
         <div class="card highlight-card">
-          <div class="number">9</div>
-          <div class="label">Portfolio Projects</div>
+          <div class="label" data-en="9 Portfolio Projects" data-de="9 Portfolio-Projekte">9 Portfolio Projects</div>
         </div>
         <div class="card highlight-card">
-          <div class="number">3</div>
-          <div class="label">DataCamp Certifications</div>
+          <div class="label" data-en="DataCamp Certifications" data-de="DataCamp-Zertifikate">DataCamp Certifications</div>
         </div>
         <div class="card highlight-card">
-          <div class="number">AI/ML</div>
-          <div class="label">Internship</div>
+          <div class="label" data-en="AI/ML Internship — YBI Foundation" data-de="KI/ML-Praktikum — YBI Foundation">AI/ML Internship — YBI Foundation</div>
         </div>
         <div class="card highlight-card">
-          <div class="number">Sep 2026</div>
-          <div class="label">Available</div>
+          <div class="label" data-en="Available September 2026" data-de="Verfügbar ab September 2026">Available September 2026</div>
         </div>
       </div>
 
       <footer class="site-footer">
-        <p>© 2026 Zoeb Ali Khan</p>
+        <p data-en="© 2026 Zoeb Ali Khan" data-de="© 2026 Zoeb Ali Khan">© 2026 Zoeb Ali Khan</p>
         <div class="footer-social">
           <a href="https://github.com/zoeb7184" target="_blank" rel="noopener" aria-label="GitHub">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.79 0c2.2-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14 0 1.54-.01 2.79-.01 3.17 0 .31.2.68.8.56C20.71 21.38 24 17.07 24 12 24 5.73 18.27.5 12 .5z"/></svg>
