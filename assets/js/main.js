@@ -312,6 +312,42 @@
   }
 
   /* ---------------------------------------------------------------------
+     7. PAGE-HERO STAT COUNT-UP (inner pages)
+     --------------------------------------------------------------------- */
+
+  function animateCountUp(el, target, duration) {
+    duration = duration || 1200;
+    var start = 0;
+    var step = target / (duration / 16);
+    var timer = setInterval(function () {
+      start += step;
+      if (start >= target) {
+        start = target;
+        clearInterval(timer);
+      }
+      el.textContent = Math.floor(start);
+    }, 16);
+  }
+
+  function initCountUp() {
+    var counters = document.querySelectorAll("[data-count]");
+    if (!counters.length) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animateCountUp(entry.target, parseInt(entry.target.dataset.count, 10));
+          observer.unobserve(entry.target);
+        }
+      });
+    });
+
+    counters.forEach(function (c) {
+      observer.observe(c);
+    });
+  }
+
+  /* ---------------------------------------------------------------------
      INIT
      --------------------------------------------------------------------- */
 
@@ -319,6 +355,7 @@
     initHamburger();
     initLangToggle();
     initTypewriter();
+    initCountUp();
 
     var needsManifest =
       document.querySelector(".datacamp-tracks") ||
