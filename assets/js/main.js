@@ -491,8 +491,12 @@
       Bodies = Matter.Bodies, Body = Matter.Body, Mouse = Matter.Mouse,
       MouseConstraint = Matter.MouseConstraint, Events = Matter.Events, Runner = Matter.Runner;
 
-    var width = canvas.parentElement.clientWidth || 1000;
-    var height = 400;
+    // Height tracks the CSS-driven size of the canvas (400/300/220 across
+    // breakpoints — see #physics-canvas media queries) rather than a
+    // hardcoded value, so the intrinsic canvas resolution always matches
+    // what's actually on screen instead of being stretched by CSS.
+    var width = canvas.clientWidth || canvas.parentElement.clientWidth || 1000;
+    var height = canvas.clientHeight || 400;
     canvas.width = width;
     canvas.height = height;
 
@@ -582,6 +586,45 @@
     var runner = Runner.create();
     Runner.run(runner, engine);
     Render.run(render);
+
+    // Keep the Matter.js world bounds in sync with the canvas whenever it
+    // resizes (breakpoint change, orientation flip, window drag). Walls are
+    // rebuilt at the new edges and out-of-bounds bodies are nudged back in,
+    // rather than device-detecting — this reacts to the actual rendered
+    // size, which is what CSS controls.
+    var resizeTimer = null;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        var newWidth = canvas.clientWidth || canvas.parentElement.clientWidth || width;
+        var newHeight = canvas.clientHeight || height;
+        if (newWidth === width && newHeight === height) return;
+
+        width = newWidth;
+        height = newHeight;
+
+        canvas.width = width;
+        canvas.height = height;
+        render.options.width = width;
+        render.options.height = height;
+        render.bounds.max.x = width;
+        render.bounds.max.y = height;
+        Render.setPixelRatio(render, render.options.pixelRatio || 1);
+
+        Body.setPosition(walls[0], { x: width / 2, y: -10 });
+        Body.setPosition(walls[1], { x: width / 2, y: height + 10 });
+        Body.setPosition(walls[2], { x: -10, y: height / 2 });
+        Body.setPosition(walls[3], { x: width + 10, y: height / 2 });
+
+        bodies.forEach(function (body) {
+          var clampedX = Math.min(Math.max(body.position.x, 10), Math.max(width - 10, 10));
+          var clampedY = Math.min(Math.max(body.position.y, 10), Math.max(height - 10, 10));
+          if (clampedX !== body.position.x || clampedY !== body.position.y) {
+            Body.setPosition(body, { x: clampedX, y: clampedY });
+          }
+        });
+      }, 150);
+    });
   }
 
   /* ---------------------------------------------------------------------

@@ -3,6 +3,13 @@
    Dark theme · fixed navbar · pinned sidebar · EN/DE toggle
    ========================================================================== */
 
+/* ── BREAKPOINTS ────────────────────────────────────────────
+   Mobile:  max-width: 480px
+   Tablet:  max-width: 768px
+   Laptop:  max-width: 1200px
+   Monitor: min-width: 1201px
+──────────────────────────────────────────────────────────── */
+
 :root {
   --bg: #0f172a;
   --surface: #1e293b;
@@ -26,6 +33,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -36,10 +45,12 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  max-width: 100%;
 }
 
 img {
   max-width: 100%;
+  height: auto;
 }
 
 a {
@@ -100,7 +111,7 @@ code, .mono {
 
 .navbar .brand {
   font-weight: 700;
-  font-size: 1rem;
+  font-size: clamp(1rem, 4vw, 1.3rem);
   letter-spacing: -0.01em;
   white-space: nowrap;
   flex-shrink: 0;
@@ -225,7 +236,7 @@ code, .mono {
   position: absolute;
   top: 0;
   left: 40px;
-  font-size: 20vw;
+  font-size: clamp(6rem, 15vw, 20vw);
   font-weight: 900;
   color: rgba(56, 189, 248, 0.04);
   line-height: 1;
@@ -235,7 +246,7 @@ code, .mono {
 }
 
 .page-hero-title {
-  font-size: clamp(3rem, 8vw, 7rem);
+  font-size: clamp(2rem, 6vw, 7rem);
   font-weight: 200;
   color: var(--text);
   letter-spacing: -0.02em;
@@ -307,7 +318,7 @@ code, .mono {
   padding: 6rem 1.5rem 3rem;
   background-image: url("../images/hero-bg.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: top center;
   background-attachment: fixed;
 }
 
@@ -331,14 +342,14 @@ code, .mono {
 }
 
 .hero h1 {
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(2rem, 6vw, 4rem);
   letter-spacing: -0.02em;
   margin-bottom: 0.5rem;
   color: #fff;
 }
 
 .hero .role {
-  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-size: clamp(1rem, 3vw, 1.4rem);
   color: var(--accent);
   font-weight: 600;
   margin-bottom: 1.25rem;
@@ -346,7 +357,7 @@ code, .mono {
 
 .hero .tagline {
   max-width: 620px;
-  font-size: 1.05rem;
+  font-size: clamp(0.85rem, 2vw, 1rem);
   color: #dbe4f0;
   margin-bottom: 2.25rem;
 }
@@ -369,6 +380,7 @@ code, .mono {
 
 .hero .social-links {
   display: flex;
+  justify-content: center;
   gap: 1rem;
 }
 
@@ -429,7 +441,8 @@ code, .mono {
 
 .intro-photo {
   position: relative;
-  width: 280px;
+  width: 100%;
+  max-width: 280px;
   aspect-ratio: 3/4;
   flex-shrink: 0;
   margin: 0 auto;
@@ -759,7 +772,7 @@ code, .mono {
 }
 
 .cta-card h2 {
-  font-size: 3rem;
+  font-size: clamp(1.5rem, 4vw, 3rem);
   color: #fff;
   line-height: 1.2;
   margin-bottom: 1.25rem;
@@ -1364,7 +1377,7 @@ body > footer.site-footer {
 }
 
 .split-hero-heading {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(1.8rem, 4vw, 4rem);
   font-weight: 700;
   line-height: 1.1;
   margin: 0;
@@ -1513,7 +1526,7 @@ body > footer.site-footer {
 }
 
 .cinematic-quote {
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-size: clamp(1.2rem, 3vw, 2.5rem);
   font-weight: 300;
   font-style: italic;
   color: #fff;
@@ -1729,7 +1742,7 @@ body > footer.site-footer {
 }
 
 .case-title {
-  font-size: 3rem;
+  font-size: clamp(1.8rem, 5vw, 3rem);
   font-weight: 700;
   line-height: 1.15;
   margin-bottom: 0.5rem;
@@ -1774,7 +1787,7 @@ body > footer.site-footer {
 }
 
 .case-section h2 {
-  font-size: 1.3rem;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
   margin-bottom: 0.9rem;
   color: var(--text);
 }
@@ -1910,9 +1923,43 @@ body > footer.site-footer {
 
 /* ==========================================================================
    Responsive
+   4 tiers: Mobile ≤480 / Tablet ≤768 / Laptop ≤1200 / Monitor ≥1201 (default)
+   Rules below are desktop-first: Laptop overrides load first, then Tablet
+   overrides them further, then Mobile overrides last — this is what makes
+   the cascade land correctly at every width.
    ========================================================================== */
 
-@media (max-width: 860px) {
+/* ── LAPTOP: max-width 1200px ─────────────────────────────── */
+
+@media (max-width: 1200px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1200px) {
+  .cert-scatter-container.is-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1200px) {
+  .intro-grid {
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .specialty-grid,
+  .numbers-grid {
+    gap: 18px;
+  }
+}
+
+/* ── TABLET: max-width 768px ──────────────────────────────── */
+
+/* Navbar → hamburger */
+@media (max-width: 768px) {
   .navbar {
     padding: 0 1.25rem;
   }
@@ -1954,70 +2001,97 @@ body > footer.site-footer {
   .hamburger {
     display: flex;
   }
+}
 
+@media (max-width: 768px) {
   .main-content {
     padding: 2rem 1.5rem;
   }
+}
 
+/* Hero */
+@media (max-width: 768px) {
   .hero {
+    min-height: 85vh;
     padding: 5rem 1.25rem 3rem;
     background-attachment: scroll;
   }
+}
 
+/* Intro section */
+@media (max-width: 768px) {
   .intro-grid {
     grid-template-columns: 1fr;
+    gap: 2rem;
     text-align: center;
   }
 
   .intro-photo {
     order: -1;
   }
+}
 
-  .highlight-grid {
-    grid-template-columns: 1fr;
+/* Tech marquee */
+@media (max-width: 768px) {
+  .tech-marquee-section {
+    padding: 3rem 0;
   }
 
-  .project-grid {
-    grid-template-columns: 1fr;
+  .tech-pill {
+    font-size: 0.8rem;
+    padding: 6px 14px;
   }
+}
 
-  .track-featured img {
-    width: 100%;
-    height: auto;
-    max-width: 220px;
+/* Cert columns marquee → 2 columns */
+@media (max-width: 768px) {
+  .certs-marquee-section {
+    padding: 3.5rem 1.5rem;
   }
 
   .cert-columns {
-    flex-direction: column;
+    flex-wrap: wrap;
     height: auto;
-    max-height: 70vh;
+    max-height: none;
     gap: 1rem;
   }
 
   .cert-col-wrapper {
-    height: 260px;
+    flex: 1 1 calc(50% - 0.5rem);
+    height: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .highlight-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* CTA section */
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 80px 20px;
   }
 
   .cta-card {
-    padding: 2rem 1.5rem;
-  }
-
-  .cta-card h2 {
-    font-size: 2rem;
+    padding: 32px 24px;
   }
 
   .cta-banner {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
+}
 
+/* Page hero (inner pages) */
+@media (max-width: 768px) {
   .page-hero {
     grid-template-columns: 1fr;
-    padding: 64px 24px 32px;
+    padding: 56px 32px 28px;
     row-gap: 1.5rem;
   }
 
   .page-hero-watermark {
-    font-size: 32vw;
     left: 0;
   }
 
@@ -2033,7 +2107,10 @@ body > footer.site-footer {
   .page-hero-stat {
     justify-content: flex-start;
   }
+}
 
+/* About — split hero */
+@media (max-width: 768px) {
   .split-hero {
     flex-direction: column;
     min-height: auto;
@@ -2049,15 +2126,25 @@ body > footer.site-footer {
     width: 100%;
     padding: 40px 24px;
   }
+}
 
+/* About — specialty cards: stay 3 columns, smaller gap/padding */
+@media (max-width: 768px) {
   .specialty-section {
     padding: 48px 24px;
   }
 
   .specialty-grid {
-    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
+  .specialty-card {
+    padding: 22px 14px;
+  }
+}
+
+/* About — journey (no overlap) */
+@media (max-width: 768px) {
   .journey-section {
     padding: 56px 24px;
   }
@@ -2081,7 +2168,17 @@ body > footer.site-footer {
     margin-top: 1.5rem;
     padding: 28px;
   }
+}
 
+/* About — cinematic banner */
+@media (max-width: 768px) {
+  .cinematic-banner {
+    height: 280px;
+  }
+}
+
+/* About — by the numbers (4 highlight cards → 2x2) */
+@media (max-width: 768px) {
   .numbers-section {
     padding: 56px 24px;
   }
@@ -2089,27 +2186,44 @@ body > footer.site-footer {
   .numbers-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+}
 
-  .project-grid {
-    grid-template-columns: 1fr;
+/* Timelines */
+@media (max-width: 768px) {
+  .timeline {
+    gap: 1rem;
   }
+}
 
+/* Projects */
+@media (max-width: 768px) {
   .project-search {
     max-width: 100%;
     margin-left: 0;
     flex-basis: 100%;
   }
+}
 
+/* Case studies */
+@media (max-width: 768px) {
   .case-main {
-    padding: 40px 20px;
+    padding: 40px 24px;
   }
 
-  .case-title {
-    font-size: 2.1rem;
+  .case-buttons {
+    row-gap: 0.6rem;
+  }
+}
+
+/* Certifications — scattered layout */
+@media (max-width: 768px) {
+  .cert-scatter-section {
+    padding: 3.5rem 1.5rem;
   }
 
   .cert-scatter-layout {
     flex-direction: column;
+    gap: 1.25rem;
   }
 
   .cert-scatter-filters {
@@ -2121,10 +2235,249 @@ body > footer.site-footer {
 
   .cert-scatter-container {
     min-height: 900px;
+    overflow-x: hidden;
   }
 
   .cert-scatter-card {
-    width: 160px;
+    width: 180px;
+  }
+}
+
+/* Certifications — physics canvas */
+@media (max-width: 768px) {
+  .physics-section {
+    padding: 3.5rem 1.5rem;
+  }
+
+  #physics-canvas {
+    height: 300px;
+  }
+}
+
+/* Certifications — DataCamp tracks stack */
+@media (max-width: 768px) {
+  .track-featured img {
+    width: 100%;
+    height: auto;
+    max-width: 220px;
+  }
+}
+
+/* Contact */
+@media (max-width: 768px) {
+  .contact-grid {
+    gap: 1rem;
+  }
+}
+
+/* ── MOBILE: max-width 480px ──────────────────────────────── */
+
+/* Hero */
+@media (max-width: 480px) {
+  .hero {
+    min-height: 75vh;
+    padding: 4.5rem 1rem 2.5rem;
+  }
+
+  .cta-row {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero .cta-row .btn {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/* Intro section */
+@media (max-width: 480px) {
+  .intro-section {
+    padding: 3rem 1.25rem;
+  }
+
+  .intro-photo {
+    max-width: 200px;
+  }
+}
+
+/* Tech marquee */
+@media (max-width: 480px) {
+  .tech-marquee-section {
+    padding: 2.5rem 0;
+  }
+
+  .tech-pill {
+    font-size: 0.75rem;
+    padding: 5px 12px;
+    gap: 0.35rem;
+  }
+
+  .marquee-wrapper {
+    margin-bottom: 0.6rem;
+  }
+}
+
+/* Cert columns marquee → 1 column, shorter cards */
+@media (max-width: 480px) {
+  .certs-marquee-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .cert-columns {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: auto;
+    max-height: 70vh;
+    gap: 0.75rem;
+  }
+
+  .cert-col-wrapper {
+    flex: 1 1 100%;
+    height: 220px;
+  }
+}
+
+/* CTA section */
+@media (max-width: 480px) {
+  .cta-section {
+    padding: 60px 16px;
+  }
+
+  .cta-card {
+    padding: 20px 16px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cta-buttons .btn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .cta-banner {
+    font-size: 0.7rem;
+  }
+}
+
+/* Page hero (inner pages) */
+@media (max-width: 480px) {
+  .page-hero {
+    padding: 40px 20px;
+  }
+
+  .page-hero-watermark {
+    left: 0;
+  }
+}
+
+/* About — specialty cards → single column */
+@media (max-width: 480px) {
+  .specialty-section {
+    padding: 30px 16px;
+  }
+
+  .specialty-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* About — journey */
+@media (max-width: 480px) {
+  .journey-section {
+    padding: 40px 20px;
+  }
+
+  .journey-image-wrap img {
+    height: 220px;
+  }
+
+  .journey-card {
+    padding: 20px;
+  }
+}
+
+/* About — cinematic banner */
+@media (max-width: 480px) {
+  .cinematic-banner {
+    height: 200px;
+  }
+}
+
+/* About — by the numbers: keep 2 columns, tighten gap/padding */
+@media (max-width: 480px) {
+  .numbers-section {
+    padding: 40px 16px;
+  }
+
+  .numbers-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .number-card {
+    padding: 18px 12px;
+  }
+
+  .number-value {
+    font-size: 2.1rem;
+  }
+}
+
+/* Timelines — dot on top, content below, full width */
+@media (max-width: 480px) {
+  .timeline-item {
+    padding-left: 0;
+    padding-top: 1.25rem;
+    border-left: none;
+    border-top: 2px solid var(--border);
+  }
+
+  .timeline-item::before {
+    left: 8px;
+    top: -7px;
+  }
+
+  .timeline-card {
+    margin-left: 0;
+  }
+}
+
+/* Projects */
+@media (max-width: 480px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .project-filter-bar {
+    gap: 8px;
+  }
+}
+
+/* Certifications — scattered layout: drop absolute scatter, flow instead */
+@media (max-width: 480px) {
+  .cert-scatter-container {
+    min-height: 0;
+  }
+
+  .cert-scatter-container:not(.is-grid) {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .cert-scatter-card {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: 100%;
+    opacity: 1;
   }
 
   .cert-scatter-container.is-grid {
@@ -2132,23 +2485,37 @@ body > footer.site-footer {
   }
 }
 
-@media (max-width: 1080px) and (min-width: 861px) {
-  .project-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .cert-scatter-container.is-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+/* Certifications — physics canvas */
+@media (max-width: 480px) {
+  #physics-canvas {
+    height: 220px;
   }
 }
 
+/* Contact */
 @media (max-width: 480px) {
-  .cta-row {
-    flex-direction: column;
-    width: 100%;
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
   }
 
-  .hero .cta-row .btn {
+  .contact-note {
+    padding: 0.85rem 1rem;
+  }
+}
+
+/* Case studies */
+@media (max-width: 480px) {
+  .case-main {
+    padding: 30px 20px;
+  }
+
+  .case-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .case-buttons .btn {
     justify-content: center;
     width: 100%;
   }
