@@ -36,7 +36,7 @@
     });
 
     document.querySelectorAll(".lang-toggle button").forEach(function (btn) {
-      btn.classList.toggle("active", btn.getAttribute("data-set-lang") === lang);
+      btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
     });
 
     // Refresh any JS-generated dynamic text (certifications page toggles)
@@ -54,31 +54,64 @@
   function initLangToggle() {
     document.querySelectorAll(".lang-toggle button").forEach(function (btn) {
       btn.addEventListener("click", function () {
-        setLanguage(btn.getAttribute("data-set-lang"));
+        setLanguage(btn.getAttribute("data-lang"));
       });
     });
     applyLanguage(currentLang);
   }
 
   /* ---------------------------------------------------------------------
-     2. HAMBURGER MENU
+     2. MOBILE MENU (hamburger → full-screen overlay)
      --------------------------------------------------------------------- */
 
-  function initHamburger() {
-    var hamburger = document.querySelector(".hamburger");
-    var navLinks = document.querySelector(".nav-links");
-    if (!hamburger || !navLinks) return;
+  function initMobileMenu() {
+    var hamburger = document.getElementById("hamburger");
+    var mobileMenu = document.getElementById("mobileMenu");
+    if (!hamburger || !mobileMenu) return;
+
+    function closeMenu() {
+      mobileMenu.classList.remove("open");
+      hamburger.classList.remove("open");
+      document.body.classList.remove("menu-open");
+      setTimeout(function () {
+        mobileMenu.style.display = "none";
+      }, 300);
+    }
+
+    function openMenu() {
+      mobileMenu.style.display = "flex";
+      requestAnimationFrame(function () {
+        mobileMenu.classList.add("open");
+        hamburger.classList.add("open");
+        document.body.classList.add("menu-open");
+      });
+    }
 
     hamburger.addEventListener("click", function () {
-      navLinks.classList.toggle("open");
-      hamburger.classList.toggle("active");
+      var isOpen = mobileMenu.classList.contains("open");
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     });
 
-    navLinks.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function () {
-        navLinks.classList.remove("open");
-        hamburger.classList.remove("active");
-      });
+    // Close menu when any link is tapped
+    mobileMenu.querySelectorAll(".mobile-nav-link").forEach(function (link) {
+      link.addEventListener("click", closeMenu);
+    });
+
+    // Close on backdrop tap
+    mobileMenu.addEventListener("click", function (e) {
+      if (e.target === mobileMenu) closeMenu();
+    });
+
+    // Set active link based on current page
+    var currentPage = window.location.pathname.split("/").pop() || "index.html";
+    mobileMenu.querySelectorAll(".mobile-nav-link").forEach(function (link) {
+      if (link.getAttribute("href") === currentPage) {
+        link.classList.add("active");
+      }
     });
   }
 
@@ -632,7 +665,7 @@
      --------------------------------------------------------------------- */
 
   document.addEventListener("DOMContentLoaded", function () {
-    initHamburger();
+    initMobileMenu();
     initLangToggle();
     initTypewriter();
     initCountUp();

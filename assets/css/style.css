@@ -109,7 +109,7 @@ code, .mono {
   z-index: 1000;
 }
 
-.navbar .brand {
+.navbar .nav-logo {
   font-weight: 700;
   font-size: clamp(1rem, 4vw, 1.3rem);
   letter-spacing: -0.01em;
@@ -117,11 +117,11 @@ code, .mono {
   flex-shrink: 0;
 }
 
-.navbar .brand span {
+.navbar .nav-logo span {
   color: var(--accent);
 }
 
-.navbar-right {
+.nav-right {
   display: flex;
   align-items: center;
   gap: 0.9rem;
@@ -183,22 +183,104 @@ code, .mono {
 .hamburger {
   display: none;
   flex-direction: column;
-  justify-content: center;
   gap: 5px;
-  width: 32px;
-  height: 32px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
+  padding: 8px;
+  z-index: 1001;
 }
 
 .hamburger span {
   display: block;
+  width: 24px;
   height: 2px;
-  width: 100%;
   background: var(--text);
   border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Hamburger → X animation */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ==========================================================================
+   Mobile menu overlay
+   ========================================================================== */
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 999;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mobile-menu.open {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-menu-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 40px 24px;
+}
+
+.mobile-nav-link {
+  font-size: clamp(1.8rem, 8vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  padding: 12px 0;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  transition: color 0.2s;
+  letter-spacing: -0.01em;
+}
+
+.mobile-nav-link:last-child {
+  border-bottom: none;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  color: var(--accent);
+}
+
+@media (min-width: 769px) {
+  .mobile-menu {
+    display: none !important;
+  }
+
+  .hamburger {
+    display: none !important;
+  }
 }
 
 /* ==========================================================================
@@ -310,6 +392,7 @@ code, .mono {
 .hero {
   position: relative;
   min-height: 100vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1974,48 +2057,27 @@ body > footer.site-footer {
 
 /* ── TABLET: max-width 768px ──────────────────────────────── */
 
-/* Navbar → hamburger */
+/* Navbar → hamburger + full-screen overlay menu (the old inline dropdown
+   .nav-links used to collapse into is replaced by .mobile-menu below). */
 @media (max-width: 768px) {
   .navbar {
     padding: 0 1.25rem;
   }
 
-  .navbar-right {
+  .nav-right {
     gap: 0.75rem;
-  }
-
-  .nav-links {
-    position: fixed;
-    top: var(--nav-h);
-    left: 0;
-    right: 0;
-    background: var(--bg);
-    border-bottom: 1px solid var(--border);
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.25s ease;
-  }
-
-  .nav-links.open {
-    max-height: 420px;
-  }
-
-  .nav-links a {
-    width: 100%;
-    padding: 0.9rem 1.25rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-links a.active {
-    border-bottom: 1px solid var(--border);
-    background: var(--surface);
   }
 
   .hamburger {
     display: flex;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  body.menu-open {
+    overflow: hidden;
   }
 }
 
@@ -2025,12 +2087,15 @@ body > footer.site-footer {
   }
 }
 
-/* Hero — capped at 75vh on mobile/tablet so it never leaves a tall empty
-   gap above the intro section (min-height was stacking with the browser's
-   mobile chrome to look like a spacer on real devices). */
+/* Hero — full viewport on mobile/tablet. 100svh (small viewport height)
+   is used instead of 100vh because 100vh on mobile browsers is measured
+   against the viewport with the address bar chrome collapsed, leaving a
+   gap once the real (larger) chrome is showing — 100svh always matches
+   what's actually visible. Falls back to 100vh where svh isn't supported. */
 @media (max-width: 768px) {
   .hero {
-    min-height: 75vh;
+    min-height: 100vh;
+    min-height: 100svh;
     padding: 5rem 1.25rem 3rem;
     background-attachment: scroll;
   }

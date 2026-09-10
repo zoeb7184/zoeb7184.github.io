@@ -13,11 +13,8 @@
 <body>
 
   <nav class="navbar">
-    <a href="index.html" class="brand">Zoeb<span>.</span>AliKhan</a>
-    <div class="navbar-right">
-      <button class="hamburger" aria-label="Toggle navigation">
-        <span></span><span></span><span></span>
-      </button>
+    <a href="index.html" class="nav-logo">Zoeb<span>.</span>AliKhan</a>
+    <div class="nav-right">
       <ul class="nav-links">
         <li><a href="index.html" class="active" data-en="Home" data-de="Startseite">Home</a></li>
         <li><a href="about.html" data-en="About" data-de="Über mich">About</a></li>
@@ -28,11 +25,25 @@
         <li><a href="contact.html" data-en="Contact" data-de="Kontakt">Contact</a></li>
       </ul>
       <div class="lang-toggle">
-        <button data-set-lang="en">EN</button>
-        <button data-set-lang="de">DE</button>
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="de">DE</button>
       </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <a href="index.html" class="mobile-nav-link" data-en="Home" data-de="Startseite">Home</a>
+      <a href="about.html" class="mobile-nav-link" data-en="About" data-de="Über mich">About</a>
+      <a href="education.html" class="mobile-nav-link" data-en="Education" data-de="Ausbildung">Education</a>
+      <a href="experience.html" class="mobile-nav-link" data-en="Experience" data-de="Erfahrung">Experience</a>
+      <a href="projects.html" class="mobile-nav-link" data-en="Projects" data-de="Projekte">Projects</a>
+      <a href="certifications.html" class="mobile-nav-link" data-en="Certifications" data-de="Zertifikate">Certifications</a>
+      <a href="contact.html" class="mobile-nav-link" data-en="Contact" data-de="Kontakt">Contact</a>
+    </div>
+  </div>
 
   <section class="hero">
     <div class="hero-inner">
