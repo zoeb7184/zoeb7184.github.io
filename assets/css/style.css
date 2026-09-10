@@ -455,6 +455,22 @@ code, .mono {
   display: block;
 }
 
+/* Shown via the img's onerror handler when zoeb.jpg fails to load. */
+.intro-photo-fallback {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
 .intro-photo::after {
   content: '';
   position: absolute;
@@ -2009,17 +2025,24 @@ body > footer.site-footer {
   }
 }
 
-/* Hero */
+/* Hero — capped at 75vh on mobile/tablet so it never leaves a tall empty
+   gap above the intro section (min-height was stacking with the browser's
+   mobile chrome to look like a spacer on real devices). */
 @media (max-width: 768px) {
   .hero {
-    min-height: 85vh;
+    min-height: 75vh;
     padding: 5rem 1.25rem 3rem;
     background-attachment: scroll;
   }
 }
 
-/* Intro section */
+/* Intro section — starts immediately after hero, 40px top padding, and
+   the photo becomes a centered circular avatar instead of a tall portrait. */
 @media (max-width: 768px) {
+  .intro-section {
+    padding: 40px 1.25rem 3rem;
+  }
+
   .intro-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -2028,6 +2051,24 @@ body > footer.site-footer {
 
   .intro-photo {
     order: -1;
+    width: 140px;
+    height: 140px;
+    max-width: 140px;
+    aspect-ratio: auto;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .intro-photo img {
+    border-radius: 50%;
+  }
+
+  .intro-photo-fallback {
+    font-size: 1.5rem;
+  }
+
+  .intro-photo::after {
+    display: none;
   }
 }
 
@@ -2043,22 +2084,48 @@ body > footer.site-footer {
   }
 }
 
-/* Cert columns marquee → 2 columns */
+/* Cert columns marquee → single centered column (2nd/3rd columns hidden;
+   the scrollUp animation on the remaining column keeps running as-is). */
 @media (max-width: 768px) {
   .certs-marquee-section {
     padding: 3.5rem 1.5rem;
   }
 
   .cert-columns {
-    flex-wrap: wrap;
-    height: auto;
-    max-height: none;
-    gap: 1rem;
+    max-width: 320px;
+    height: 300px;
+    margin: 0 auto;
+  }
+
+  .cert-col-wrapper:nth-child(2),
+  .cert-col-wrapper:nth-child(3) {
+    display: none;
   }
 
   .cert-col-wrapper {
-    flex: 1 1 calc(50% - 0.5rem);
-    height: 320px;
+    width: 100%;
+  }
+
+  .cert-preview-card {
+    width: 100%;
+  }
+
+  .cert-info {
+    padding: 12px;
+  }
+
+  .cert-info .cert-name {
+    font-size: 0.85rem;
+  }
+
+  .cert-info .cert-issuer {
+    font-size: 0.75rem;
+  }
+
+  .certs-marquee-header .btn-dark-pill {
+    display: flex;
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -2275,7 +2342,6 @@ body > footer.site-footer {
 /* Hero */
 @media (max-width: 480px) {
   .hero {
-    min-height: 75vh;
     padding: 4.5rem 1rem 2.5rem;
   }
 
@@ -2287,17 +2353,6 @@ body > footer.site-footer {
   .hero .cta-row .btn {
     justify-content: center;
     width: 100%;
-  }
-}
-
-/* Intro section */
-@media (max-width: 480px) {
-  .intro-section {
-    padding: 3rem 1.25rem;
-  }
-
-  .intro-photo {
-    max-width: 200px;
   }
 }
 
@@ -2318,23 +2373,10 @@ body > footer.site-footer {
   }
 }
 
-/* Cert columns marquee → 1 column, shorter cards */
+/* Cert columns marquee — single-column layout already set at ≤768px */
 @media (max-width: 480px) {
   .certs-marquee-section {
     padding: 2.5rem 1rem;
-  }
-
-  .cert-columns {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    height: auto;
-    max-height: 70vh;
-    gap: 0.75rem;
-  }
-
-  .cert-col-wrapper {
-    flex: 1 1 100%;
-    height: 220px;
   }
 }
 
