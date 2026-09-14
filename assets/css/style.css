@@ -2023,14 +2023,34 @@ body > footer.site-footer {
 /* ==========================================================================
    Preloader (homepage) — plain timeout-driven reveal, no scroll coupling.
    #preloader is a fixed black container covering the viewport. Inside it,
-   #preloader-panel is a solid white panel that starts translateX(-100%)
-   (off-screen left) and slides to translateX(0%), matching the timing of
-   a Framer Motion `transition={{ duration: 1.5, ease: "easeInOut", delay:
-   0.5 }}`. #preloader-char is pinned to the panel's own right edge
-   (right: 0), so — because it's a child of the panel, not of #preloader —
-   it inherits the panel's transform and travels across the screen with
-   it as the panel slides in, ending up parked at the viewport's right
-   edge once the panel fully covers it.
+   #preloader-panel is a solid white mask that starts at width: 0% and
+   grows to width: 100% (never translateX — see below), matching the
+   timing of a Framer Motion `transition={{ duration: 1.5, ease:
+   "easeInOut", delay: 0.5 }}`. It's anchored to left: 0 and clips its own
+   contents via overflow: hidden, so growing its width is a wipe/mask
+   reveal, not a slide.
+
+   #preloader-text is deliberately sized to a fixed 100vw / 100vh (not a
+   percentage of the panel) and positioned at top: 0; left: 0 — the same
+   fixed point the panel itself grows from — so its centered content sits
+   at a constant screen position throughout. As the panel's width grows
+   past that fixed point, more of the (unmoving) text becomes visible
+   through the mask; the text itself never moves. Using a percentage or
+   center-anchored position here instead would make the text appear to
+   slide as the panel's own box resized under it — exactly what this
+   avoids.
+
+   #preloader-char is pinned to the panel's own right edge (right: 0), so
+   — because it's a child of the panel, not of #preloader — the browser
+   recomputes that edge every frame as the panel's width animates, and
+   the character travels across the screen with it, ending up parked at
+   the viewport's right edge once the panel fully covers it. A separate,
+   continuously-looping CSS animation layers a bob + wobble on top of
+   that live position, to sell a struggling/pushing effort despite it
+   being a static PNG — approximates a Framer Motion
+   `animate={{ y: [0,-8,0], rotate: [0,-3,3,0] }}, transition={{ repeat:
+   Infinity, duration: 0.6, ease: "easeInOut" }}` (two keyframe arrays of
+   different lengths collapsed into one shared CSS keyframe timeline).
 
    After a fixed 3.5s from page load, #preloader gets a class that fades
    its opacity to 0; once that transition ends, the element is removed
@@ -2055,22 +2075,29 @@ body > footer.site-footer {
 
 #preloader-panel {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
   background: #fff;
-  transform: translateX(-100%);
-  transition: transform 1.5s ease-in-out 0.5s;
+  overflow: hidden;
+  transition: width 1.5s ease-in-out 0.5s;
 }
 
 #preloader-panel.enter {
-  transform: translateX(0%);
+  width: 100%;
 }
 
 #preloader-text {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   line-height: 0.95;
   z-index: 2;
 }
@@ -2084,9 +2111,18 @@ body > footer.site-footer {
   letter-spacing: -0.03em;
 }
 
+@keyframes preloaderStruggle {
+  0%   { transform: translateY(0)     rotate(0deg); }
+  33%  { transform: translateY(-5px)  rotate(-3deg); }
+  50%  { transform: translateY(-8px)  rotate(0deg); }
+  67%  { transform: translateY(-5px)  rotate(3deg); }
+  100% { transform: translateY(0)     rotate(0deg); }
+}
+
 /* Pinned to the panel's own right edge (not the viewport) — see comment
    above. bottom: 10% matches the spec exactly rather than sitting flush
-   with the floor. */
+   with the floor. The looping animation runs the whole time the
+   preloader is mounted, independent of the panel's own width transition. */
 #preloader-char {
   position: absolute;
   right: 0;
@@ -2094,12 +2130,18 @@ body > footer.site-footer {
   width: clamp(180px, 26vw, 380px);
   height: auto;
   z-index: 1;
+  animation: preloaderStruggle 0.6s ease-in-out infinite;
 }
 
-/* Reduced motion — skip entirely */
+/* Reduced motion — skip entirely, and no looping bob for anyone who does
+   see it via the JS reduced-motion fallback below. */
 @media (prefers-reduced-motion: reduce) {
   #preloader {
     display: none;
+  }
+
+  #preloader-char {
+    animation: none;
   }
 }
 
