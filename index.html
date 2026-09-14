@@ -10,18 +10,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
-  <div id="intro-overlay">
-    <div id="intro-bg"></div>
+  <div id="intro-wrapper">
+    <div id="intro-overlay">
+      <div id="intro-bg">
 
-    <div id="intro-text">
-      <div id="intro-line1"><span>ZOEB</span></div>
-      <div id="intro-line2"><span>ALI KHAN</span></div>
-    </div>
+        <div id="intro-text">
+          <div class="intro-line"><span>ZOEB</span></div>
+          <div class="intro-line"><span>ALI KHAN</span></div>
+        </div>
 
-    <div id="intro-character" aria-hidden="true">
+        <div id="intro-character" aria-hidden="true">
       <svg id="char-svg" viewBox="0 0 420 640" xmlns="http://www.w3.org/2000/svg">
         <g id="char-left-leg">
           <path d="M148,466 C168,464 184,470 188,486 C193,516 182,548 172,580 C168,594 164,604 156,608 L124,608 C116,604 114,594 116,582 C120,552 128,520 134,492 C138,476 140,468 148,466 Z" fill="#3b5998" stroke="#0a0a0a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
@@ -82,9 +84,10 @@
           <path d="M414,414 L434,428" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
         </g>
       </svg>
-    </div>
+        </div>
 
-    <div id="intro-panel"></div>
+      </div>
+    </div>
   </div>
 
   <nav class="navbar">

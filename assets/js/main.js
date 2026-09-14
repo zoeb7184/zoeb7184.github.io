@@ -10,76 +10,123 @@
 
   /* ---------------------------------------------------------------------
      0. PAGE INTRO ANIMATION (homepage only)
-     Full-screen name reveal, then the SVG character walks in and pushes
-     the black right panel away to reveal the site. Runs on window "load"
-     (not DOMContentLoaded) so webfonts are ready before the text measures
-     itself. Bails out cleanly if #intro-overlay isn't on the page, if the
-     user prefers reduced motion, or if GSAP failed to load.
+     Scroll-driven horizontal reveal. #intro-wrapper is a 300vh spacer:
+     scrolling through it pins #intro-overlay in the viewport while
+     ScrollTrigger drags the white #intro-bg (and the character riding its
+     right edge) left, as if the character is pushing the overlay
+     off-screen to reveal the real portfolio underneath. A short load-time
+     timeline (text slam-in + character walk-in) plays first, before any
+     scrolling happens. Bails out cleanly if #intro-wrapper isn't on the
+     page, if the user prefers reduced motion, or if GSAP/ScrollTrigger
+     failed to load.
      --------------------------------------------------------------------- */
 
-  function initPageIntro() {
-    var overlay = document.getElementById("intro-overlay");
-    if (!overlay) return;
+  (function initIntro() {
+    var wrapper = document.getElementById("intro-wrapper");
+    if (!wrapper) return;
 
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      // CSS already hides #intro-overlay in this case — nothing to wire up.
+      // CSS already hides #intro-wrapper in this case — nothing to wire up.
       return;
     }
 
-    if (typeof gsap === "undefined") {
-      // GSAP failed to load (e.g. CDN blocked) — don't leave a permanent
-      // white screen stuck in front of the whole site.
-      overlay.style.display = "none";
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+      // GSAP/ScrollTrigger failed to load (e.g. CDN blocked) — don't leave
+      // a permanent white screen stuck in front of the whole site.
+      wrapper.style.display = "none";
       return;
     }
 
-    var line1 = document.querySelector("#intro-line1 span");
-    var line2 = document.querySelector("#intro-line2 span");
-    var character = document.getElementById("intro-character");
-    var panel = document.getElementById("intro-panel");
+    gsap.registerPlugin(ScrollTrigger);
+
+    var overlay = document.getElementById("intro-overlay");
     var introBg = document.getElementById("intro-bg");
-    var introText = document.getElementById("intro-text");
+    var character = document.getElementById("intro-character");
+    var lines = document.querySelectorAll(".intro-line span");
+    var motionLines = document.getElementById("char-motion-lines");
 
-    document.body.style.overflow = "hidden";
+    // ── Phase 1: text slams in on page load (no scroll needed) ──
+    var loadTl = gsap.timeline({ delay: 0.15 });
 
-    var tl = gsap.timeline({
-      onComplete: function () {
-        overlay.classList.add("hidden");
-        overlay.style.display = "none";
-        document.body.style.overflow = "";
+    loadTl
+      .to(lines, {
+        yPercent: 0,
+        duration: 0.75,
+        ease: "power4.out",
+        stagger: 0.12
+      })
+      // Character walks in from right after text appears.
+      .to(character, {
+        xPercent: 0,
+        duration: 0.85,
+        ease: "power3.out"
+      }, "-=0.3")
+      // Motion lines appear when character reaches the edge.
+      .to(motionLines, {
+        opacity: 1,
+        duration: 0.2,
+        ease: "power2.out"
+      }, "-=0.1")
+      // Subtle push strain — character leans slightly more.
+      .to(character, {
+        x: "+=8px",
+        duration: 0.15,
+        ease: "power2.out",
+        yoyo: true,
+        repeat: 1
+      });
+
+    // ── Phase 2: scroll drives the horizontal reveal ──
+    // As the user scrolls down, introBg slides LEFT (character pushes it).
+    ScrollTrigger.create({
+      trigger: wrapper,
+      start: "top top",
+      end: "bottom top",
+      pin: overlay,        // pins the overlay in place while scrolling
+      pinSpacing: false,
+      scrub: 1.2,           // smooth scrub — feels heavy like pushing
+      onUpdate: function (self) {
+        var progress = self.progress;
+
+        // Slide the white panel LEFT (being pushed by the character).
+        gsap.set(introBg, { xPercent: -110 * progress });
+
+        // Character moves with the panel — stays on its right edge, so it
+        // appears to push it — and leans more forward as it pushes harder.
+        gsap.set(character, {
+          x: (-110 * progress) + "vw",
+          rotation: -5 * progress
+        });
+
+        // Motion lines intensify as pushing harder.
+        if (motionLines) {
+          gsap.set(motionLines, {
+            opacity: 1 - progress * 0.3,
+            scaleX: 1 + progress * 0.5
+          });
+        }
+
+        // Text slides out slightly faster than the panel.
+        gsap.set("#intro-text", {
+          xPercent: -130 * progress,
+          opacity: 1 - progress * 2
+        });
+      },
+      onLeave: function () {
+        // Animation complete — collapse the wrapper so it no longer takes
+        // up space, then snap the user to the actual top of the portfolio.
+        gsap.set(wrapper, { height: 0, overflow: "hidden" });
+        wrapper.classList.add("done");
+        window.scrollTo({ top: 0, behavior: "instant" });
+      },
+      onEnterBack: function () {
+        // User scrolled back up — restore the wrapper so the intro can
+        // play out again on the way back down.
+        wrapper.classList.remove("done");
+        gsap.set(wrapper, { height: "300vh", overflow: "visible" });
       }
     });
-
-    // Step 1: names slam in from below, one after the other.
-    tl.to(line1, { yPercent: 0, duration: 0.7, ease: "power4.out", delay: 0.15 })
-      .to(line2, { yPercent: 0, duration: 0.7, ease: "power4.out" }, "-=0.4")
-
-      // Step 2: character walks in from the right edge.
-      .add(function () { character.classList.add("walking"); }, "-=0.3")
-      .to(character, { xPercent: 0, duration: 0.9, ease: "power3.out" }, "-=0.2")
-      .add(function () { character.classList.remove("walking"); })
-
-      // Step 3: a small settle bob once it lands in pushing position.
-      .to("#char-body", { y: -4, duration: 0.15, ease: "power2.out", yoyo: true, repeat: 1 }, "+=0.1")
-
-      // Step 4: comic motion lines burst in at the hands.
-      .to("#char-motion-lines", { opacity: 1, duration: 0.2, ease: "power2.out" }, "-=0.1")
-
-      // Step 5: the character pushes — panel slides off to the right.
-      .to(panel, { xPercent: 100, duration: 0.8, ease: "power4.inOut" }, "+=0.15")
-
-      // Step 6: character follows the panel it just pushed.
-      .to(character, { xPercent: 30, duration: 0.8, ease: "power4.inOut" }, "<")
-
-      // Step 7 + 8: white backdrop and name text fade together.
-      .to(introBg, { opacity: 0, duration: 0.5, ease: "power2.inOut" }, "-=0.15")
-      .to(introText, { opacity: 0, duration: 0.4, ease: "power2.inOut" }, "<")
-
-      // Step 9: whole overlay fades, then gets removed in onComplete.
-      .to(overlay, { opacity: 0, duration: 0.3, ease: "power2.inOut" }, "-=0.15");
-  }
-
-  window.addEventListener("load", initPageIntro);
+  })();
 
   /* ---------------------------------------------------------------------
      1. LANGUAGE TOGGLE

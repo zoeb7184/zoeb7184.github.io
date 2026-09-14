@@ -2021,28 +2021,52 @@ body > footer.site-footer {
 }
 
 /* ==========================================================================
-   Page intro animation (homepage) — full-screen name reveal + character
-   push-away transition. Markup: #intro-overlay in index.html, right before
-   <nav>. Driven by initPageIntro() in main.js.
+   Page intro animation (homepage) — scroll-driven horizontal reveal.
+   Two layers: #intro-wrapper (the sliding white overlay, on top) sits over
+   the real portfolio content underneath. Scrolling through the wrapper's
+   300vh scroll distance pins the overlay in the viewport while JS drags
+   #intro-bg (and the character riding its right edge) left, so the
+   character appears to push the whole overlay off-screen. Markup lives at
+   the very top of <body>, before <nav>. Driven by initIntro() in main.js.
+
+   z-index is 9999 (not the more modest value you might reach for) because
+   it has to clear the existing fixed navbar's z-index:1000 and the mobile
+   menu's z-index:999 — otherwise both would render through the intro.
    ========================================================================== */
 
+/* Scroll spacer — creates scroll distance for the pin */
+#intro-wrapper {
+  position: relative;
+  height: 300vh; /* 3x viewport = scroll distance for the animation */
+  z-index: 9999;
+}
+
+/* The overlay sticks to viewport while scrolling */
 #intro-overlay {
-  position: fixed;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+/* White sliding panel */
+#intro-bg {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 9999;
-  overflow: hidden;
-  pointer-events: all;
-}
-
-#intro-bg {
-  position: absolute;
-  inset: 0;
   background: #ffffff;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  will-change: transform;
 }
 
+/* Name text — left side */
 #intro-text {
   position: absolute;
   left: 5vw;
@@ -2050,34 +2074,32 @@ body > footer.site-footer {
   transform: translateY(-50%);
   line-height: 0.85;
   z-index: 2;
+  pointer-events: none;
 }
 
-#intro-line1,
-#intro-line2 {
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(6rem, 16vw, 16rem);
-  font-weight: 900;
-  color: #38bdf8;
-  letter-spacing: -0.04em;
-  display: block;
+.intro-line {
   overflow: hidden;
 }
 
-/* Each line starts pushed below its own overflow:hidden box, then main.js
-   tweens it to yPercent:0 for the "slam in from below" reveal. */
-#intro-line1 span,
-#intro-line2 span {
+.intro-line span {
   display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(5rem, 14vw, 15rem);
+  font-weight: 900;
+  color: #38bdf8;
+  letter-spacing: -0.04em;
   transform: translateY(110%);
 }
 
+/* Character — right edge of the overlay */
 #intro-character {
   position: absolute;
   bottom: 0;
-  right: 28%;
-  width: clamp(200px, 35vw, 500px);
-  z-index: 4;
-  transform: translateX(120%);
+  right: -2vw; /* slightly off the right edge — appears to push */
+  width: clamp(200px, 32vw, 480px);
+  z-index: 3;
+  transform: translateX(110%); /* starts offscreen right */
+  will-change: transform;
 }
 
 #intro-character svg {
@@ -2086,61 +2108,39 @@ body > footer.site-footer {
   display: block;
 }
 
-#intro-panel {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 30%;
-  height: 100%;
-  background: #0a0a0a;
-  z-index: 3;
-  transform: translateX(0);
+/* After intro completes */
+#intro-wrapper.done {
+  height: 0;
+  overflow: hidden;
+  position: static;
+  z-index: -1;
 }
 
-#intro-overlay.hidden {
-  pointer-events: none;
+/* Motion lines start hidden */
+#char-motion-lines {
+  opacity: 0;
 }
 
-@keyframes walkCycle {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(15deg); }
-  75% { transform: rotate(-15deg); }
+/* Reduced motion — skip entirely */
+@media (prefers-reduced-motion: reduce) {
+  #intro-wrapper {
+    display: none;
+  }
 }
 
-/* transform-box: fill-box makes the rotation pivot around each leg group's
-   own bounding box (its top, via transform-origin) instead of the SVG
-   viewport origin, which is the default for SVG elements and would swing
-   the legs from the wrong point. */
-#intro-character.walking #char-left-leg,
-#intro-character.walking #char-right-leg {
-  transform-box: fill-box;
-  transform-origin: top center;
-  animation: walkCycle 0.4s ease-in-out infinite;
-}
-
-#intro-character.walking #char-right-leg {
-  animation-direction: reverse;
-}
-
+/* Mobile adjustments */
 @media (max-width: 768px) {
-  #intro-line1,
-  #intro-line2 {
-    font-size: clamp(4rem, 14vw, 8rem);
+  #intro-wrapper {
+    height: 250vh;
+  }
+
+  .intro-line span {
+    font-size: clamp(3.5rem, 12vw, 6rem);
   }
 
   #intro-character {
-    width: clamp(140px, 28vw, 220px);
-    right: 32%;
-  }
-
-  #intro-panel {
-    width: 35%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  #intro-overlay {
-    display: none !important;
+    width: clamp(130px, 40vw, 200px);
+    right: -3vw;
   }
 }
 
