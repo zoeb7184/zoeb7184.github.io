@@ -2021,121 +2021,95 @@ body > footer.site-footer {
 }
 
 /* ==========================================================================
-   Page intro animation (homepage) — scroll-driven horizontal reveal.
-   Two layers: #intro-wrapper (the sliding white overlay, on top) sits over
-   the real portfolio content underneath. Scrolling through the wrapper's
-   300vh scroll distance pins the overlay in the viewport while JS drags
-   #intro-bg (and the character riding its right edge) left, so the
-   character appears to push the whole overlay off-screen. Markup lives at
-   the very top of <body>, before <nav>. Driven by initIntro() in main.js.
+   Preloader (homepage) — plain timeout-driven reveal, no scroll coupling.
+   #preloader is a fixed black container covering the viewport. Inside it,
+   #preloader-panel is a solid white panel that starts translateX(-100%)
+   (off-screen left) and slides to translateX(0%), matching the timing of
+   a Framer Motion `transition={{ duration: 1.5, ease: "easeInOut", delay:
+   0.5 }}`. #preloader-char is pinned to the panel's own right edge
+   (right: 0), so — because it's a child of the panel, not of #preloader —
+   it inherits the panel's transform and travels across the screen with
+   it as the panel slides in, ending up parked at the viewport's right
+   edge once the panel fully covers it.
 
-   z-index is 9999 (not the more modest value you might reach for) because
-   it has to clear the existing fixed navbar's z-index:1000 and the mobile
-   menu's z-index:999 — otherwise both would render through the intro.
+   After a fixed 3.5s from page load, #preloader gets a class that fades
+   its opacity to 0; once that transition ends, the element is removed
+   from the DOM outright (not just hidden) so it can never sit over the
+   page — even invisibly — and block clicks. Driven by initPreloader() in
+   main.js. z-index 9999 clears the fixed navbar's 1000 and the mobile
+   menu's 999.
    ========================================================================== */
 
-/* Scroll spacer — creates scroll distance for the pin */
-#intro-wrapper {
-  position: relative;
-  height: 300vh; /* 3x viewport = scroll distance for the animation */
+#preloader {
+  position: fixed;
+  inset: 0;
   z-index: 9999;
-}
-
-/* The overlay sticks to viewport while scrolling */
-#intro-overlay {
-  position: sticky;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  background: #000;
   overflow: hidden;
-  z-index: 9999;
+  transition: opacity 0.6s ease;
 }
 
-/* Sliding panel — the site's own dark navy (not white, unlike the huyml.co
-   reference this intro is based on) so the reveal transitions seamlessly
-   into the dark theme underneath instead of flashing white-to-dark. */
-#intro-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--bg);
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  will-change: transform;
+#preloader.exiting {
+  opacity: 0;
 }
 
-/* Name text — left side */
-#intro-text {
+#preloader-panel {
   position: absolute;
-  left: 5vw;
+  inset: 0;
+  background: #fff;
+  transform: translateX(-100%);
+  transition: transform 1.5s ease-in-out 0.5s;
+}
+
+#preloader-panel.enter {
+  transform: translateX(0%);
+}
+
+#preloader-text {
+  position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  line-height: 0.85;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  line-height: 0.95;
   z-index: 2;
-  pointer-events: none;
 }
 
-.intro-line {
-  overflow: hidden;
-}
-
-.intro-line span {
+#preloader-text span {
   display: block;
   font-family: 'Inter', sans-serif;
-  font-size: clamp(5rem, 14vw, 15rem);
+  font-size: clamp(2.5rem, 8vw, 6rem);
   font-weight: 900;
-  color: #38bdf8;
-  letter-spacing: -0.04em;
-  transform: translateY(110%);
+  color: #dc2626;
+  letter-spacing: -0.03em;
 }
 
-/* Character — right edge of the overlay. filter is a soft accent-colour
-   glow behind the PNG so a grey/monochrome source image reads as part of
-   the dark blue theme instead of looking pasted on. */
-#intro-char-img {
+/* Pinned to the panel's own right edge (not the viewport) — see comment
+   above. bottom: 10% matches the spec exactly rather than sitting flush
+   with the floor. */
+#preloader-char {
   position: absolute;
-  bottom: 0;
-  right: -2vw; /* slightly off the right edge — appears to push */
-  width: clamp(220px, 30vw, 420px);
+  right: 0;
+  bottom: 10%;
+  width: clamp(180px, 26vw, 380px);
   height: auto;
-  z-index: 3;
-  transform: translateX(110%); /* starts offscreen right */
-  will-change: transform;
-  filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.3));
-}
-
-/* After intro completes */
-#intro-wrapper.done {
-  height: 0;
-  overflow: hidden;
-  position: static;
-  z-index: -1;
+  z-index: 1;
 }
 
 /* Reduced motion — skip entirely */
 @media (prefers-reduced-motion: reduce) {
-  #intro-wrapper {
+  #preloader {
     display: none;
   }
 }
 
-/* Mobile adjustments */
 @media (max-width: 768px) {
-  #intro-wrapper {
-    height: 250vh;
+  #preloader-text span {
+    font-size: clamp(2rem, 9vw, 3.5rem);
   }
 
-  .intro-line span {
-    font-size: clamp(3.5rem, 12vw, 6rem);
-  }
-
-  #intro-char-img {
-    width: clamp(130px, 40vw, 200px);
-    right: -3vw;
+  #preloader-char {
+    width: clamp(120px, 34vw, 220px);
   }
 }
 

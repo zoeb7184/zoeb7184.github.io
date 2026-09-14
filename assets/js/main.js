@@ -9,108 +9,63 @@
   "use strict";
 
   /* ---------------------------------------------------------------------
-     0. PAGE INTRO ANIMATION (homepage only)
-     Scroll-driven horizontal reveal. #intro-wrapper is a 300vh spacer:
-     scrolling through it pins #intro-overlay in the viewport while
-     ScrollTrigger drags the white #intro-bg (and the character riding its
-     right edge) left, as if the character is pushing the overlay
-     off-screen to reveal the real portfolio underneath. A short load-time
-     timeline (text slam-in + character walk-in) plays first, before any
-     scrolling happens. Bails out cleanly if #intro-wrapper isn't on the
-     page, if the user prefers reduced motion, or if GSAP/ScrollTrigger
-     failed to load.
+     0. PRELOADER (homepage only)
+     Plain timeout-driven reveal — deliberately NOT coupled to scroll in
+     any way. Vanilla-JS/CSS equivalent of:
+       const [showIntro, setShowIntro] = useState(true);
+       useEffect(() => { setTimeout(() => setShowIntro(false), 3500); }, []);
+       if (!showIntro) return null;
+     — a single 3.5s timer flips the "showIntro" state, and once the exit
+     fade finishes, the preloader is unmounted via el.remove(), not just
+     hidden, so it can never sit over the page (even invisibly) and block
+     clicks on the site underneath. See the CSS block above #preloader for
+     the full structure/timing. Bails out cleanly if #preloader isn't on
+     the page, and skips straight to removal if the user prefers reduced
+     motion.
      --------------------------------------------------------------------- */
 
-  (function initIntro() {
-    var wrapper = document.getElementById("intro-wrapper");
-    if (!wrapper) return;
+  (function initPreloader() {
+    var preloader = document.getElementById("preloader");
+    if (!preloader) return;
 
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      // CSS already hides #intro-wrapper in this case — nothing to wire up.
+      // CSS already hides #preloader in this case — remove it outright
+      // rather than leaving a display:none node behind.
+      preloader.remove();
       return;
     }
 
-    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
-      // GSAP/ScrollTrigger failed to load (e.g. CDN blocked) — don't leave
-      // a permanent white screen stuck in front of the whole site.
-      wrapper.style.display = "none";
-      return;
-    }
+    var panel = document.getElementById("preloader-panel");
 
-    gsap.registerPlugin(ScrollTrigger);
+    // Kick off the slide-in on the next frame, so the browser has painted
+    // the panel's initial translateX(-100%) before the transition starts.
+    requestAnimationFrame(function () {
+      panel.classList.add("enter");
+    });
 
-    var overlay = document.getElementById("intro-overlay");
-    var introBg = document.getElementById("intro-bg");
-    var character = document.getElementById("intro-char-img");
-    var lines = document.querySelectorAll(".intro-line span");
+    // The showIntro timer — exactly 3.5s, matching the React version.
+    window.setTimeout(function () {
+      preloader.classList.add("exiting");
 
-    // ── Phase 1: text slams in on page load (no scroll needed) ──
-    var loadTl = gsap.timeline({ delay: 0.15 });
+      var removed = false;
+      function removePreloader() {
+        if (removed) return;
+        removed = true;
+        preloader.remove();
+      }
 
-    loadTl
-      .to(lines, {
-        yPercent: 0,
-        duration: 0.75,
-        ease: "power4.out",
-        stagger: 0.12
-      })
-      // Character walks in from right after text appears.
-      .to(character, {
-        xPercent: 0,
-        duration: 0.85,
-        ease: "power3.out"
-      }, "-=0.3")
-      // Subtle push strain — character leans slightly more.
-      .to(character, {
-        x: "+=8px",
-        duration: 0.15,
-        ease: "power2.out",
-        yoyo: true,
-        repeat: 1
+      // CRITICAL: full DOM removal, not just opacity — nothing is left
+      // behind to intercept clicks once the exit fade completes.
+      preloader.addEventListener("transitionend", function handleExitEnd(e) {
+        if (e.target !== preloader || e.propertyName !== "opacity") return;
+        preloader.removeEventListener("transitionend", handleExitEnd);
+        removePreloader();
       });
 
-    // ── Phase 2: scroll drives the horizontal reveal ──
-    // As the user scrolls down, introBg slides LEFT (character pushes it).
-    ScrollTrigger.create({
-      trigger: wrapper,
-      start: "top top",
-      end: "bottom top",
-      pin: overlay,        // pins the overlay in place while scrolling
-      pinSpacing: false,
-      scrub: 1.2,           // smooth scrub — feels heavy like pushing
-      onUpdate: function (self) {
-        var progress = self.progress;
-
-        // Slide the dark panel LEFT (being pushed by the character).
-        gsap.set(introBg, { xPercent: -110 * progress });
-
-        // Character moves with the panel — stays on its right edge, so it
-        // appears to push it — and leans more forward as it pushes harder.
-        gsap.set(character, {
-          x: (-110 * progress) + "vw",
-          rotation: -3 * progress
-        });
-
-        // Text slides out slightly faster than the panel.
-        gsap.set("#intro-text", {
-          xPercent: -130 * progress,
-          opacity: 1 - progress * 2
-        });
-      },
-      onLeave: function () {
-        // Animation complete — collapse the wrapper so it no longer takes
-        // up space, then snap the user to the actual top of the portfolio.
-        gsap.set(wrapper, { height: 0, overflow: "hidden" });
-        wrapper.classList.add("done");
-        window.scrollTo({ top: 0, behavior: "instant" });
-      },
-      onEnterBack: function () {
-        // User scrolled back up — restore the wrapper so the intro can
-        // play out again on the way back down.
-        wrapper.classList.remove("done");
-        gsap.set(wrapper, { height: "300vh", overflow: "visible" });
-      }
-    });
+      // Fallback in case transitionend never fires for any reason —
+      // still guarantees the preloader gets unmounted.
+      window.setTimeout(removePreloader, 700);
+    }, 3500);
   })();
 
   /* ---------------------------------------------------------------------
