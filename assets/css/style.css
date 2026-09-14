@@ -2052,14 +2052,16 @@ body > footer.site-footer {
   z-index: 9999;
 }
 
-/* White sliding panel */
+/* Sliding panel — the site's own dark navy (not white, unlike the huyml.co
+   reference this intro is based on) so the reveal transitions seamlessly
+   into the dark theme underneath instead of flashing white-to-dark. */
 #intro-bg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: #ffffff;
+  background: var(--bg);
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -2091,21 +2093,19 @@ body > footer.site-footer {
   transform: translateY(110%);
 }
 
-/* Character — right edge of the overlay */
-#intro-character {
+/* Character — right edge of the overlay. filter is a soft accent-colour
+   glow behind the PNG so a grey/monochrome source image reads as part of
+   the dark blue theme instead of looking pasted on. */
+#intro-char-img {
   position: absolute;
   bottom: 0;
   right: -2vw; /* slightly off the right edge — appears to push */
-  width: clamp(200px, 32vw, 480px);
+  width: clamp(220px, 30vw, 420px);
+  height: auto;
   z-index: 3;
   transform: translateX(110%); /* starts offscreen right */
   will-change: transform;
-}
-
-#intro-character svg {
-  width: 100%;
-  height: auto;
-  display: block;
+  filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.3));
 }
 
 /* After intro completes */
@@ -2114,11 +2114,6 @@ body > footer.site-footer {
   overflow: hidden;
   position: static;
   z-index: -1;
-}
-
-/* Motion lines start hidden */
-#char-motion-lines {
-  opacity: 0;
 }
 
 /* Reduced motion — skip entirely */
@@ -2138,7 +2133,7 @@ body > footer.site-footer {
     font-size: clamp(3.5rem, 12vw, 6rem);
   }
 
-  #intro-character {
+  #intro-char-img {
     width: clamp(130px, 40vw, 200px);
     right: -3vw;
   }

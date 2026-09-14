@@ -41,9 +41,8 @@
 
     var overlay = document.getElementById("intro-overlay");
     var introBg = document.getElementById("intro-bg");
-    var character = document.getElementById("intro-character");
+    var character = document.getElementById("intro-char-img");
     var lines = document.querySelectorAll(".intro-line span");
-    var motionLines = document.getElementById("char-motion-lines");
 
     // ── Phase 1: text slams in on page load (no scroll needed) ──
     var loadTl = gsap.timeline({ delay: 0.15 });
@@ -61,12 +60,6 @@
         duration: 0.85,
         ease: "power3.out"
       }, "-=0.3")
-      // Motion lines appear when character reaches the edge.
-      .to(motionLines, {
-        opacity: 1,
-        duration: 0.2,
-        ease: "power2.out"
-      }, "-=0.1")
       // Subtle push strain — character leans slightly more.
       .to(character, {
         x: "+=8px",
@@ -88,23 +81,15 @@
       onUpdate: function (self) {
         var progress = self.progress;
 
-        // Slide the white panel LEFT (being pushed by the character).
+        // Slide the dark panel LEFT (being pushed by the character).
         gsap.set(introBg, { xPercent: -110 * progress });
 
         // Character moves with the panel — stays on its right edge, so it
         // appears to push it — and leans more forward as it pushes harder.
         gsap.set(character, {
           x: (-110 * progress) + "vw",
-          rotation: -5 * progress
+          rotation: -3 * progress
         });
-
-        // Motion lines intensify as pushing harder.
-        if (motionLines) {
-          gsap.set(motionLines, {
-            opacity: 1 - progress * 0.3,
-            scaleX: 1 + progress * 0.5
-          });
-        }
 
         // Text slides out slightly faster than the panel.
         gsap.set("#intro-text", {
