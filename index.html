@@ -9,8 +9,83 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
+
+  <div id="intro-overlay">
+    <div id="intro-bg"></div>
+
+    <div id="intro-text">
+      <div id="intro-line1"><span>ZOEB</span></div>
+      <div id="intro-line2"><span>ALI KHAN</span></div>
+    </div>
+
+    <div id="intro-character" aria-hidden="true">
+      <svg id="char-svg" viewBox="0 0 420 640" xmlns="http://www.w3.org/2000/svg">
+        <g id="char-left-leg">
+          <path d="M148,466 C168,464 184,470 188,486 C193,516 182,548 172,580 C168,594 164,604 156,608 L124,608 C116,604 114,594 116,582 C120,552 128,520 134,492 C138,476 140,468 148,466 Z" fill="#3b5998" stroke="#0a0a0a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+        </g>
+
+        <g id="char-left-shoe">
+          <path d="M104,600 C104,592 112,588 124,588 L162,588 C172,588 180,594 182,602 C184,610 180,618 168,620 L100,620 C90,618 86,610 88,602 C90,596 96,600 104,600 Z" fill="#ffffff" stroke="#0a0a0a" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M88,608 L182,608 C182,614 178,619 168,620 L100,620 C92,619 88,614 88,608 Z" fill="#1a1a1a" stroke="#0a0a0a" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M112,592 L150,600" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+        </g>
+
+        <g id="char-right-leg">
+          <path d="M186,464 C204,468 214,486 222,506 C228,522 232,536 240,548 C248,560 254,572 254,588 C254,598 248,606 238,608 L210,608 C202,606 198,598 200,588 C204,566 206,544 200,524 C194,506 186,492 182,478 C180,470 180,466 186,464 Z" fill="#3b5998" stroke="#0a0a0a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+        </g>
+
+        <g id="char-right-shoe" transform="rotate(-8 246 606)">
+          <path d="M206,596 C206,588 214,584 226,584 L268,584 C280,584 288,590 290,598 C292,606 288,614 274,616 L202,616 C192,614 188,606 190,598 C192,592 198,596 206,596 Z" fill="#ffffff" stroke="#0a0a0a" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M190,604 L290,604 C290,610 286,615 274,616 L202,616 C194,615 190,610 190,604 Z" fill="#1a1a1a" stroke="#0a0a0a" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M212,588 L254,596" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+        </g>
+
+        <g id="char-body">
+          <path d="M150,466 C146,420 148,374 162,336 C172,310 194,296 230,296 L268,300 C286,304 296,318 300,336 C310,374 306,420 296,458 C292,470 282,476 268,476 L182,476 C166,476 154,478 150,466 Z" fill="#2d3748" stroke="#0a0a0a" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M172,404 C196,418 236,418 268,402" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round"/>
+          <path d="M234,300 C230,316 228,332 232,346" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round"/>
+          <path d="M254,300 C258,316 258,332 254,346" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round"/>
+        </g>
+
+        <g id="char-left-arm">
+          <path d="M240,318 C268,308 296,308 320,316 C344,324 366,332 386,340 C398,344 406,348 408,356 C410,364 404,370 394,368 C372,362 350,354 328,348 C304,342 278,340 252,344 C238,346 228,340 226,330 C224,322 230,320 240,318 Z" fill="#2d3748" stroke="#0a0a0a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+          <ellipse cx="400" cy="356" rx="17" ry="14" fill="#F4C49E" stroke="#0a0a0a" stroke-width="4"/>
+        </g>
+
+        <g id="char-right-arm">
+          <path d="M248,340 C276,336 304,340 328,350 C352,360 374,370 394,380 C406,386 412,392 412,400 C412,408 404,412 394,408 C372,398 350,388 326,380 C300,372 274,368 250,368 C236,368 226,362 226,352 C226,344 236,342 248,340 Z" fill="#2d3748" stroke="#0a0a0a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+          <ellipse cx="404" cy="392" rx="17" ry="14" fill="#F4C49E" stroke="#0a0a0a" stroke-width="4"/>
+        </g>
+
+        <g id="char-head">
+          <ellipse cx="298" cy="244" rx="54" ry="58" fill="#F4C49E" stroke="#0a0a0a" stroke-width="4"/>
+          <path d="M256,268 C262,290 278,300 296,300 C312,300 324,292 330,276 C322,286 308,290 296,290 C282,290 268,284 256,268 Z" fill="#2C1810" stroke="#0a0a0a" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M250,232 C246,214 252,196 266,188 C260,200 258,214 260,228 Z" fill="#2C1810" stroke="#0a0a0a" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M270,222 C278,218 288,218 294,222" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="278" cy="236" r="4" fill="#0a0a0a"/>
+          <path d="M310,246 C318,244 326,246 330,252" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round"/>
+        </g>
+
+        <g id="char-cap" transform="rotate(-8 298 204)">
+          <path d="M254,206 C258,178 276,162 300,162 C324,162 342,178 346,206 C346,214 340,218 330,218 L270,218 C260,218 254,214 254,206 Z" fill="#1a1a2e" stroke="#0a0a0a" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M330,204 C352,202 374,206 388,214 C394,218 392,224 384,226 C366,228 346,226 328,220 Z" fill="#1a1a2e" stroke="#0a0a0a" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M262,182 C278,172 322,172 338,182" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+        </g>
+
+        <g id="char-motion-lines" opacity="0">
+          <path d="M416,330 L438,318" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+          <path d="M420,346 L444,342" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+          <path d="M420,398 L444,402" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+          <path d="M414,414 L434,428" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+
+    <div id="intro-panel"></div>
+  </div>
 
   <nav class="navbar">
     <a href="index.html" class="nav-logo">Zoeb<span>.</span>AliKhan</a>

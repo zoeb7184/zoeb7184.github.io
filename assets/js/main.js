@@ -9,6 +9,79 @@
   "use strict";
 
   /* ---------------------------------------------------------------------
+     0. PAGE INTRO ANIMATION (homepage only)
+     Full-screen name reveal, then the SVG character walks in and pushes
+     the black right panel away to reveal the site. Runs on window "load"
+     (not DOMContentLoaded) so webfonts are ready before the text measures
+     itself. Bails out cleanly if #intro-overlay isn't on the page, if the
+     user prefers reduced motion, or if GSAP failed to load.
+     --------------------------------------------------------------------- */
+
+  function initPageIntro() {
+    var overlay = document.getElementById("intro-overlay");
+    if (!overlay) return;
+
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      // CSS already hides #intro-overlay in this case — nothing to wire up.
+      return;
+    }
+
+    if (typeof gsap === "undefined") {
+      // GSAP failed to load (e.g. CDN blocked) — don't leave a permanent
+      // white screen stuck in front of the whole site.
+      overlay.style.display = "none";
+      return;
+    }
+
+    var line1 = document.querySelector("#intro-line1 span");
+    var line2 = document.querySelector("#intro-line2 span");
+    var character = document.getElementById("intro-character");
+    var panel = document.getElementById("intro-panel");
+    var introBg = document.getElementById("intro-bg");
+    var introText = document.getElementById("intro-text");
+
+    document.body.style.overflow = "hidden";
+
+    var tl = gsap.timeline({
+      onComplete: function () {
+        overlay.classList.add("hidden");
+        overlay.style.display = "none";
+        document.body.style.overflow = "";
+      }
+    });
+
+    // Step 1: names slam in from below, one after the other.
+    tl.to(line1, { yPercent: 0, duration: 0.7, ease: "power4.out", delay: 0.15 })
+      .to(line2, { yPercent: 0, duration: 0.7, ease: "power4.out" }, "-=0.4")
+
+      // Step 2: character walks in from the right edge.
+      .add(function () { character.classList.add("walking"); }, "-=0.3")
+      .to(character, { xPercent: 0, duration: 0.9, ease: "power3.out" }, "-=0.2")
+      .add(function () { character.classList.remove("walking"); })
+
+      // Step 3: a small settle bob once it lands in pushing position.
+      .to("#char-body", { y: -4, duration: 0.15, ease: "power2.out", yoyo: true, repeat: 1 }, "+=0.1")
+
+      // Step 4: comic motion lines burst in at the hands.
+      .to("#char-motion-lines", { opacity: 1, duration: 0.2, ease: "power2.out" }, "-=0.1")
+
+      // Step 5: the character pushes — panel slides off to the right.
+      .to(panel, { xPercent: 100, duration: 0.8, ease: "power4.inOut" }, "+=0.15")
+
+      // Step 6: character follows the panel it just pushed.
+      .to(character, { xPercent: 30, duration: 0.8, ease: "power4.inOut" }, "<")
+
+      // Step 7 + 8: white backdrop and name text fade together.
+      .to(introBg, { opacity: 0, duration: 0.5, ease: "power2.inOut" }, "-=0.15")
+      .to(introText, { opacity: 0, duration: 0.4, ease: "power2.inOut" }, "<")
+
+      // Step 9: whole overlay fades, then gets removed in onComplete.
+      .to(overlay, { opacity: 0, duration: 0.3, ease: "power2.inOut" }, "-=0.15");
+  }
+
+  window.addEventListener("load", initPageIntro);
+
+  /* ---------------------------------------------------------------------
      1. LANGUAGE TOGGLE
      --------------------------------------------------------------------- */
 
