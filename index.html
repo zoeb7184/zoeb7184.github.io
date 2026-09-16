@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zoeb Ali Khan · Data Science & AI/ML Engineer</title>
+<meta name="description" content="Portfolio of Zoeb Ali Khan, M.Sc. Data Science student at Universitat Bielefeld.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Fraunces:ital,wght@0,600;0,900;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="loader" id="loader">
+  <div class="loader-stage">
+    <div class="loader-name-wrap">
+      <div class="loader-name-mask" id="loaderMask">
+        <div class="loader-name">ZOEB ALI KHAN</div>
+      </div>
+      <div class="loader-name loader-name-ghost" aria-hidden="true">ZOEB ALI KHAN</div>
+      <svg class="loader-char" id="loaderChar" viewBox="0 0 140 170" width="86" height="104">
+        <ellipse class="bot-shadow" cx="70" cy="158" rx="34" ry="7"/>
+        <g class="bot-leg bot-leg-back">
+          <rect x="52" y="108" width="13" height="42" rx="6"/>
+        </g>
+        <g class="bot-leg bot-leg-front">
+          <rect x="75" y="108" width="13" height="42" rx="6"/>
+        </g>
+        <rect class="bot-body" x="38" y="56" width="64" height="58" rx="16"/>
+        <rect class="bot-panel" x="50" y="70" width="40" height="22" rx="6"/>
+        <circle class="bot-light" cx="60" cy="81" r="4"/>
+        <circle class="bot-light" cx="80" cy="81" r="4"/>
+        <g class="bot-arm bot-arm-back">
+          <rect x="28" y="62" width="12" height="40" rx="6"/>
+        </g>
+        <g class="bot-arm bot-arm-front">
+          <rect x="100" y="62" width="12" height="40" rx="6"/>
+        </g>
+        <rect class="bot-head" x="42" y="18" width="56" height="42" rx="14"/>
+        <rect class="bot-eye" x="54" y="34" width="10" height="10" rx="3"/>
+        <rect class="bot-eye" x="76" y="34" width="10" height="10" rx="3"/>
+        <line class="bot-antenna" x1="70" y1="18" x2="70" y2="6"/>
+        <circle class="bot-antenna-tip" cx="70" cy="5" r="4"/>
+      </svg>
+    </div>
+    <div class="loader-tagline" id="loaderTagline"><span data-i18n="loader.tagline">Data Scientist &amp; ML Engineer</span></div>
+    <div class="loader-progress"><span id="loaderProgressBar"></span></div>
+  </div>
+</div>
+
+<div class="bg-grid"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">ZAK<span>.</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-right">
+      <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active" data-i18n="nav.home">Home</a></li>
+      <li><a href="about.html" data-i18n="nav.about">About</a></li>
+      <li><a href="education.html" data-i18n="nav.education">Education</a></li>
+      <li><a href="experience.html" data-i18n="nav.experience">Experience</a></li>
+      <li><a href="projects.html" data-i18n="nav.projects">Projects</a></li>
+      <li><a href="certifications.html" data-i18n="nav.certifications">Certifications</a></li>
+      <li><a href="contact.html" class="nav-cta" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow reveal"><span data-i18n="home.eyebrow">Hi, my name is</span></p>
+    <h1 class="reveal">Zoeb Ali Khan</h1>
+    <h2 class="hero-role reveal">
+      <span id="typed"></span><span class="cursor-blink">|</span>
+    </h2>
+    <p class="hero-desc reveal"><span data-i18n="home.desc">Building intelligent systems with clean data pipelines and production ready ML. M.Sc. Data Science student at Universit&auml;t Bielefeld, based in Bielefeld, Germany since 2023, originally from Mumbai, India.</span></p>
+    <div class="hero-buttons reveal">
+      <a href="projects.html" class="btn btn-primary"><span data-i18n="btn.viewProjects">View Projects</span></a>
+      <a href="contact.html" class="btn btn-outline"><span data-i18n="btn.getInTouch">Get In Touch</span></a>
+    </div>
+    <div class="hero-socials reveal">
+      <a href="https://github.com/zoeb7184" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/zoeb-ali-khan" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:zoebalikhan00@gmail.com">Email</a>
+    </div>
+  </div>
+  <a href="#intro" class="scroll-indicator" aria-label="Scroll down"><span></span></a>
+</header>
+
+<main>
+
+  <section id="intro" class="section">
+    <div class="section-inner">
+      <h2 class="section-title"><span data-i18n="home.introTitle">Hi, I'm Zoeb</span></h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p><span data-i18n="home.introP1">Yes, Bielefeld does exist..!! And I've been living and studying here since 2023. I'm a 4th semester M.Sc. Data Science student at Universit&auml;t Bielefeld. Before moving to Germany, I completed an AI/ML internship at YBI Foundation in Mumbai, building GCP BigQuery ETL pipelines, automating SQL workflows, and delivering dashboards to stakeholders.</span></p>
+          <p><span data-i18n="home.introP2">I'm passionate about the full data stack, from raw ingestion to deployed ML models, and I'm actively looking for Werkstudent and internship roles across Germany.</span></p>
+          <a href="about.html" class="btn btn-outline small"><span data-i18n="btn.readMore">Read More &rarr;</span></a>
+        </div>
+        <div class="about-photo character-stage" id="charStage" tabindex="0" role="button" aria-label="Tap to see what's going on inside Zoeb's head">
+          <div class="character-scene">
+            <div class="walker" id="walker">
+              <div class="avatar-photo">
+                <img src="assets/images/zoeb-avatar.jpg" alt="Zoeb Ali Khan" loading="lazy">
+              </div>
+            </div>
+          </div>
+          <div class="speech-bubble" id="speechBubble"><span id="speechText">Hey, I&rsquo;m Zoeb! &#128075;</span></div>
+          <div class="floating-icons" id="floatingIcons">
+            <button type="button" class="float-icon" data-key="econ" aria-label="Econometrics and Machine Learning">&#128202;</button>
+            <button type="button" class="float-icon" data-key="robot" aria-label="ROS 2 Robotics">&#129302;</button>
+            <button type="button" class="float-icon" data-key="sql" aria-label="SQL and Data">&#128451;&#65039;</button>
+            <button type="button" class="float-icon" data-key="football" aria-label="Football Analytics">&#9917;</button>
+            <button type="button" class="float-icon" data-key="webdev" aria-label="Building This Site">&#128187;</button>
+          </div>
+          <div class="polaroid" id="polaroidCard">
+            <button type="button" class="polaroid-close" id="polaroidClose" aria-label="Close">&times;</button>
+            <div class="polaroid-photo" id="polaroidIcon">&#129504;</div>
+            <div class="polaroid-caption">
+              <h3 id="polaroidTitle">&nbsp;</h3>
+              <p id="polaroidText">&nbsp;</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="section-inner">
+      <h2 class="section-title"><span data-i18n="home.techTitle">Tech Stack &amp; Ecosystem</span></h2>
+    </div>
+    <div class="marquee">
+      <div class="marquee-track">
+        <span class="tech-pill"><span class="tech-emoji">&#128013;</span>Python</span><span class="tech-pill"><span class="tech-emoji">&#128451;&#65039;</span>SQL</span><span class="tech-pill"><span class="tech-emoji">&#128202;</span>R</span><span class="tech-pill"><span class="tech-emoji">&#9889;</span>FastAPI</span><span class="tech-pill"><span class="tech-emoji">&#128293;</span>PyTorch</span><span class="tech-pill"><span class="tech-emoji">&#127807;</span>Scikit-learn</span><span class="tech-pill"><span class="tech-emoji">&#128200;</span>Plotly</span><span class="tech-pill"><span class="tech-emoji">&#127919;</span>XGBoost</span>
+        <span class="tech-pill"><span class="tech-emoji">&#128013;</span>Python</span><span class="tech-pill"><span class="tech-emoji">&#128451;&#65039;</span>SQL</span><span class="tech-pill"><span class="tech-emoji">&#128202;</span>R</span><span class="tech-pill"><span class="tech-emoji">&#9889;</span>FastAPI</span><span class="tech-pill"><span class="tech-emoji">&#128293;</span>PyTorch</span><span class="tech-pill"><span class="tech-emoji">&#127807;</span>Scikit-learn</span><span class="tech-pill"><span class="tech-emoji">&#128200;</span>Plotly</span><span class="tech-pill"><span class="tech-emoji">&#127919;</span>XGBoost</span>
+      </div>
+    </div>
+    <div class="marquee reverse">
+      <div class="marquee-track">
+        <span class="tech-pill"><span class="tech-emoji">&#128051;</span>Docker</span><span class="tech-pill"><span class="tech-emoji">&#128451;&#65039;</span>PostgreSQL</span><span class="tech-pill"><span class="tech-emoji">&#9729;&#65039;</span>GCP</span><span class="tech-pill"><span class="tech-emoji">&#128260;</span>Prefect</span><span class="tech-pill"><span class="tech-emoji">&#129504;</span>MLflow</span><span class="tech-pill"><span class="tech-emoji">&#128230;</span>Streamlit</span><span class="tech-pill"><span class="tech-emoji">&#128279;</span>Git</span><span class="tech-pill"><span class="tech-emoji">&#128640;</span>Vercel</span><span class="tech-pill"><span class="tech-emoji">&#128678;</span>Railway</span>
+        <span class="tech-pill"><span class="tech-emoji">&#128051;</span>Docker</span><span class="tech-pill"><span class="tech-emoji">&#128451;&#65039;</span>PostgreSQL</span><span class="tech-pill"><span class="tech-emoji">&#9729;&#65039;</span>GCP</span><span class="tech-pill"><span class="tech-emoji">&#128260;</span>Prefect</span><span class="tech-pill"><span class="tech-emoji">&#129504;</span>MLflow</span><span class="tech-pill"><span class="tech-emoji">&#128230;</span>Streamlit</span><span class="tech-pill"><span class="tech-emoji">&#128279;</span>Git</span><span class="tech-pill"><span class="tech-emoji">&#128640;</span>Vercel</span><span class="tech-pill"><span class="tech-emoji">&#128678;</span>Railway</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner" style="text-align:center;">
+      <h2 class="section-title" style="justify-content:center;"><span data-i18n="home.certTitle">Certifications &amp; Achievements</span></h2>
+      <p style="color:var(--text-dim);max-width:600px;margin:0 auto 32px;"><span data-i18n="home.certDesc">Validating excellence through global standards. From foundational skills to professional grade certifications across Data Science, ML Engineering, and AI.</span></p>
+      <a href="certifications.html" class="btn btn-outline small" style="margin-bottom:40px;display:inline-block;"><span data-i18n="btn.viewAllCerts">View All Certifications &rarr;</span></a>
+    </div>
+    <div class="cert-columns" id="certColumns"></div>
+  </section>
+
+  <section class="cta-hero-section">
+    <div class="cta-diag-banner cta-diag-1"><div class="diag-track">DATA SCIENTIST &bull; ML ENGINEER &bull; DATA ENGINEER &bull; AI DEVELOPER &bull; DATA SCIENTIST &bull; ML ENGINEER &bull; DATA ENGINEER &bull; AI DEVELOPER &bull; DATA SCIENTIST &bull; ML ENGINEER &bull; DATA ENGINEER &bull; AI DEVELOPER &bull; DATA SCIENTIST &bull; ML ENGINEER &bull; DATA ENGINEER &bull; AI DEVELOPER &bull; </div></div>
+    <div class="cta-diag-banner cta-diag-2"><div class="diag-track">PYTHON &bull; PYTORCH &bull; FASTAPI &bull; POSTGRESQL &bull; GCP &bull; DOCKER &bull; PREFECT &bull; PYTHON &bull; PYTORCH &bull; FASTAPI &bull; POSTGRESQL &bull; GCP &bull; DOCKER &bull; PREFECT &bull; PYTHON &bull; PYTORCH &bull; FASTAPI &bull; POSTGRESQL &bull; GCP &bull; DOCKER &bull; PREFECT &bull; PYTHON &bull; PYTORCH &bull; FASTAPI &bull; POSTGRESQL &bull; GCP &bull; DOCKER &bull; PREFECT &bull; </div></div>
+
+    <div class="cta-hero-card">
+      <h2>
+        <span data-i18n="home.ctaTitle">Let's build something</span>
+        <span id="ctaTypewriter" class="cta-typewriter"></span><span class="cursor-blink" aria-hidden="true">|</span>
+      </h2>
+      <p class="contact-desc"><span data-i18n="home.ctaDesc">Open to Werkstudent roles, internships, and research collaborations across Germany. Let's create data driven solutions together.</span></p>
+      <div class="hero-buttons" style="justify-content:center;">
+        <a href="contact.html" class="btn btn-primary large">&#128188; <span data-i18n="btn.hireMe">Hire Me</span></a>
+        <a href="contact.html" class="btn btn-outline large">&#128196; <span data-i18n="btn.viewCV">View CV</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <a href="https://github.com/zoeb7184" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/zoeb-ali-khan" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:zoebalikhan00@gmail.com">Email</a>
+  </div>
+  <p class="footer-note"><span data-i18n="footer.note">Designed &amp; built by Zoeb Ali Khan.</span></p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

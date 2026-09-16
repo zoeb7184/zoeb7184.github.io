@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About · Zoeb Ali Khan</title>
+<meta name="description" content="About Zoeb Ali Khan, Data Scientist and ML Engineer studying at Universitat Bielefeld.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Fraunces:ital,wght@0,600;0,900;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="no-loader">
+
+<div class="bg-grid"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">ZAK<span>.</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-right">
+      <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+      <li><a href="about.html" class="active" data-i18n="nav.about">About</a></li>
+      <li><a href="education.html" data-i18n="nav.education">Education</a></li>
+      <li><a href="experience.html" data-i18n="nav.experience">Experience</a></li>
+      <li><a href="projects.html" data-i18n="nav.projects">Projects</a></li>
+      <li><a href="certifications.html" data-i18n="nav.certifications">Certifications</a></li>
+      <li><a href="contact.html" class="nav-cta" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <section class="about-hero-full">
+    <img class="about-hero-bg-img" src="assets/images/mercedes-hero.jpg" alt="Zoeb Ali Khan at the Mercedes-Benz Museum" loading="eager">
+    <div class="about-hero-overlay"></div>
+    <div class="about-hero-content">
+      <h1><span data-i18n="about.title2">Hi, I'm Zoeb Ali Khan, Data Scientist, ML Engineer, and Problem Solver.</span></h1>
+      <p><span data-i18n="about.intro2">Yes, Bielefeld does exist..!! And I've been living and studying here since 2023, building things with data that actually matter.</span></p>
+      <div class="hero-buttons">
+        <a href="projects.html" class="btn btn-primary small"><span data-i18n="btn.viewMyProjects">View My Projects &rarr;</span></a>
+        <a href="contact.html" class="btn btn-outline small"><span data-i18n="btn.getInTouch2">Get in Touch &rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="roadmap-wave">
+      <svg class="roadmap-wave-line" viewBox="0 0 1250 140" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,70 C150,6 350,134 500,70 C650,6 850,134 1000,70 C1100,6 1200,6 1250,20"/>
+      </svg>
+      <div class="roadmap-stop roadmap-stop-up">
+        <div class="roadmap-node">&#129504;</div>
+        <h3><span data-i18n="about.mlTitle">Machine Learning</span></h3>
+        <p><span data-i18n="about.mlDesc">From classical ML to deep learning, NLP, and production model deployment.</span></p>
+      </div>
+      <div class="roadmap-stop roadmap-stop-down">
+        <div class="roadmap-node">&#128295;</div>
+        <h3><span data-i18n="about.deTitle">Data Engineering</span></h3>
+        <p><span data-i18n="about.deDesc">ETL pipelines, REST APIs, cloud infrastructure, and MLOps at scale.</span></p>
+      </div>
+      <div class="roadmap-stop roadmap-stop-up">
+        <div class="roadmap-node">&#128202;</div>
+        <h3><span data-i18n="about.daTitle">Data Analytics</span></h3>
+        <p><span data-i18n="about.daDesc">Statistical modeling, interactive dashboards, and data driven decision making.</span></p>
+      </div>
+      <div class="roadmap-stop roadmap-stop-down">
+        <div class="roadmap-node">&#128640;</div>
+        <h3><span data-i18n="about.seTitle">MLOps &amp; Deployment</span></h3>
+        <p><span data-i18n="about.seDesc">Containerized model serving, CI/CD, and cloud deployment that keeps pipelines running in production.</span></p>
+      </div>
+      <div class="roadmap-stop roadmap-stop-up">
+        <div class="roadmap-node">&#128187;</div>
+        <h3><span data-i18n="about.swTitle">Software Engineering</span></h3>
+        <p><span data-i18n="about.swDesc">Clean, tested code and REST APIs that turn notebooks into real, maintainable applications.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="journey-section">
+    <div class="journey-grid">
+      <div class="journey-image-wrap">
+        <img src="assets/images/budapest-city.jpg" alt="Zoeb Ali Khan on a rooftop overlooking Budapest" loading="lazy">
+      </div>
+      <div class="journey-card">
+        <h2><span data-i18n="about.journeyTitle">Zoeb's Journey</span></h2>
+        <p><span data-i18n="about.journeyP1">Growing up in Mumbai, I was surrounded by the energy of one of the world's most data rich cities, millions of people, transactions, patterns. That curiosity about what the data meant led me to study AI and Data Science at Rizvi Engineering College, University of Mumbai.</span></p>
+        <p><span data-i18n="about.journeyP2">In 2024, I packed my bags and moved to Bielefeld, Germany, yes, the city that allegedly doesn't exist, to pursue my M.Sc. in Data Science at Universit&auml;t Bielefeld. Along the way I interned at YBI Foundation, building real ETL pipelines on GCP BigQuery and automating SQL workflows.</span></p>
+        <p><span data-i18n="about.journeyP3">Today I build things that bridge raw data and real decisions, from deployed ML APIs to RAG powered systems. I'm actively looking for Werkstudent and internship roles across Germany where I can contribute and keep growing.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cinematic-banner">
+    <div class="cinematic-overlay">
+      <p class="cinematic-quote"><span data-i18n="about.tagline">From Mumbai to Bielefeld, building things that matter with data.</span></p>
+      <div class="cinematic-line"></div>
+    </div>
+  </section>
+
+  <section class="numbers-section">
+    <h2><span data-i18n="about.numbersTitle">By the Numbers</span></h2>
+    <div class="numbers-grid">
+      <div class="number-card">
+        <span class="number-value stat-counter" data-count="9">0</span>
+        <div class="number-label"><span data-i18n="about.statProjects">Projects Built</span></div>
+      </div>
+      <div class="number-card">
+        <span class="number-value stat-counter" data-count="13">0</span>
+        <div class="number-label"><span data-i18n="about.statCerts">Certificates Earned</span></div>
+      </div>
+      <div class="number-card">
+        <span class="number-card-icon">&#127970;</span>
+        <div class="number-card-stat"><span data-i18n="about.internship">AI/ML Internship</span></div>
+        <div class="number-label">YBI Foundation, Mumbai</div>
+      </div>
+      <div class="number-card">
+        <div class="number-card-stat">
+          <span class="pulse-dot"></span>
+          <span data-i18n="about.openToWork">Open to Work</span>
+        </div>
+        <div class="number-label"><span data-i18n="fact.availability2">Available Sep 2026</span></div>
+      </div>
+    </div>
+  </section>
+
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <a href="https://github.com/zoeb7184" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/zoeb-ali-khan" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:zoebalikhan00@gmail.com">Email</a>
+  </div>
+  <p class="footer-note"><span data-i18n="footer.note">Designed &amp; built by Zoeb Ali Khan.</span></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

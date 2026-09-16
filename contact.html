@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact · Zoeb Ali Khan</title>
+<meta name="description" content="Get in touch with Zoeb Ali Khan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Fraunces:ital,wght@0,600;0,900;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="no-loader">
+
+<div class="bg-grid"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">ZAK<span>.</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-right">
+      <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+      <li><a href="about.html" data-i18n="nav.about">About</a></li>
+      <li><a href="education.html" data-i18n="nav.education">Education</a></li>
+      <li><a href="experience.html" data-i18n="nav.experience">Experience</a></li>
+      <li><a href="projects.html" data-i18n="nav.projects">Projects</a></li>
+      <li><a href="certifications.html" data-i18n="nav.certifications">Certifications</a></li>
+      <li><a href="contact.html" class="active nav-cta" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <h1><span data-i18n="contact.title">Contact</span></h1>
+  <p><span data-i18n="contact.subtitle">Let's work together.</span></p>
+</section>
+
+<main>
+  <section class="section">
+    <div class="section-inner">
+      <div class="contact-availability"><span data-i18n="contact.available">Available Sep 2026</span></div>
+
+      <div class="contact-grid">
+        <a href="mailto:zoebalikhan00@gmail.com" class="contact-card">
+          <span class="contact-card-label"><span data-i18n="contact.personalEmail">Personal Email</span></span>
+          <span class="contact-card-value">zoebalikhan00@gmail.com</span>
+        </a>
+        <a href="mailto:zoeb.khan@uni-bielefeld.de" class="contact-card">
+          <span class="contact-card-label"><span data-i18n="contact.uniEmail">University Email</span></span>
+          <span class="contact-card-value">zoeb.khan@uni-bielefeld.de</span>
+        </a>
+        <a href="https://www.linkedin.com/in/zoeb-ali-khan" target="_blank" rel="noopener" class="contact-card">
+          <span class="contact-card-label">LinkedIn</span>
+          <span class="contact-card-value">linkedin.com/in/zoeb-ali-khan</span>
+        </a>
+        <a href="https://github.com/zoeb7184" target="_blank" rel="noopener" class="contact-card">
+          <span class="contact-card-label">GitHub</span>
+          <span class="contact-card-value">github.com/zoeb7184</span>
+        </a>
+        <div class="contact-card" style="grid-column:1/-1;">
+          <span class="contact-card-label"><span data-i18n="contact.location">Location</span></span>
+          <span class="contact-card-value">Bielefeld, Germany &middot; Universit&auml;t Bielefeld</span>
+        </div>
+      </div>
+
+      <p style="color:var(--text-dim);max-width:620px;margin-top:36px;"><span data-i18n="contact.openTo">Open to Werkstudent roles (20h/week from September 2026), internships, and research collaborations across Germany.</span></p>
+
+      <a href="mailto:zoebalikhan00@gmail.com" class="btn btn-primary large" style="margin-top:20px;"><span data-i18n="btn.sayHello">Say Hello</span></a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <a href="https://github.com/zoeb7184" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/zoeb-ali-khan" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:zoebalikhan00@gmail.com">Email</a>
+  </div>
+  <p class="footer-note"><span data-i18n="footer.note">Designed &amp; built by Zoeb Ali Khan.</span></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
