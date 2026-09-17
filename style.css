@@ -759,8 +759,12 @@ footer{
   .about-hero-full .about-hero-content{padding:0 24px;}
   .about-hero-full .about-hero-overlay{background:linear-gradient(180deg, rgba(19,25,36,.45) 0%, rgba(19,25,36,.85) 70%, var(--bg) 100%);}
   .about-hero-full .about-hero-bg-img{object-position:78% 28%;}
-  .cta-hero-section{padding:64px 16px;}
-  .cta-hero-card{padding:36px 24px;}
+  .cta-hero-section{padding:48px 16px;}
+  .cta-hero-card{padding:28px 20px;border-radius:16px;}
+  .cta-hero-card h2{font-size:1.35rem;margin-bottom:14px;}
+  .cta-hero-card .contact-desc{font-size:.85rem;line-height:1.6;margin-bottom:20px;}
+  .cta-hero-card .hero-buttons{margin-bottom:0;gap:10px;}
+  .cta-hero-card .btn.large{padding:12px 24px;font-size:.88rem;}
   .numbers-grid{grid-template-columns:1fr 1fr;}
   .nav-inner{justify-content:flex-start;gap:14px;}
   .logo{margin-right:auto;}
