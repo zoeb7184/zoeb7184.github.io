@@ -2,6 +2,8 @@
 .hero{
   position:relative;
   background-image:url("assets/images/hero-bg.jpg");
+  background-image:-webkit-image-set(url("assets/images/hero-bg.webp") 1x);
+  background-image:image-set(url("assets/images/hero-bg.webp") type("image/webp"));
   background-size:cover;background-position:top center;background-attachment:fixed;
 }
 .hero::before{
@@ -66,7 +68,7 @@
 
 /* ===== CERTIFICATIONS — 3-COLUMN VERTICAL MARQUEE (homepage) ===== */
 .cert-columns{
-  display:flex;gap:24px;max-width:var(--maxw);margin:0 auto;height:620px;overflow:hidden;
+  display:flex;gap:24px;max-width:var(--maxw);margin:24px auto 0;height:620px;overflow:hidden;
   -webkit-mask-image:linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
   mask-image:linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
 }

@@ -8,6 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Fraunces:ital,wght@0,600;0,900;1,600&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/favicon-180.png">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -112,7 +116,10 @@
           <div class="character-scene">
             <div class="walker" id="walker">
               <div class="avatar-photo">
-                <img src="assets/images/zoeb-avatar.jpg" alt="Zoeb Ali Khan" loading="lazy">
+                <picture>
+                  <source srcset="assets/images/zoeb-avatar.webp" type="image/webp">
+                  <img src="assets/images/zoeb-avatar.jpg" alt="Zoeb Ali Khan" loading="lazy">
+                </picture>
               </div>
             </div>
           </div>
@@ -159,7 +166,7 @@
     <div class="section-inner" style="text-align:center;">
       <h2 class="section-title" style="justify-content:center;"><span data-i18n="home.certTitle">Certifications &amp; Achievements</span></h2>
       <p style="color:var(--text-dim);max-width:600px;margin:0 auto 32px;"><span data-i18n="home.certDesc">Validating excellence through global standards. From foundational skills to professional grade certifications across Data Science, ML Engineering, and AI.</span></p>
-      <a href="certifications.html" class="btn btn-outline small" style="margin-bottom:40px;display:inline-block;"><span data-i18n="btn.viewAllCerts">View All Certifications &rarr;</span></a>
+      <a href="certifications.html" class="btn btn-outline small" style="margin-bottom:64px;display:inline-block;"><span data-i18n="btn.viewAllCerts">View All Certifications &rarr;</span></a>
     </div>
     <div class="cert-columns" id="certColumns"></div>
   </section>
