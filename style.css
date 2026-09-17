@@ -763,7 +763,7 @@ footer{
   .cta-hero-card{padding:28px 20px;border-radius:16px;}
   .cta-hero-card h2{font-size:1.35rem;margin-bottom:14px;}
   .cta-hero-card .contact-desc{font-size:.85rem;line-height:1.6;margin-bottom:20px;}
-  .cta-hero-card .hero-buttons{margin-bottom:0;gap:10px;}
+  .cta-hero-card .hero-buttons{margin-bottom:0;gap:10px;align-items:center;}
   .cta-hero-card .btn.large{padding:12px 24px;font-size:.88rem;}
   .numbers-grid{grid-template-columns:1fr 1fr;}
   .nav-inner{justify-content:flex-start;gap:14px;}
