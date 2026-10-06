@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#131924">
 <title>Experience · Zoeb Ali Khan</title>
 <meta name="description" content="Professional experience of Zoeb Ali Khan.">
 <link rel="canonical" href="https://zoeb7184.github.io/experience.html">
@@ -24,15 +26,14 @@
 <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/favicon-180.png">
 <link rel="stylesheet" href="style.css">
 </head>
-<body class="no-loader">
+<body id="top" class="no-loader">
 
 <div class="bg-grid"></div>
-<div class="cursor-glow" id="cursorGlow"></div>
 
 <nav id="navbar">
   <div class="nav-inner">
     <a href="index.html" class="logo">ZAK<span>.</span></a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
       <span></span><span></span><span></span>
     </button>
     <div class="nav-right">
@@ -46,8 +47,8 @@
       <li><a href="contact.html" class="nav-cta" data-i18n="nav.contact">Contact</a></li>
       </ul>
       <div class="lang-toggle">
-        <button class="lang-btn active" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="de">DE</button>
+        <button class="lang-btn active" data-lang="en" aria-pressed="true" aria-label="English">EN</button>
+        <button class="lang-btn" data-lang="de" aria-pressed="false" aria-label="Deutsch">DE</button>
       </div>
     </div>
   </div>
@@ -74,7 +75,7 @@
             <li><span data-i18n="exp.hiwi3">PHP website maintenance</span></li>
             <li><span data-i18n="exp.hiwi4">Large multi source datasets</span></li>
           </ul>
-          <ul class="tag-list" style="margin-top:10px;">
+          <ul class="tag-list tag-list-spaced">
             <li>R</li><li>Data Pipelines</li><li>PHP</li><li>Research Data Management</li><li>Multi-source Datasets</li>
           </ul>
         </div>
@@ -90,14 +91,14 @@
             <li><span data-i18n="exp.ybi4">Improved cross partner data consistency by building an automated partner data reconciliation model</span></li>
             <li><span data-i18n="exp.ybi5">Enabled faster data driven decisions for non technical stakeholders by designing and delivering custom dashboards</span></li>
           </ul>
-          <ul class="tag-list" style="margin-top:10px;">
+          <ul class="tag-list tag-list-spaced">
             <li>GCP BigQuery</li><li>SQL</li><li>ETL Pipelines</li><li>Python</li><li>Dashboard Design</li><li>Data Automation</li>
           </ul>
         </div>
 
       </div>
 
-      <h2 class="section-title" style="margin-top:20px;"><span class="section-num">&rarr;</span> <span data-i18n="exp.stackTitle">Technical Stack</span></h2>
+      <h2 class="section-title section-title-gap"><span data-i18n="exp.stackTitle">Technical Stack</span></h2>
       <div class="skills-grid">
         <div class="skill-card">
           <h3><span data-i18n="exp.stackProg">Programming</span></h3>
@@ -124,15 +125,54 @@
   </section>
 </main>
 
-<footer>
-  <div class="footer-inner">
-    <a href="https://github.com/zoeb7184" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://www.linkedin.com/in/zoeb-ali-khan" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="mailto:zoebalikhan00@gmail.com">Email</a>
+<footer class="site-footer">
+  <div class="footer-wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">ZAK<span>.</span></a>
+        <p class="footer-tagline"><span data-i18n="footer.tagline">Data science and ML engineering in Bielefeld. Clean pipelines, honest models, and code that ships.</span></p>
+        <p class="footer-status"><span class="status-dot" aria-hidden="true"></span><span data-i18n="footer.status">Open to Werkstudent roles from September 2026</span></p>
+        <a href="mailto:zoebalikhan00@gmail.com" class="btn btn-primary small footer-cta"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></svg><span data-i18n="btn.sayHello">Say Hello</span></a>
+      </div>
+      <nav class="footer-col" aria-labelledby="footerNavTitle">
+        <h2 class="footer-heading" id="footerNavTitle"><span data-i18n="footer.navigate">Navigate</span></h2>
+        <ul>
+          <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+          <li><a href="about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="education.html" data-i18n="nav.education">Education</a></li>
+          <li><a href="experience.html" data-i18n="nav.experience">Experience</a></li>
+          <li><a href="projects.html" data-i18n="nav.projects">Projects</a></li>
+          <li><a href="certifications.html" data-i18n="nav.certifications">Certifications</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2 class="footer-heading"><span data-i18n="footer.work">Live projects</span></h2>
+        <ul>
+          <li><a href="https://footballiq-zoeb.vercel.app" target="_blank" rel="noopener">FootballIQ <svg class="i i-ext" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a></li>
+          <li><a href="https://frontend-production-98e0.up.railway.app" target="_blank" rel="noopener">Career OS <svg class="i i-ext" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a></li>
+          <li><a href="https://german-tech-salary-explorer.streamlit.app/" target="_blank" rel="noopener"><span data-i18n="footer.salary">Salary Explorer</span> <svg class="i i-ext" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a></li>
+          <li><a href="https://de-electricity-forecaster.streamlit.app" target="_blank" rel="noopener"><span data-i18n="footer.power">Power Price Forecaster</span> <svg class="i i-ext" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2 class="footer-heading"><span data-i18n="footer.connect">Connect</span></h2>
+        <ul>
+          <li><a href="https://github.com/zoeb7184" target="_blank" rel="noopener"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24H124A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24A40,40,0,0,0,8,136a8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.83a43.81,43.81,0,0,1,.79-33.58,43.88,43.88,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.87,43.87,0,0,1,32.32-20.06A43.81,43.81,0,0,1,192,73.83a8.09,8.09,0,0,0,1,7.65A41.72,41.72,0,0,1,200,104Z"/></svg>GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/zoeb-ali-khan" target="_blank" rel="noopener"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"/></svg>LinkedIn</a></li>
+          <li><a href="mailto:zoebalikhan00@gmail.com"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></svg><span data-i18n="footer.email">Email</span></a></li>
+          <li class="footer-place"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"/></svg>Bielefeld, Germany</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Zoeb Ali Khan. <span data-i18n="footer.note">Designed and built by hand, no templates.</span></p>
+      <a href="#top" class="footer-top-link" id="backToTop"><span data-i18n="footer.top">Back to top</span><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,117.66a8,8,0,0,1-11.32,0L136,59.31V216a8,8,0,0,1-16,0V59.31L61.66,117.66a8,8,0,0,1-11.32-11.32l72-72a8,8,0,0,1,11.32,0l72,72A8,8,0,0,1,205.66,117.66Z"/></svg></a>
+    </div>
   </div>
-  <p class="footer-note"><span data-i18n="footer.note">Designed &amp; built by Zoeb Ali Khan.</span></p>
 </footer>
 
+<script src="assets/js/motion.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

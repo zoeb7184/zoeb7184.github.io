@@ -7,9 +7,18 @@ const TRANSLATIONS = {
     "nav.projects": "Projects",
     "nav.certifications": "Certifications",
     "nav.contact": "Contact",
-    "notfound.desc": "This page doesn&rsquo;t exist &mdash; but the rest of the site does.",
+    "notfound.desc": "This page doesn&rsquo;t exist, but the rest of the site does.",
     "notfound.back": "Back to Home &rarr;",
-    "footer.note": "Designed &amp; built by Zoeb Ali Khan.",
+    "footer.note": "Designed and built by hand, no templates.",
+    "footer.tagline": "Data science and ML engineering in Bielefeld. Clean pipelines, honest models, and code that ships.",
+    "footer.status": "Open to Werkstudent roles from September 2026",
+    "footer.navigate": "Navigate",
+    "footer.work": "Live projects",
+    "footer.connect": "Connect",
+    "footer.email": "Email",
+    "footer.salary": "Salary Explorer",
+    "footer.power": "Power Price Forecaster",
+    "footer.top": "Back to top",
     "loader.tagline": "Data Scientist &amp; ML Engineer",
     "home.eyebrow": "Hi, my name is",
     "home.desc": "Building intelligent systems with clean data pipelines and production ready ML. M.Sc. Data Science student at Universit&auml;t Bielefeld, based in Bielefeld, Germany since 2023, originally from Mumbai, India.",
@@ -129,9 +138,18 @@ const TRANSLATIONS = {
     "nav.projects": "Projekte",
     "nav.certifications": "Zertifikate",
     "nav.contact": "Kontakt",
-    "notfound.desc": "Diese Seite existiert nicht &mdash; der Rest der Website aber schon.",
+    "notfound.desc": "Diese Seite existiert nicht, aber der Rest der Website schon.",
     "notfound.back": "Zur&uuml;ck zur Startseite &rarr;",
-    "footer.note": "Entworfen &amp; entwickelt von Zoeb Ali Khan.",
+    "footer.note": "Von Hand entworfen und gebaut, ohne Templates.",
+    "footer.tagline": "Data Science und ML Engineering in Bielefeld. Saubere Pipelines, ehrliche Modelle und Code, der live geht.",
+    "footer.status": "Offen f&uuml;r Werkstudentenstellen ab September 2026",
+    "footer.navigate": "Navigation",
+    "footer.work": "Live-Projekte",
+    "footer.connect": "Kontakt",
+    "footer.email": "E-Mail",
+    "footer.salary": "Gehalts-Explorer",
+    "footer.power": "Strompreis-Prognose",
+    "footer.top": "Nach oben",
     "loader.tagline": "Data Scientist &amp; ML Engineer",
     "home.eyebrow": "Hallo, mein Name ist",
     "home.desc": "Ich baue intelligente Systeme mit sauberen Datenpipelines und produktionsreifem ML. M.Sc.-Student der Data Science an der Universit&auml;t Bielefeld, seit 2023 in Bielefeld, Deutschland, urspr&uuml;nglich aus Mumbai, Indien.",
@@ -264,6 +282,7 @@ const TRANSLATIONS = {
     });
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.lang === lang);
+      btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true' : 'false');
     });
     document.documentElement.setAttribute('lang', lang);
   }
@@ -280,10 +299,30 @@ const TRANSLATIONS = {
   });
 })();
 
+// ---------- Shared motion helpers ----------
+const REDUCE_MOTION = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+const M = (!REDUCE_MOTION && window.Motion && typeof window.Motion.animate === 'function') ? window.Motion : null;
+if(M) document.documentElement.classList.add('has-motion');
+function markLoaded(){
+  if(document.body.classList.contains('loaded')) return;
+  document.body.classList.add('loaded');
+  document.dispatchEvent(new CustomEvent('zak:loaded'));
+}
+
 // ---------- Loader ----------
 (function initLoader(){
   const loader = document.getElementById('loader');
   if(!loader) return;
+
+  // Show the intro animation once per browser session. Returning visitors and anyone
+  // who asked their system for reduced motion go straight to the content.
+  let seen = false;
+  try { seen = sessionStorage.getItem('zak-loader-seen') === '1'; sessionStorage.setItem('zak-loader-seen', '1'); } catch(e){ /* ignore */ }
+  if(seen || REDUCE_MOTION){
+    loader.remove();
+    markLoaded();
+    return;
+  }
 
   const charEl = document.getElementById('loaderChar');
   const maskEl = document.getElementById('loaderMask');
@@ -319,7 +358,7 @@ const TRANSLATIONS = {
     });
     setTimeout(() => {
       loader.classList.add('loader-exit');
-      setTimeout(() => document.body.classList.add('loaded'), 850);
+      setTimeout(markLoaded, 850);
     }, 1200);
   }
 
@@ -329,10 +368,10 @@ const TRANSLATIONS = {
 
 // pages without a loader element should still show content immediately
 if(!document.getElementById('loader')){
-  document.body.classList.add('loaded');
+  markLoaded();
 }
 
-// ---------- Homepage certifications — 3-column vertical marquee ----------
+// ---------- Homepage certifications, 3-column vertical marquee ----------
 (function renderCertColumns(){
   const wrap = document.getElementById('certColumns');
   if(!wrap) return;
@@ -448,6 +487,13 @@ function initFilterTabs(tabsId, itemSelector, dataAttr){
       const match = filter === 'All' || item.dataset[dataAttr] === filter;
       item.hidden = !match;
     });
+    if(M){
+      const shown = Array.prototype.filter.call(items, el => !el.hidden);
+      shown.forEach(el => el.classList.add('visible'));
+      M.animate(shown, { opacity: [0, 1], y: [18, 0], scale: [0.98, 1] },
+        { type: 'spring', visualDuration: 0.45, bounce: 0.18, delay: M.stagger(0.05) })
+        .then(() => shown.forEach(clearMotionStyles));
+    }
   });
 }
 initFilterTabs('projectFilterTabs', '.project-card', 'cat');
@@ -491,30 +537,112 @@ window.addEventListener('scroll', () => {
 // ---------- Mobile nav toggle ----------
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
-navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+function setNavOpen(open){
+  navLinks.classList.toggle('open', open);
+  navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+navToggle.addEventListener('click', () => setNavOpen(!navLinks.classList.contains('open')));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setNavOpen(false)));
+document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && navLinks.classList.contains('open')){ setNavOpen(false); navToggle.focus(); } });
 
-// ---------- Cursor glow ----------
-const glow = document.getElementById('cursorGlow');
-window.addEventListener('mousemove', e => {
-  glow.style.opacity = 1;
-  glow.style.left = e.clientX + 'px';
-  glow.style.top = e.clientY + 'px';
-});
-window.addEventListener('mouseleave', () => glow.style.opacity = 0);
 
-// ---------- Scroll reveal for sections ----------
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
+// ---------- Scroll reveal (Motion springs, plain fade fallback) ----------
+// Motion leaves inline transform/opacity behind after an animation; clearing them
+// hands control back to the stylesheet so CSS hover states keep working.
+function clearMotionStyles(el){ el.style.transform = ''; el.style.opacity = ''; }
+
+const REVEAL_SELECTOR = '.fade-in-section, .project-card, .cert-card, .timeline-item, .edu-card, .stat-card, .section-title, .numbers-grid, .journey-grid, .cinematic-overlay, .roadmap-stop, .about-grid, .contact-grid, .cta-hero-section .hero-inner, .filter-tabs, .footer-brand, .footer-col';
+const revealEls = Array.prototype.slice.call(document.querySelectorAll(REVEAL_SELECTOR));
+revealEls.forEach(el => el.classList.add('fade-in-section'));
+
+if(REDUCE_MOTION || !('IntersectionObserver' in window)){
+  revealEls.forEach(el => el.classList.add('visible'));
+} else {
+  // Elements that enter the viewport in the same frame are revealed as one staggered group,
+  // so a grid of cards cascades in left to right instead of popping in all at once.
+  let batch = [];
+  let batchTimer = null;
+  function flush(){
+    const group = batch.sort((a, b) => {
+      const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
+      return (ra.top - rb.top) || (ra.left - rb.left);
+    });
+    batch = []; batchTimer = null;
+    group.forEach(el => el.classList.add('visible'));
+    if(!M) return;
+    M.animate(group, { opacity: [0, 1], y: [28, 0] },
+      { type: 'spring', visualDuration: 0.6, bounce: 0.15, delay: M.stagger(0.07) })
+      .then(() => group.forEach(clearMotionStyles));
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        observer.unobserve(entry.target);
+        batch.push(entry.target);
+        if(!batchTimer) batchTimer = setTimeout(flush, 40);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+  revealEls.forEach(el => observer.observe(el));
+}
+
+// ---------- Hero entrance (homepage) ----------
+(function initHeroEntrance(){
+  const items = document.querySelectorAll('.hero .reveal');
+  if(!items.length || !M) return;
+  function play(){
+    M.animate(items, { opacity: [0, 1], y: [32, 0], filter: ['blur(6px)', 'blur(0px)'] },
+      { type: 'spring', visualDuration: 0.7, bounce: 0.12, delay: M.stagger(0.09, { startDelay: 0.05 }) })
+      .then(() => items.forEach(el => { clearMotionStyles(el); el.style.filter = ''; el.classList.add('revealed'); }));
+  }
+  if(document.body.classList.contains('loaded')) play();
+  else document.addEventListener('zak:loaded', play, { once: true });
+})();
+
+// ---------- Spring hover on cards and primary buttons (mouse and pen only) ----------
+(function initSpringHover(){
+  if(!M || typeof M.hover !== 'function') return;
+  const spring = { type: 'spring', stiffness: 380, damping: 22 };
+  const lifts = [
+    ['.project-card', -8],
+    ['.contact-card', -4],
+    ['.cert-card', -4],
+    ['.btn-primary', -3]
+  ];
+  lifts.forEach(([sel, lift]) => {
+    document.querySelectorAll(sel).forEach(el => {
+      el.classList.add('spring-hover');
+      M.hover(el, () => {
+        M.animate(el, { y: lift }, spring);
+        return () => M.animate(el, { y: 0 }, spring).then(() => clearMotionStyles(el));
+      });
+    });
   });
-}, { threshold: 0.15 });
+})();
 
-document.querySelectorAll('.fade-in-section, .project-card, .cert-card, .timeline-item, .edu-card, .stat-card, .section-title, .numbers-grid, .journey-grid, .cinematic-overlay, .roadmap-stop, .about-grid, .contact-grid, .cta-hero-section .hero-inner, .filter-tabs')
-  .forEach(el => { el.classList.add('fade-in-section'); observer.observe(el); });
+// ---------- Reading progress bar ----------
+(function initProgress(){
+  if(!M || typeof M.scroll !== 'function') return;
+  const nav = document.getElementById('navbar');
+  if(!nav) return;
+  const bar = document.createElement('div');
+  bar.className = 'scroll-progress';
+  bar.setAttribute('aria-hidden', 'true');
+  nav.appendChild(bar);
+  M.scroll(M.animate(bar, { scaleX: [0, 1] }, { ease: 'linear' }));
+})();
+
+// ---------- Back to top ----------
+(function initBackToTop(){
+  const link = document.getElementById('backToTop');
+  if(!link) return;
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+    const logo = document.querySelector('#navbar .logo');
+    if(logo) logo.focus({ preventScroll: true });
+  });
+})();
 
 // ---------- Animated character (homepage intro) ----------
 (function initCharacter(){
@@ -538,7 +666,7 @@ document.querySelectorAll('.fade-in-section, .project-card, .cert-card, .timelin
   }
 
   // Simple, no-motion reveal: no slide-in, no bob, no automatic popup text.
-  // The photo just fades in once it scrolls into view, and stays put — nothing
+  // The photo just fades in once it scrolls into view, and stays put, nothing
   // shakes or jumps, and nothing appears unless the visitor actually hovers or taps.
   function arrive(){
     walker.classList.add('done');
@@ -554,7 +682,7 @@ document.querySelectorAll('.fade-in-section, .project-card, .cert-card, .timelin
   }, { threshold:.4 });
   charObserver.observe(stage);
 
-  // ---------- "What's going on in my head" — mini portraits + postcard ----------
+  // ---------- "What's going on in my head", mini portraits + postcard ----------
   const CONTENT = {
     econ: {
       icon: '\u{1F4CA}',
@@ -704,7 +832,7 @@ document.querySelectorAll('.fade-in-section, .project-card, .cert-card, .timelin
         const data = CONTENT[icon.dataset.key];
         if(!data || !polaroidCard) return;
         const lang = getLang();
-        polaroidIcon.textContent = data.icon;
+        polaroidIcon.innerHTML = icon.innerHTML;
         polaroidTitle.textContent = data.title[lang] || data.title.en;
         polaroidText.textContent = data.text[lang] || data.text.en;
         polaroidCard.classList.add('show');

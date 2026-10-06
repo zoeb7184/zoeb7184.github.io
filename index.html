@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#131924">
 <title>Zoeb Ali Khan · Data Science & AI/ML Engineer</title>
 <meta name="description" content="Portfolio of Zoeb Ali Khan, M.Sc. Data Science student at Universit&auml;t Bielefeld.">
 <link rel="canonical" href="https://zoeb7184.github.io/">
@@ -24,7 +26,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/favicon-180.png">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body id="top">
 
 <div class="loader" id="loader">
   <div class="loader-stage">
@@ -64,12 +66,11 @@
 </div>
 
 <div class="bg-grid"></div>
-<div class="cursor-glow" id="cursorGlow"></div>
 
 <nav id="navbar">
   <div class="nav-inner">
     <a href="index.html" class="logo">ZAK<span>.</span></a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
       <span></span><span></span><span></span>
     </button>
     <div class="nav-right">
@@ -83,8 +84,8 @@
       <li><a href="contact.html" class="nav-cta" data-i18n="nav.contact">Contact</a></li>
       </ul>
       <div class="lang-toggle">
-        <button class="lang-btn active" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="de">DE</button>
+        <button class="lang-btn active" data-lang="en" aria-pressed="true" aria-label="English">EN</button>
+        <button class="lang-btn" data-lang="de" aria-pressed="false" aria-label="Deutsch">DE</button>
       </div>
     </div>
   </div>
@@ -108,7 +109,6 @@
       <a href="mailto:zoebalikhan00@gmail.com">Email</a>
     </div>
   </div>
-  <a href="#intro" class="scroll-indicator" aria-label="Scroll down"><span></span></a>
 </header>
 
 <main>
@@ -135,15 +135,15 @@
           </div>
           <div class="speech-bubble" id="speechBubble"><span id="speechText">Hey, I&rsquo;m Zoeb! &#128075;</span></div>
           <div class="floating-icons" id="floatingIcons">
-            <button type="button" class="float-icon" data-key="econ" aria-label="Econometrics and Machine Learning">&#128202;</button>
-            <button type="button" class="float-icon" data-key="robot" aria-label="ROS 2 Robotics">&#129302;</button>
-            <button type="button" class="float-icon" data-key="sql" aria-label="SQL and Data">&#128451;&#65039;</button>
-            <button type="button" class="float-icon" data-key="football" aria-label="Football Analytics">&#9917;</button>
-            <button type="button" class="float-icon" data-key="webdev" aria-label="Building This Site">&#128187;</button>
+            <button type="button" class="float-icon" data-key="econ" aria-label="Econometrics and Machine Learning"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,200h-8V40a8,8,0,0,0-8-8H152a8,8,0,0,0-8,8V80H96a8,8,0,0,0-8,8v40H48a8,8,0,0,0-8,8v64H32a8,8,0,0,0,0,16H224a8,8,0,0,0,0-16ZM160,48h40V200H160ZM104,96h40V200H104ZM56,144H88v56H56Z"/></svg></button>
+            <button type="button" class="float-icon" data-key="robot" aria-label="ROS 2 Robotics"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M200,48H136V16a8,8,0,0,0-16,0V48H56A32,32,0,0,0,24,80V192a32,32,0,0,0,32,32H200a32,32,0,0,0,32-32V80A32,32,0,0,0,200,48Zm16,144a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V80A16,16,0,0,1,56,64H200a16,16,0,0,1,16,16Zm-52-56H92a28,28,0,0,0,0,56h72a28,28,0,0,0,0-56Zm-24,16v24H116V152ZM80,164a12,12,0,0,1,12-12h8v24H92A12,12,0,0,1,80,164Zm84,12h-8V152h8a12,12,0,0,1,0,24ZM72,108a12,12,0,1,1,12,12A12,12,0,0,1,72,108Zm88,0a12,12,0,1,1,12,12A12,12,0,0,1,160,108Z"/></svg></button>
+            <button type="button" class="float-icon" data-key="sql" aria-label="SQL and Data"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24C74.17,24,32,48.6,32,80v96c0,31.4,42.17,56,96,56s96-24.6,96-56V80C224,48.6,181.83,24,128,24Zm80,104c0,9.62-7.88,19.43-21.61,26.92C170.93,163.35,150.19,168,128,168s-42.93-4.65-58.39-13.08C55.88,147.43,48,137.62,48,128V111.36c17.06,15,46.23,24.64,80,24.64s62.94-9.68,80-24.64ZM69.61,53.08C85.07,44.65,105.81,40,128,40s42.93,4.65,58.39,13.08C200.12,60.57,208,70.38,208,80s-7.88,19.43-21.61,26.92C170.93,115.35,150.19,120,128,120s-42.93-4.65-58.39-13.08C55.88,99.43,48,89.62,48,80S55.88,60.57,69.61,53.08ZM186.39,202.92C170.93,211.35,150.19,216,128,216s-42.93-4.65-58.39-13.08C55.88,195.43,48,185.62,48,176V159.36c17.06,15,46.23,24.64,80,24.64s62.94-9.68,80-24.64V176C208,185.62,200.12,195.43,186.39,202.92Z"/></svg></button>
+            <button type="button" class="float-icon" data-key="football" aria-label="Football Analytics"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm76.52,147.42H170.9l-9.26-12.76,12.63-36.78,15-4.89,26.24,20.13A87.38,87.38,0,0,1,204.52,171.42Zm-164-34.3L66.71,117l15,4.89,12.63,36.78L85.1,171.42H51.48A87.38,87.38,0,0,1,40.47,137.12Zm10-50.64,5.51,18.6L40.71,116.77A87.33,87.33,0,0,1,50.43,86.48ZM109,152,97.54,118.65,128,97.71l30.46,20.94L147,152Zm91.07-46.92,5.51-18.6a87.33,87.33,0,0,1,9.72,30.29Zm-6.2-35.38-9.51,32.08-15.07,4.89L136,83.79V68.21l29.09-20A88.58,88.58,0,0,1,193.86,69.7ZM146.07,41.87,128,54.29,109.93,41.87a88.24,88.24,0,0,1,36.14,0ZM90.91,48.21l29.09,20V83.79L86.72,106.67l-15.07-4.89L62.14,69.7A88.58,88.58,0,0,1,90.91,48.21ZM63.15,187.42H83.52l7.17,20.27A88.4,88.4,0,0,1,63.15,187.42ZM110,214.13,98.12,180.71,107.35,168h41.3l9.23,12.71-11.83,33.42a88,88,0,0,1-36.1,0Zm55.36-6.44,7.17-20.27h20.37A88.4,88.4,0,0,1,165.31,207.69Z"/></svg></button>
+            <button type="button" class="float-icon" data-key="webdev" aria-label="Building This Site"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M232,168h-8V72a24,24,0,0,0-24-24H56A24,24,0,0,0,32,72v96H24a8,8,0,0,0-8,8v16a24,24,0,0,0,24,24H216a24,24,0,0,0,24-24V176A8,8,0,0,0,232,168ZM48,72a8,8,0,0,1,8-8H200a8,8,0,0,1,8,8v96H48ZM224,192a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8v-8H224ZM152,88a8,8,0,0,1-8,8H112a8,8,0,0,1,0-16h32A8,8,0,0,1,152,88Z"/></svg></button>
           </div>
           <div class="polaroid" id="polaroidCard">
             <button type="button" class="polaroid-close" id="polaroidClose" aria-label="Close">&times;</button>
-            <div class="polaroid-photo" id="polaroidIcon">&#129504;</div>
+            <div class="polaroid-photo" id="polaroidIcon"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M248,124a56.11,56.11,0,0,0-32-50.61V72a48,48,0,0,0-88-26.49A48,48,0,0,0,40,72v1.39a56,56,0,0,0,0,101.2V176a48,48,0,0,0,88,26.49A48,48,0,0,0,216,176v-1.41A56.09,56.09,0,0,0,248,124ZM88,208a32,32,0,0,1-31.81-28.56A55.87,55.87,0,0,0,64,180h8a8,8,0,0,0,0-16H64A40,40,0,0,1,50.67,86.27,8,8,0,0,0,56,78.73V72a32,32,0,0,1,64,0v68.26A47.8,47.8,0,0,0,88,128a8,8,0,0,0,0,16,32,32,0,0,1,0,64Zm104-44h-8a8,8,0,0,0,0,16h8a55.87,55.87,0,0,0,7.81-.56A32,32,0,1,1,168,144a8,8,0,0,0,0-16,47.8,47.8,0,0,0-32,12.26V72a32,32,0,0,1,64,0v6.73a8,8,0,0,0,5.33,7.54A40,40,0,0,1,192,164Zm16-52a8,8,0,0,1-8,8h-4a36,36,0,0,1-36-36V80a8,8,0,0,1,16,0v4a20,20,0,0,0,20,20h4A8,8,0,0,1,208,112ZM60,120H56a8,8,0,0,1,0-16h4A20,20,0,0,0,80,84V80a8,8,0,0,1,16,0v4A36,36,0,0,1,60,120Z"/></svg></div>
             <div class="polaroid-caption">
               <h3 id="polaroidTitle">&nbsp;</h3>
               <p id="polaroidText">&nbsp;</p>
@@ -158,32 +158,32 @@
     <div class="section-inner">
       <h2 class="section-title"><span data-i18n="home.techTitle">Tech Stack &amp; Ecosystem</span></h2>
     </div>
-    <div class="marquee">
+    <div class="marquee" aria-label="Tech stack">
       <div class="marquee-track">
-        <span class="tech-pill"><span class="tech-emoji">&#128013;</span>Python</span><span class="tech-pill"><span class="tech-emoji">&#128451;&#65039;</span>SQL</span><span class="tech-pill"><span class="tech-emoji">&#128202;</span>R</span><span class="tech-pill"><span class="tech-emoji">&#9889;</span>FastAPI</span><span class="tech-pill"><span class="tech-emoji">&#128293;</span>PyTorch</span><span class="tech-pill"><span class="tech-emoji">&#127807;</span>Scikit-learn</span><span class="tech-pill"><span class="tech-emoji">&#128200;</span>Plotly</span><span class="tech-pill"><span class="tech-emoji">&#127919;</span>XGBoost</span>
-        <span class="tech-pill"><span class="tech-emoji">&#128013;</span>Python</span><span class="tech-pill"><span class="tech-emoji">&#128451;&#65039;</span>SQL</span><span class="tech-pill"><span class="tech-emoji">&#128202;</span>R</span><span class="tech-pill"><span class="tech-emoji">&#9889;</span>FastAPI</span><span class="tech-pill"><span class="tech-emoji">&#128293;</span>PyTorch</span><span class="tech-pill"><span class="tech-emoji">&#127807;</span>Scikit-learn</span><span class="tech-pill"><span class="tech-emoji">&#128200;</span>Plotly</span><span class="tech-pill"><span class="tech-emoji">&#127919;</span>XGBoost</span>
+        <span class="tech-pill">Python</span><span class="tech-pill">SQL</span><span class="tech-pill">R</span><span class="tech-pill">FastAPI</span><span class="tech-pill">PyTorch</span><span class="tech-pill">Scikit-learn</span><span class="tech-pill">Plotly</span><span class="tech-pill">XGBoost</span>
+        <span class="tech-pill">Python</span><span class="tech-pill">SQL</span><span class="tech-pill">R</span><span class="tech-pill">FastAPI</span><span class="tech-pill">PyTorch</span><span class="tech-pill">Scikit-learn</span><span class="tech-pill">Plotly</span><span class="tech-pill">XGBoost</span>
       </div>
     </div>
     <div class="marquee reverse">
       <div class="marquee-track">
-        <span class="tech-pill"><span class="tech-emoji">&#128051;</span>Docker</span><span class="tech-pill"><span class="tech-emoji">&#128451;&#65039;</span>PostgreSQL</span><span class="tech-pill"><span class="tech-emoji">&#9729;&#65039;</span>GCP</span><span class="tech-pill"><span class="tech-emoji">&#128260;</span>Prefect</span><span class="tech-pill"><span class="tech-emoji">&#129504;</span>MLflow</span><span class="tech-pill"><span class="tech-emoji">&#128230;</span>Streamlit</span><span class="tech-pill"><span class="tech-emoji">&#128279;</span>Git</span><span class="tech-pill"><span class="tech-emoji">&#128640;</span>Vercel</span><span class="tech-pill"><span class="tech-emoji">&#128678;</span>Railway</span>
-        <span class="tech-pill"><span class="tech-emoji">&#128051;</span>Docker</span><span class="tech-pill"><span class="tech-emoji">&#128451;&#65039;</span>PostgreSQL</span><span class="tech-pill"><span class="tech-emoji">&#9729;&#65039;</span>GCP</span><span class="tech-pill"><span class="tech-emoji">&#128260;</span>Prefect</span><span class="tech-pill"><span class="tech-emoji">&#129504;</span>MLflow</span><span class="tech-pill"><span class="tech-emoji">&#128230;</span>Streamlit</span><span class="tech-pill"><span class="tech-emoji">&#128279;</span>Git</span><span class="tech-pill"><span class="tech-emoji">&#128640;</span>Vercel</span><span class="tech-pill"><span class="tech-emoji">&#128678;</span>Railway</span>
+        <span class="tech-pill">Docker</span><span class="tech-pill">PostgreSQL</span><span class="tech-pill">GCP</span><span class="tech-pill">Prefect</span><span class="tech-pill">MLflow</span><span class="tech-pill">Streamlit</span><span class="tech-pill">Git</span><span class="tech-pill">Vercel</span><span class="tech-pill">Railway</span>
+        <span class="tech-pill">Docker</span><span class="tech-pill">PostgreSQL</span><span class="tech-pill">GCP</span><span class="tech-pill">Prefect</span><span class="tech-pill">MLflow</span><span class="tech-pill">Streamlit</span><span class="tech-pill">Git</span><span class="tech-pill">Vercel</span><span class="tech-pill">Railway</span>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <div class="section-inner" style="text-align:center;">
-      <h2 class="section-title" style="justify-content:center;"><span data-i18n="home.certTitle">Certifications &amp; Achievements</span></h2>
-      <p style="color:var(--text-dim);max-width:600px;margin:0 auto 32px;"><span data-i18n="home.certDesc">Validating excellence through global standards. From foundational skills to professional grade certifications across Data Science, ML Engineering, and AI.</span></p>
-      <a href="certifications.html" class="btn btn-outline small" style="margin-bottom:64px;display:inline-block;"><span data-i18n="btn.viewAllCerts">View All Certifications &rarr;</span></a>
+    <div class="section-inner section-center">
+      <h2 class="section-title"><span data-i18n="home.certTitle">Certifications &amp; Achievements</span></h2>
+      <p class="section-lede"><span data-i18n="home.certDesc">Validating excellence through global standards. From foundational skills to professional grade certifications across Data Science, ML Engineering, and AI.</span></p>
+      <a href="certifications.html" class="btn btn-outline small cert-cta"><span data-i18n="btn.viewAllCerts">View All Certifications &rarr;</span></a>
     </div>
     <div class="cert-columns" id="certColumns"></div>
   </section>
 
   <section class="cta-hero-section">
-    <div class="cta-diag-banner cta-diag-1"><div class="diag-track">DATA SCIENTIST &bull; ML ENGINEER &bull; DATA ENGINEER &bull; AI DEVELOPER &bull; DATA SCIENTIST &bull; ML ENGINEER &bull; DATA ENGINEER &bull; AI DEVELOPER &bull; DATA SCIENTIST &bull; ML ENGINEER &bull; DATA ENGINEER &bull; AI DEVELOPER &bull; DATA SCIENTIST &bull; ML ENGINEER &bull; DATA ENGINEER &bull; AI DEVELOPER &bull; </div></div>
-    <div class="cta-diag-banner cta-diag-2"><div class="diag-track">PYTHON &bull; PYTORCH &bull; FASTAPI &bull; POSTGRESQL &bull; GCP &bull; DOCKER &bull; PREFECT &bull; PYTHON &bull; PYTORCH &bull; FASTAPI &bull; POSTGRESQL &bull; GCP &bull; DOCKER &bull; PREFECT &bull; PYTHON &bull; PYTORCH &bull; FASTAPI &bull; POSTGRESQL &bull; GCP &bull; DOCKER &bull; PREFECT &bull; PYTHON &bull; PYTORCH &bull; FASTAPI &bull; POSTGRESQL &bull; GCP &bull; DOCKER &bull; PREFECT &bull; </div></div>
+    <div class="cta-diag-banner cta-diag-1" aria-hidden="true"><div class="diag-track">DATA SCIENTIST &bull; ML ENGINEER &bull; DATA ENGINEER &bull; AI DEVELOPER &bull; DATA SCIENTIST &bull; ML ENGINEER &bull; DATA ENGINEER &bull; AI DEVELOPER &bull; DATA SCIENTIST &bull; ML ENGINEER &bull; DATA ENGINEER &bull; AI DEVELOPER &bull; DATA SCIENTIST &bull; ML ENGINEER &bull; DATA ENGINEER &bull; AI DEVELOPER &bull; </div></div>
+    <div class="cta-diag-banner cta-diag-2" aria-hidden="true"><div class="diag-track">PYTHON &bull; PYTORCH &bull; FASTAPI &bull; POSTGRESQL &bull; GCP &bull; DOCKER &bull; PREFECT &bull; PYTHON &bull; PYTORCH &bull; FASTAPI &bull; POSTGRESQL &bull; GCP &bull; DOCKER &bull; PREFECT &bull; PYTHON &bull; PYTORCH &bull; FASTAPI &bull; POSTGRESQL &bull; GCP &bull; DOCKER &bull; PREFECT &bull; PYTHON &bull; PYTORCH &bull; FASTAPI &bull; POSTGRESQL &bull; GCP &bull; DOCKER &bull; PREFECT &bull; </div></div>
 
     <div class="cta-hero-card">
       <h2>
@@ -191,25 +191,64 @@
         <span id="ctaTypewriter" class="cta-typewriter"></span><span class="cursor-blink" aria-hidden="true">|</span>
       </h2>
       <p class="contact-desc"><span data-i18n="home.ctaDesc">Open to Werkstudent roles, internships, and research collaborations across Germany. Let's create data driven solutions together.</span></p>
-      <div class="hero-buttons" style="justify-content:center;">
-        <a href="contact.html" class="btn btn-primary large">&#128188; <span data-i18n="btn.hireMe">Hire Me</span></a>
-        <a href="contact.html" class="btn btn-outline large">&#128196; <span data-i18n="btn.viewCV">View CV</span></a>
+      <div class="hero-buttons hero-buttons-center">
+        <a href="contact.html" class="btn btn-primary large"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,56H176V48a24,24,0,0,0-24-24H104A24,24,0,0,0,80,48v8H40A16,16,0,0,0,24,72V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V72A16,16,0,0,0,216,56ZM96,48a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96ZM216,72v41.61A184,184,0,0,1,128,136a184.07,184.07,0,0,1-88-22.38V72Zm0,128H40V131.64A200.19,200.19,0,0,0,128,152a200.25,200.25,0,0,0,88-20.37V200ZM104,112a8,8,0,0,1,8-8h32a8,8,0,0,1,0,16H112A8,8,0,0,1,104,112Z"/></svg><span data-i18n="btn.hireMe">Hire Me</span></a>
+        <a href="contact.html" class="btn btn-outline large"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-32-80a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,168Z"/></svg><span data-i18n="btn.viewCV">View CV</span></a>
       </div>
     </div>
   </section>
 
 </main>
 
-<footer>
-  <div class="footer-inner">
-    <a href="https://github.com/zoeb7184" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://www.linkedin.com/in/zoeb-ali-khan" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="mailto:zoebalikhan00@gmail.com">Email</a>
+<footer class="site-footer">
+  <div class="footer-wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">ZAK<span>.</span></a>
+        <p class="footer-tagline"><span data-i18n="footer.tagline">Data science and ML engineering in Bielefeld. Clean pipelines, honest models, and code that ships.</span></p>
+        <p class="footer-status"><span class="status-dot" aria-hidden="true"></span><span data-i18n="footer.status">Open to Werkstudent roles from September 2026</span></p>
+        <a href="mailto:zoebalikhan00@gmail.com" class="btn btn-primary small footer-cta"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></svg><span data-i18n="btn.sayHello">Say Hello</span></a>
+      </div>
+      <nav class="footer-col" aria-labelledby="footerNavTitle">
+        <h2 class="footer-heading" id="footerNavTitle"><span data-i18n="footer.navigate">Navigate</span></h2>
+        <ul>
+          <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+          <li><a href="about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="education.html" data-i18n="nav.education">Education</a></li>
+          <li><a href="experience.html" data-i18n="nav.experience">Experience</a></li>
+          <li><a href="projects.html" data-i18n="nav.projects">Projects</a></li>
+          <li><a href="certifications.html" data-i18n="nav.certifications">Certifications</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2 class="footer-heading"><span data-i18n="footer.work">Live projects</span></h2>
+        <ul>
+          <li><a href="https://footballiq-zoeb.vercel.app" target="_blank" rel="noopener">FootballIQ <svg class="i i-ext" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a></li>
+          <li><a href="https://frontend-production-98e0.up.railway.app" target="_blank" rel="noopener">Career OS <svg class="i i-ext" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a></li>
+          <li><a href="https://german-tech-salary-explorer.streamlit.app/" target="_blank" rel="noopener"><span data-i18n="footer.salary">Salary Explorer</span> <svg class="i i-ext" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a></li>
+          <li><a href="https://de-electricity-forecaster.streamlit.app" target="_blank" rel="noopener"><span data-i18n="footer.power">Power Price Forecaster</span> <svg class="i i-ext" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2 class="footer-heading"><span data-i18n="footer.connect">Connect</span></h2>
+        <ul>
+          <li><a href="https://github.com/zoeb7184" target="_blank" rel="noopener"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24H124A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24A40,40,0,0,0,8,136a8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.83a43.81,43.81,0,0,1,.79-33.58,43.88,43.88,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.87,43.87,0,0,1,32.32-20.06A43.81,43.81,0,0,1,192,73.83a8.09,8.09,0,0,0,1,7.65A41.72,41.72,0,0,1,200,104Z"/></svg>GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/zoeb-ali-khan" target="_blank" rel="noopener"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"/></svg>LinkedIn</a></li>
+          <li><a href="mailto:zoebalikhan00@gmail.com"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></svg><span data-i18n="footer.email">Email</span></a></li>
+          <li class="footer-place"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"/></svg>Bielefeld, Germany</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Zoeb Ali Khan. <span data-i18n="footer.note">Designed and built by hand, no templates.</span></p>
+      <a href="#top" class="footer-top-link" id="backToTop"><span data-i18n="footer.top">Back to top</span><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,117.66a8,8,0,0,1-11.32,0L136,59.31V216a8,8,0,0,1-16,0V59.31L61.66,117.66a8,8,0,0,1-11.32-11.32l72-72a8,8,0,0,1,11.32,0l72,72A8,8,0,0,1,205.66,117.66Z"/></svg></a>
+    </div>
   </div>
-  <p class="footer-note"><span data-i18n="footer.note">Designed &amp; built by Zoeb Ali Khan.</span></p>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="assets/js/motion.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
