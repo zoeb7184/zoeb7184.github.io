@@ -1,5 +1,14 @@
 const TRANSLATIONS = {
   "en": {
+    "nav.home": "Home",
+    "nav.about": "About",
+    "nav.education": "Education",
+    "nav.experience": "Experience",
+    "nav.projects": "Projects",
+    "nav.certifications": "Certifications",
+    "nav.contact": "Contact",
+    "notfound.desc": "This page doesn&rsquo;t exist &mdash; but the rest of the site does.",
+    "notfound.back": "Back to Home &rarr;",
     "footer.note": "Designed &amp; built by Zoeb Ali Khan.",
     "loader.tagline": "Data Scientist &amp; ML Engineer",
     "home.eyebrow": "Hi, my name is",
@@ -78,6 +87,8 @@ const TRANSLATIONS = {
     "exp.stackDeploy": "Deployment",
     "btn.live": "Live",
     "btn.code": "Code",
+    "btn.api": "API",
+    "proj.notPublic": "Academic collaboration &middot; code not public",
     "filter.All": "All",
     "filter.MLAI": "ML/AI",
     "filter.DataEngineering": "Data Engineering",
@@ -100,6 +111,7 @@ const TRANSLATIONS = {
     "contact.subtitle": "Let's work together.",
     "contact.available": "Available Sep 2026",
     "contact.personalEmail": "Personal Email",
+    "contact.preferred": "Preferred",
     "contact.uniEmail": "University Email",
     "contact.location": "Location",
     "contact.openTo": "Open to Werkstudent roles (20h/week from September 2026), internships, and research collaborations across Germany.",
@@ -110,6 +122,15 @@ const TRANSLATIONS = {
     "brain.trigger": "Tap the photo &darr;"
   },
   "de": {
+    "nav.home": "Start",
+    "nav.about": "&Uuml;ber mich",
+    "nav.education": "Ausbildung",
+    "nav.experience": "Erfahrung",
+    "nav.projects": "Projekte",
+    "nav.certifications": "Zertifikate",
+    "nav.contact": "Kontakt",
+    "notfound.desc": "Diese Seite existiert nicht &mdash; der Rest der Website aber schon.",
+    "notfound.back": "Zur&uuml;ck zur Startseite &rarr;",
     "footer.note": "Entworfen &amp; entwickelt von Zoeb Ali Khan.",
     "loader.tagline": "Data Scientist &amp; ML Engineer",
     "home.eyebrow": "Hallo, mein Name ist",
@@ -188,6 +209,8 @@ const TRANSLATIONS = {
     "exp.stackDeploy": "Deployment",
     "btn.live": "Live",
     "btn.code": "Code",
+    "btn.api": "API",
+    "proj.notPublic": "Wissenschaftliche Kooperation &middot; Code nicht &ouml;ffentlich",
     "filter.All": "Alle",
     "filter.MLAI": "ML/KI",
     "filter.DataEngineering": "Data Engineering",
@@ -210,6 +233,7 @@ const TRANSLATIONS = {
     "contact.subtitle": "Lass uns zusammenarbeiten.",
     "contact.available": "Verf&uuml;gbar ab Sep. 2026",
     "contact.personalEmail": "Private E-Mail",
+    "contact.preferred": "Bevorzugt",
     "contact.uniEmail": "Universit&auml;ts-E-Mail",
     "contact.location": "Standort",
     "contact.openTo": "Offen f&uuml;r Werkstudentenstellen (20 Std./Woche ab September 2026), Praktika und Forschungskooperationen in ganz Deutschland.",
@@ -433,10 +457,18 @@ initFilterTabs('certFilterTabs', '.cert-card', 'issuer');
 (function initTypeLoop(){
   const typedEl = document.getElementById('typed');
   if(!typedEl) return;
-  const roles = ["Data Scientist.", "ML Engineer.", "Data Engineer.", "AI Builder."];
+  const rolesByLang = {
+    en: ["Data Scientist.", "ML Engineer.", "Data Engineer.", "AI Builder."],
+    de: ["Data Scientist.", "ML-Ingenieur.", "Data Engineer.", "KI-Entwickler."]
+  };
+  function getLang(){
+    try { return localStorage.getItem('zak-lang') || 'en'; } catch(e){ return 'en'; }
+  }
   let roleIndex = 0, charIndex = 0, deleting = false;
 
   function typeLoop(){
+    const roles = rolesByLang[getLang()] || rolesByLang.en;
+    roleIndex = roleIndex % roles.length;
     const current = roles[roleIndex];
     if(!deleting){
       typedEl.textContent = current.slice(0, ++charIndex);
@@ -739,16 +771,6 @@ if(statCounters.length){
   }, { threshold: 0.4 });
   statCounters.forEach(el => statObserver.observe(el));
 }
-
-// ---------- Resume button placeholder ----------
-const resumeBtn = document.getElementById('resumeBtn');
-if(resumeBtn){
-  resumeBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    alert('Add a link to your resume PDF here, e.g. href="resume.pdf" download.');
-  });
-}
-
 
 // ---------- Matrix digital rain (Projects page hero only) ----------
 (function initMatrixRain(){
