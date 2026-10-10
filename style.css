@@ -891,3 +891,6 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 .cert-verify:hover{color:var(--heading);border-color:var(--accent);}
 .cert-verify .i{width:12px;height:12px;transition:transform .2s ease;}
 .cert-verify:hover .i{transform:translate(2px,-2px);}
+
+/* Links under an experience entry */
+.timeline-links{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:4px;}
